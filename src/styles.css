@@ -44,6 +44,7 @@ a:hover {
 
 .main-index {
   color: var(--light-color);
+  background-image: url('../public/images/img1.jpeg');
 }
 .main {
   background-size: cover;
@@ -176,6 +177,7 @@ button {
   transition-duration: 0, 4s;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  width: fit-content;
 }
 .ml-30 {
   margin-left: 30%;
