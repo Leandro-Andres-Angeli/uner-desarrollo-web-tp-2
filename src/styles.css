@@ -9,6 +9,8 @@
 
   --light-color: #fdfdfd;
   --padding-helper-horiz: 3rem;
+  --box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 body {
   box-sizing: border-box;
@@ -42,7 +44,7 @@ a.nav-link-active {
 a:hover {
   color: var(--secondary-color);
 }
-.nav {
+/* .nav {
   display: flex;
   padding: 1rem 1.5rem;
   align-items: center;
@@ -54,6 +56,9 @@ a:hover {
 
   gap: 1rem;
 }
+.nav-logo {
+  margin-right: auto;
+}
 .nav-logo svg {
   height: 3rem;
   width: 3rem;
@@ -62,6 +67,9 @@ a:hover {
   display: flex;
   align-items: center;
 }
+header {
+  position: relative;
+} */
 .main-index {
   color: var(--light-color);
 }
@@ -225,10 +233,10 @@ main:has(.contacto) {
   padding: 1rem 1.5rem;
 }
 
-nav ul li {
+/* nav ul li {
   display: inline-block;
   margin-right: 40px;
-}
+} */
 
 ul {
   list-style: none;

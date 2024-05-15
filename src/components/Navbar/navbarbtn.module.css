@@ -1,3 +1,10 @@
+:root {
+  --btn-display: initial;
+  --navbar-menu-position: 0;
+}
+.testVal {
+  font-size: var(--navbar-menu-position);
+}
 button.navbarBtn {
   position: relative;
   border-radius: 0%;
@@ -7,6 +14,9 @@ button.navbarBtn {
   padding-top: 1rem;
   border-radius: 5px;
   cursor: pointer;
+}
+.navbarBtnDisplay {
+  display: var(--btn-display);
 }
 
 .navbarBtn span {
@@ -38,4 +48,10 @@ button.navbarBtn {
 }
 .rotate div {
   rotate: 45deg;
+}
+
+@media only screen and (min-width: 40em) {
+  :root {
+    --btn-display: none;
+  }
 }
