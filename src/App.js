@@ -1,7 +1,7 @@
 import './normalize.css';
 
 import { Switch, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import { routes } from './data/routes';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import Footer from './components/Footer';
@@ -10,7 +10,7 @@ function App() {
   return (
     <div className='App'>
       <Navbar></Navbar>
-     
+
       <Switch>
         {routes.map(({ route, component, exact }) => {
           return (

@@ -1,7 +1,8 @@
 import React from 'react';
-import { SiteIcon } from './../icons/SiteIcon';
-import { linksData } from '../data/routes';
+import { SiteIcon } from '../../icons/SiteIcon';
+import { linksData } from '../../data/routes';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+import NavbarBtn from './NavbarBtn';
 
 const Navbar = () => {
   return (
@@ -18,7 +19,7 @@ const Navbar = () => {
 
         <ul className='nav--links'>
           {linksData.map(({ text, route }) => (
-            <li key={text} >
+            <li key={text}>
               {' '}
               {/* CAMBIAR ESTE EXACT AL ARMAR LAS SUBRUTAS!! */}
               <NavLink to={route} exact activeClassName='nav-link-active'>
@@ -28,6 +29,7 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
+        <NavbarBtn></NavbarBtn>
       </nav>
     </header>
   );
