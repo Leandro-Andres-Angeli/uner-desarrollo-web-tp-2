@@ -23,7 +23,7 @@
   right: 0;
   top: 100%;
   background-color: var(--primary-color);
-
+  z-index: 2;
   border-top: 0;
   gap: 1rem;
   column-gap: 4rem;
