@@ -6,6 +6,8 @@ import { routes } from './data/routes';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import Footer from './components/Footer';
 import Components from './pages/Components';
+import Alojamiento from './pages/alojamiento/Alojamiento';
+
 function App() {
   return (
     <div className='App'>
@@ -19,6 +21,9 @@ function App() {
             </Route>
           );
         })}
+        <Route path='/alojamiento'>
+          <Alojamiento />
+        </Route>
         {/* DE MOMENTO LOS 404 REDIRECCIONAN AL HOME */}
         <Route path='/components'>
           <Components />
