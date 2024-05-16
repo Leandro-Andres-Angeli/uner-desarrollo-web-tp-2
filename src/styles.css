@@ -328,7 +328,7 @@ ul {
 }
 
 /* estilos fotos de alojamiento */
-
+/* 
 .lugar {
   display: flex;
   position: relative;
@@ -353,8 +353,6 @@ ul {
 }
 
 .alojamiento {
-  /* background-image: url("/imgs/img1.jpeg");
-  background-size: cover; */
   position: relative;
   padding: 2rem;
   background-color: #162e44;
@@ -409,10 +407,10 @@ ul {
 .fotos img,
 .fotos .foto-ver-mas {
   min-width: 7rem;
-}
+} */
 
 /* estilos descripciÃ³n alojamiento */
-
+/* 
 .descripcion-alojamiento {
   display: flex;
   gap: 1rem;
@@ -456,9 +454,9 @@ ul {
   z-index: 2;
   display: flex;
   padding-top: var(--padding-helper-horiz);
-}
+} */
 
-.tarjetas {
+/* .tarjetas {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -482,7 +480,7 @@ ul {
 }
 .descripcion-alojamiento {
   text-align: left;
-}
+} */
 
 .imagen-container {
   display: flex;
