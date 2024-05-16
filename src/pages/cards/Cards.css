@@ -1,0 +1,37 @@
+.tarjetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 2rem;
+}
+
+.tarjeta-alojamiento {
+  padding: 1rem;
+  border-top-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  z-index: 2;
+}
+
+.tarjeta-alojamiento img {
+  height: 10rem;
+  width: 15rem;
+  align-items: center;
+  border-top-left-radius: 2rem;
+}
+
+.descripcion-alojamiento {
+  text-align: left;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.card-list {
+  flex-direction: column;
+  z-index: 2;
+  display: flex;
+  margin-top: 2rem;
+}
