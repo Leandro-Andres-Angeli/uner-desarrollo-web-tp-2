@@ -1,0 +1,57 @@
+:root {
+  --btn-display: initial;
+  --navbar-menu-position: 0;
+}
+.testVal {
+  font-size: var(--navbar-menu-position);
+}
+button.navbarBtn {
+  position: relative;
+  border-radius: 0%;
+  width: fit-content;
+
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.navbarBtnDisplay {
+  display: var(--btn-display);
+}
+
+.navbarBtn span {
+  background-color: white;
+  position: absolute;
+  width: 1rem;
+  height: 3px;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+}
+
+.navbarBtn span::after {
+  content: '';
+  background-color: white;
+  position: absolute;
+  width: 3px;
+  height: 1rem;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+}
+.navbarBtn div {
+  transition: rotate 0.2s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+}
+.rotate div {
+  rotate: 45deg;
+}
+
+@media only screen and (min-width: 40em) {
+  :root {
+    --btn-display: none;
+  }
+}
