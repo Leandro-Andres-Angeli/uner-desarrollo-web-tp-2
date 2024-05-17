@@ -1,4 +1,5 @@
 import About from '../pages/About';
+import Admin from '../pages/Admin';
 import Contact from '../pages/Contact';
 import Home from '../pages/Home';
 
@@ -18,6 +19,11 @@ export const routes = [
     text: 'acerca',
     route: '/acerca',
     component: <About></About>,
+  },
+  {
+    text: 'admin',
+    route: '/admin',
+    component: <Admin></Admin>,
   },
 ];
 export const linksData = routes.reduce(
