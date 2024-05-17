@@ -1,0 +1,114 @@
+.lugar {
+  display: flex;
+  position: relative;
+  z-index: 1;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.lugar img {
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.lugar img:hover {
+  opacity: 0.7;
+}
+
+.separador {
+  border-bottom: 1px solid #fdfdfd;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.alojamiento {
+  position: relative;
+  padding: 2rem;
+  background-color: #162e44;
+  color: var(--light-color);
+}
+
+.alojamiento .contenido {
+  position: relative;
+}
+
+.contenido {
+  display: flex;
+  flex-direction: column;
+}
+
+.alojamiento h1 {
+  margin-bottom: 2rem;
+}
+
+.foto-principal {
+  height: 28.5rem;
+  min-width: 18rem;
+  max-width: 60rem;
+  flex: 1 1 20.5rem;
+}
+
+.foto-ver-mas {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.foto-ver-mas img {
+  filter: brightness(50%) grayscale(100%);
+}
+
+.foto-ver-mas p {
+  cursor: pointer;
+  position: absolute;
+  font-size: 2rem;
+  text-shadow: 1px 1px 10px black;
+}
+
+.fotos {
+  display: grid;
+  gap: 0.5rem;
+  width: 100%;
+  min-width: 18rem;
+  flex: 1 1 20.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+
+.fotos img,
+.fotos .foto-ver-mas {
+  min-width: 7rem;
+}
+
+.descripcion-alojamiento {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.foto-anfitrion {
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+}
+
+.anfitrion {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  align-content: center;
+}
+
+.especificaciones-alojamiento {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.especificaciones-alojamiento ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

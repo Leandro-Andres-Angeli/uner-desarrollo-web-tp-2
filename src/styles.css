@@ -14,14 +14,23 @@
 body {
   box-sizing: border-box;
   font-family: 'Lato', Arial, Helvetica, sans-serif;
+  display: flex;
 
   color: var(--primary-color);
   background-color: var(--light-color);
 }
+
 body * {
   margin: 0;
   padding: 0;
 }
+.App {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
 nav,
 footer {
   background-color: var(--primary-color);
@@ -49,9 +58,9 @@ a:hover {
 .main {
   background-size: cover;
   /* overflow: hidden; */
-  /* flex-grow: 1; */
+  flex-grow: 1;
   position: relative;
-  min-height: calc(100vh - 4rem);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -328,7 +337,7 @@ ul {
 }
 
 /* estilos fotos de alojamiento */
-
+/* 
 .lugar {
   display: flex;
   position: relative;
@@ -353,8 +362,6 @@ ul {
 }
 
 .alojamiento {
-  /* background-image: url("/imgs/img1.jpeg");
-  background-size: cover; */
   position: relative;
   padding: 2rem;
   background-color: #162e44;
@@ -409,10 +416,10 @@ ul {
 .fotos img,
 .fotos .foto-ver-mas {
   min-width: 7rem;
-}
+} */
 
 /* estilos descripciÃ³n alojamiento */
-
+/* 
 .descripcion-alojamiento {
   display: flex;
   gap: 1rem;
@@ -456,9 +463,9 @@ ul {
   z-index: 2;
   display: flex;
   padding-top: var(--padding-helper-horiz);
-}
+} */
 
-.tarjetas {
+/* .tarjetas {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -482,7 +489,7 @@ ul {
 }
 .descripcion-alojamiento {
   text-align: left;
-}
+} */
 
 .imagen-container {
   display: flex;

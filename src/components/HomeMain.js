@@ -1,5 +1,6 @@
 import React from 'react';
 import { SiteIcon } from '../icons/SiteIcon';
+import CardList from '../pages/cards/CardList';
 
 const HomeMain = () => {
   return (
@@ -17,6 +18,8 @@ const HomeMain = () => {
           Alojar Terciario
         </button>
       </section>
+
+      <CardList titulo="Recomendados" />
     </main>
   );
 };
