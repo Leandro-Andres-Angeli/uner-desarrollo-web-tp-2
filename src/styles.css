@@ -99,6 +99,9 @@ main img {
   z-index: 1;
 }
 
+.sobre-chapa {
+  z-index: 2;
+}
 .contenido {
   z-index: 2;
 }
