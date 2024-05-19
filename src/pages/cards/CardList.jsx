@@ -4,7 +4,7 @@ import "./Cards.css";
 
 const CardList = (props) => {
   return (
-    <section className="card-list">
+    <div className="card-list">
       <h2>{props.titulo}</h2>
       <div className="tarjetas">
         <Card></Card>
@@ -12,7 +12,7 @@ const CardList = (props) => {
         <Card></Card>
         <Card></Card>
       </div>
-    </section>
+    </div>
   );
 };
 
