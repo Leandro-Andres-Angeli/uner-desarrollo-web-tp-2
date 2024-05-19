@@ -42,7 +42,7 @@
   bottom: 0;
   right: 0;
   /* transform: translateY(100%); */
-  translate: 0% 100%;
+  translate: 100% 100%;
   z-index: 4;
   background: var(--primary-color);
   border-radius: 0 0 5px 5px;

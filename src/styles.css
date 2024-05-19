@@ -288,8 +288,11 @@ ul {
 .lista li {
   padding-bottom: 0.5rem;
 }
-.App[data-mobile-nav-link='hidden'] .navLinksMobile {
-  translate: 100% 100%;
+.App[data-mobile-nav-link='visible'] .navLinksMobile {
+  translate: 0% 100%;
+}
+.App[data-mobile-nav-link='visible'] .mobile-nav-btn div {
+  rotate: 45deg;
 }
 .boton-principal {
   background-color: rgb(0, 248, 248);
