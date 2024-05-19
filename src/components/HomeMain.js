@@ -1,6 +1,9 @@
 import React from 'react';
 import { SiteIcon } from '../icons/SiteIcon';
 import CardList from '../pages/cards/CardList';
+import Opinion from "./opinion/Opinion";
+import { listaOpiniones } from "./opinion/listaOpiniones";
+import Carrusel from "./carrusel/Carrusel";
 
 const HomeMain = () => {
   return (
@@ -18,8 +21,18 @@ const HomeMain = () => {
           Alojar Terciario
         </button>
       </section>
+      <section className="sobre-chapa">
+        <CardList titulo="Recomendados" />
+      </section>
+      <section className="sobre-chapa">
+        <h2>{"Lo que dicen nuestros clientes"}</h2>
 
-      <CardList titulo="Recomendados" />
+        <Carrusel>
+          {listaOpiniones.map((opinion, index) => {
+            return <Opinion key={index} opinion={opinion} />;
+          })}
+        </Carrusel>
+      </section>
     </main>
   );
 };

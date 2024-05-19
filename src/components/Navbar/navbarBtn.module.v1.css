@@ -2,7 +2,9 @@
   --btn-display: initial;
   --navbar-menu-position: 0;
 }
-
+.testVal {
+  font-size: var(--navbar-menu-position);
+}
 button.navbarBtn {
   position: relative;
   border-radius: 0%;
