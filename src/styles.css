@@ -20,13 +20,19 @@ body {
   background-color: var(--light-color);
 }
 
+#root {
+  width: 100%;
+  height: 100%;
+}
+
 body * {
   margin: 0;
   padding: 0;
 }
 .App {
   min-height: 100vh;
-  width: 100vw;
+  /* width: 100vw; Esto generaba problemas de overflow*/
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
