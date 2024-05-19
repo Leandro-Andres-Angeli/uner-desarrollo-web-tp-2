@@ -11,7 +11,7 @@ import { useEffect, useRef } from 'react';
 
 function App() {
   return (
-    <div className='App navLinksMobileHidden'>
+    <div className='App' data-mobile-nav-link='hidden'>
       <Navbar></Navbar>
 
       <Switch>

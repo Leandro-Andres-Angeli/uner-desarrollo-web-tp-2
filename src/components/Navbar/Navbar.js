@@ -1,12 +1,21 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import { SiteIcon } from '../../icons/SiteIcon';
 import { linksData } from '../../data/routes';
 import { Link, NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 import NavbarBtn from './NavbarBtn.js';
 import navbarStyles from './navbar.module.css';
-const Navbar = ({ app }) => {
+
+const Navbar = () => {
   const { nav, navLogo, navLinks, header, navLinksMobile } = navbarStyles;
-   
+  const [mobileNavbarDisplay, setmobileNavbarDisplay] = useState('hidden');
+  const navRef = useRef();
+
   return (
     <header className={header}>
       <nav className={nav}>
@@ -48,7 +57,9 @@ const Navbar = ({ app }) => {
         </ul>
 
         {/* links mobile    */}
-        <NavbarBtn app={app}></NavbarBtn>
+        <NavbarBtn
+          {...{ mobileNavbarDisplay, setmobileNavbarDisplay }}
+        ></NavbarBtn>
       </nav>
     </header>
   );
