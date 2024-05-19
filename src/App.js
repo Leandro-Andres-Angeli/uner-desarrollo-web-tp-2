@@ -7,10 +7,11 @@ import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import Footer from './components/Footer';
 import Components from './pages/Components';
 import Alojamiento from './pages/alojamiento/Alojamiento';
+import { useEffect, useRef } from 'react';
 
 function App() {
   return (
-    <div className='App'>
+    <div className='App navLinksMobileHidden'>
       <Navbar></Navbar>
 
       <Switch>
