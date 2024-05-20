@@ -4,6 +4,8 @@ import CardList from '../pages/cards/CardList';
 import Opinion from "./opinion/Opinion";
 import { listaOpiniones } from "./opinion/listaOpiniones";
 import Carrusel from "./carrusel/Carrusel";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import lista from "../data/BD_alojamientos.json";
 
 const HomeMain = () => {
   return (
@@ -16,13 +18,15 @@ const HomeMain = () => {
           reconectar con vos mismo. Podrás elegir el alojamiento que se adapte a
           tus necesidades Estas a un click de distancia de ese lugar de ensueño
         </p>
-        <button className='icon-btn btn-index'>
-          <SiteIcon className={'nav-logo-icon'}></SiteIcon>
-          Alojar Terciario
-        </button>
+        <Link to="/buscar">
+          <button className="icon-btn btn-index">
+            <SiteIcon className={"nav-logo-icon"}></SiteIcon>
+            Buscar Alojamiento
+          </button>
+        </Link>
       </section>
       <section className="sobre-chapa">
-        <CardList titulo="Recomendados" />
+        <CardList titulo="Recomendados" lista={lista.alojamientos} />
       </section>
       <section className="sobre-chapa">
         <h2>{"Lo que dicen nuestros clientes"}</h2>
