@@ -42,6 +42,15 @@ input {
   padding: 5px;
   margin-bottom: 10px;
 }
+
+.datos-usuario {
+  margin-top: 20px; 
+  padding: 10px;
+  border: 1px solid #464141; 
+  border-radius: 5px; 
+  background-color: #c8cacd; 
+}
+
 /*
 button {
   background-color: #0d6efd;
