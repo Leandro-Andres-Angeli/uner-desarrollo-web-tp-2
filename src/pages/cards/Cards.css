@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem;
+  border-radius: 2rem;
 }
 
 .tarjeta-alojamiento {
@@ -11,12 +12,12 @@
   border-bottom-right-radius: 2rem;
   background-color: rgba(0, 0, 0, 0.6);
   text-align: center;
-  max-width: 10rem;
+  z-index: 2;
 }
 
 .tarjeta-alojamiento img {
-  height: 9rem;
-  width: 10rem;
+  height: 10rem;
+  width: 15rem;
   align-items: center;
   border-top-left-radius: 2rem;
 }
@@ -26,11 +27,11 @@
   display: flex;
   gap: 1rem;
   flex-direction: column;
-  font-size: 0.9rem;
 }
 
 .card-list {
   flex-direction: column;
+  z-index: 2;
   display: flex;
   margin-top: 2rem;
 }

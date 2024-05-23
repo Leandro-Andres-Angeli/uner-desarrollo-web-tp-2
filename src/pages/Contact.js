@@ -77,6 +77,13 @@ const Formulario = () => {
             required
             ></textarea>
           <button className="icon-btn btn-index ml-30" type="submit">ENVIAR</button>
+          <div className="datos-usuario">
+            <h2>Información del Usuario:</h2>
+            <p><strong>Nombre:</strong> {datosFormulario.nombre}</p>
+            <p><strong>Email:</strong> {datosFormulario.email}</p>
+            <p><strong>Teléfono:</strong> {datosFormulario.telefono}</p>
+            <p><strong>Mensaje:</strong> {datosFormulario.mensaje}</p>
+          </div>
         </form>
     </main>
   );

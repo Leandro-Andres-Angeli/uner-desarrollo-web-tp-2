@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Button from '../components/Button';
 import TestComponent from '../components/TestComponent';
+import FormPrueba from './../components/FormPrueba';
 const RemovableEv = () => {
   const ref = useRef();
   function handleClick({ currentTarget }) {
@@ -40,6 +41,7 @@ const Components = () => {
       <Button></Button>
       <TestComponent></TestComponent>
       <RemovableEv></RemovableEv>
+      <FormPrueba></FormPrueba>
     </section>
   );
 };
