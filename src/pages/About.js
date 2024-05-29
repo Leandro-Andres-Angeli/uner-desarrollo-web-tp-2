@@ -1,12 +1,12 @@
 import React from 'react';
-import './styles.css';
+import './About.css';
 import AboutImages from '../components/AboutImages';
 
 const About = () => {
   return (
-    <section>
-    <h1>Acerca</h1>
-    <p>
+    <section class="about-section">
+      <h1 class="about-title">Acerca</h1>
+      <p class="about-paragraph">
     Alojar es una empresa de reservas líder dedicada a
   ofrecer experiencias de viaje personalizadas y sin problemas. Nuestra
   gama completa de servicios incluye reservas de vuelos, reservaciones de
@@ -25,6 +25,7 @@ const About = () => {
     Estamos aca!
     </a>
     </p>
+    <AboutImages />
 </section>
 );
 };
