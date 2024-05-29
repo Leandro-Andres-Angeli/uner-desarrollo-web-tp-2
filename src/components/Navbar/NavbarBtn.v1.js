@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import navbarStyle from './navbarBtn.module.css';
+import navbarStyle from './navbarbtn.module.css';
 const NavbarBtn = ({ setMenuDisplay, hidden, visible }) => {
   console.log(navbarStyle);
   const [iconRotate, setHandleRotate] = useState('');
