@@ -1,31 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Formulario = ({ onSubmit }) => {
-    const [formulario, setFormulario] = useState({
-    nombre: '',
-    email: '',
-    telefono: '',
-    mensaje: ''
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormulario({
-      ...formulario,
-      [name]: value
-    });
-  };
-
+const Formulario = ({ datosFormulario, setDatosFormulario, onChange, onReset }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(formulario);
-
-    setFormulario({
-      nombre: '',
-      email: '',
-      telefono: '',
-      mensaje: ''
-    });
+    onReset(); 
   };
 
   return (
@@ -35,15 +13,14 @@ const Formulario = ({ onSubmit }) => {
         <h2>Ingresá los datos para tu reserva</h2>
       </div>
       <form className="formulario" onSubmit={handleSubmit}>
-      
-        <label htmlFor="nombre" >Nombre:</label>
-        <input 
+        <label htmlFor="nombre">Nombre:</label>
+        <input
           type="text"
           id="nombre"
           name="nombre"
           placeholder="Ingresa tu nombre"
-          value={formulario.nombre}
-          onChange={handleChange}
+          value={datosFormulario.nombre}
+          onChange={onChange}
           required
         />
         <label htmlFor="email">E-mail:</label>
@@ -52,8 +29,8 @@ const Formulario = ({ onSubmit }) => {
           id="email"
           name="email"
           placeholder="ej.correo@ejemplo.com"
-          value={formulario.email}
-          onChange={handleChange}
+          value={datosFormulario.email}
+          onChange={onChange}
           required
         />
         <label htmlFor="telefono">Teléfono:</label>
@@ -62,8 +39,8 @@ const Formulario = ({ onSubmit }) => {
           id="telefono"
           name="telefono"
           placeholder="Ingresa tu teléfono"
-          value={formulario.telefono}
-          onChange={handleChange}
+          value={datosFormulario.telefono}
+          onChange={onChange}
           required
         />
         <label htmlFor="mensaje">Mensaje:</label>
@@ -72,8 +49,8 @@ const Formulario = ({ onSubmit }) => {
           name="mensaje"
           className="mensajetextarea"
           placeholder="Escribe tu mensaje aquí"
-          value={formulario.mensaje}
-          onChange={handleChange}
+          value={datosFormulario.mensaje}
+          onChange={onChange}
           required
         ></textarea>
         <button className="icon-btn btn-index ml-30" type="submit">ENVIAR</button>
