@@ -11,6 +11,7 @@
 .navLinks {
   display: none;
 }
+
 .hidden {
   translate: var(--hidden);
 }
@@ -20,7 +21,9 @@
 
 .navLinks a {
   padding: 1rem 2rem;
+  text-transform: capitalize;
 }
+
 .navLogo {
   margin-right: auto;
 }

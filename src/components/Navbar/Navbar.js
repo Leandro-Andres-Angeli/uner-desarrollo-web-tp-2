@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { SiteIcon } from '../../icons/SiteIcon';
-import { linksData } from '../../data/routes';
+import { linksData } from '../../data/routes/routes.js';
 import { Link, NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 import NavbarBtn from './NavbarBtn.js';
 import navbarStyles from './navbar.module.css';
@@ -33,7 +33,11 @@ const Navbar = () => {
             <li key={text}>
               {' '}
               {/* CAMBIAR ESTE EXACT AL ARMAR LAS SUBRUTAS!! */}
-              <NavLink to={route} exact activeClassName='nav-link-active'>
+              <NavLink
+                to={route}
+                exact={route === '/'}
+                activeClassName='nav-link-active'
+              >
                 {text}
               </NavLink>
               {/* CAMBIAR ESTE EXACT AL ARMAR LAS SUBRUTAS!! */}

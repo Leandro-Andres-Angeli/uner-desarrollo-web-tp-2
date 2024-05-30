@@ -1,18 +1,18 @@
 const AboutImages = () => {
   return (
-    <section class='imagen-container'>
+    <section className='imagen-container'>
       <figure>
-        <div class='imagen'>
+        <div className='imagen'>
           <img src='/images/img5.jpg' alt='Alojamiento con piscina' />
         </div>
       </figure>
       <figure>
-        <div class='imagen'>
+        <div className='imagen'>
           <img src='/images/img6.jpg' alt='Alojamiento al mar' />
         </div>
       </figure>
       <figure>
-        <div class='imagen'>
+        <div className='imagen'>
           <img src='/images/img7.png' alt='Camas' />
         </div>
       </figure>

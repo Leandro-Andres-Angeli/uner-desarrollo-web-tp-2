@@ -4,44 +4,34 @@ import {
   getAllTiposDeAlojamiento,
   tiposDeAlojamiento,
 } from '../../dbEndpoints';
+import {
+  Route,
+  Switch,
+  useRouteMatch,
+} from 'react-router-dom/cjs/react-router-dom.min';
+import TipoAlojamientos from './TipoAlojamientos/TipoAlojamientos';
+import { Link } from 'react-router-dom';
+import AdminDashboard from './AdminDashboard';
+import adminModule from './admin.module.css';
 
 const Admin = () => {
-  const [tiposAlojs, setTiposAloj] = useState({
-    tiposAlojamientos: [],
-    loading: true,
-    done: false,
-  });
-
-  useEffect(() => {
-    console.log('render');
-    const getTiposDeAloj = async () => {
-      try {
-        const res = await fetch(
-          `${BaseURL}${tiposDeAlojamiento}${getAllTiposDeAlojamiento}`
-        );
-
-        // if (!res.ok) {
-        //   return;
-        // }
-        const data = await res.json();
-        setTiposAloj((prev) => ({
-          ...prev,
-          loading: false,
-          done: true,
-          tiposAlojamientos: data,
-        }));
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    getTiposDeAloj();
-  }, []);
+  const { adminPanel, btnAdd } = adminModule;
+  let { url } = useRouteMatch();
 
   return (
     <main className='main'>
       <h1>Administracion</h1>
-      <div>{JSON.stringify(tiposAlojs)}</div>
+
+      <section className={`${adminPanel}`}>
+        <AdminDashboard></AdminDashboard>
+      </section>
+
+      <Switch>
+        <Route path={`${url}/tipo-alojamientos`}>
+          <TipoAlojamientos></TipoAlojamientos>
+        </Route>
+      </Switch>
+      <button className={`${btnAdd}`}>+</button>
     </main>
   );
 };
