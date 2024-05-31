@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import navbarStyle from './navbarbtn.module.css';
 const NavbarBtn = ({ setMenuDisplay, hidden, visible }) => {
-  console.log(navbarStyle);
+  // console.log(navbarStyle);
   const [iconRotate, setHandleRotate] = useState('');
   const handleRotate = () => {
     setHandleRotate((prev) => (prev === '' ? navbarStyle.rotate : ''));

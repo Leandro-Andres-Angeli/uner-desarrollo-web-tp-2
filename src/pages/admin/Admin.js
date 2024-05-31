@@ -13,6 +13,7 @@ import TipoAlojamientos from './TipoAlojamientos/TipoAlojamientos';
 import { Link } from 'react-router-dom';
 import AdminDashboard from './AdminDashboard';
 import adminModule from './admin.module.css';
+import TipoAlojamiento from './TipoAlojamiento/TipoAlojamiento';
 
 const Admin = () => {
   const { adminPanel, btnAdd } = adminModule;
@@ -21,17 +22,19 @@ const Admin = () => {
   return (
     <main className='main'>
       <h1>Administracion</h1>
-
       <section className={`${adminPanel}`}>
         <AdminDashboard></AdminDashboard>
       </section>
-
       <Switch>
-        <Route path={`${url}/tipo-alojamientos`}>
-          <TipoAlojamientos></TipoAlojamientos>
+        <Route exact path={`${url}/tipo-alojamientos`}>
+          <>
+            <TipoAlojamientos></TipoAlojamientos>
+          </>
+        </Route>
+        <Route path={`${url}/tipo-alojamientos/:id`}>
+          <TipoAlojamiento></TipoAlojamiento>
         </Route>
       </Switch>
-      <button className={`${btnAdd}`}>+</button>
     </main>
   );
 };

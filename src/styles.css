@@ -5,7 +5,7 @@
   --light-blue: #204b72;
 
   --secondary-color: #ffeb3b;
-
+  --pink: hsl(339, 100%, 48%);
   --light-color: #fdfdfd;
   --padding-helper-horiz: 3rem;
   --box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
@@ -13,6 +13,10 @@
   --pad-x: 2rem;
   --pad-y: 2rem;
   --border-radius: 5px;
+  --red-70: #d50000;
+  --green-70: #00c853;
+  --danger: var(--red-70);
+  --edit: var(--green-70);
 }
 body {
   box-sizing: border-box;
@@ -530,4 +534,72 @@ ul {
 }
 .acerca-main {
   padding: var(--padding-helper-horiz);
+}
+
+/* form styles*/
+form:has(.form-control) fieldset legend {
+  text-transform: capitalize;
+  font-weight: bolder;
+}
+
+form:has(.form-control) fieldset {
+  box-shadow: var(--box-shadow);
+  border: none;
+  border-radius: var(--border-radius);
+}
+.form-control {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: fit-content;
+}
+.form-control label {
+  display: initial;
+  width: max-content;
+}
+.form-control input {
+  margin-top: 5px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--light-blue);
+  width: initial;
+}
+form .admin-btn {
+  background-color: var(--pink);
+  filter: brightness(90%);
+  box-shadow: none;
+  transition: filter 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 20px;
+}
+form .admin-btn:hover {
+  filter: brightness(100%);
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+}
+ul:has(.tipoAlojamientoLink) {
+  padding-top: 2rem;
+}
+section:has(.tipoAlojamientoLink) h2 {
+  margin-top: 2rem;
+}
+.tipoAlojamientoLink {
+  box-shadow: var(--box-shadow);
+  display: flex;
+}
+.tipoAlojamientoLink > a {
+  padding: 15px;
+  flex: 1;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.tipoAlojamientoLink > a:hover {
+  background-color: var(--primary-color);
+}
+
+.error-msg-styles {
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin: 2rem auto;
+  padding: var(--pad-x);
 }
