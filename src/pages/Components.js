@@ -24,12 +24,7 @@ const RemovableEv = () => {
   }, [ref]);
 
   return (
-    <button
-      ref={ref}
-      data-fun='pending'
-      // onClick={() => console.log(ref)}
-      onClick={handleClick}
-    >
+    <button ref={ref} data-fun='pending' onClick={handleClick}>
       text
     </button>
   );
