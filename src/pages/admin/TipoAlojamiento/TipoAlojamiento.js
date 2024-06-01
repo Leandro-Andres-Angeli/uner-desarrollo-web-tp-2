@@ -11,8 +11,8 @@ const TipoAlojamiento = () => {
       <TipoAlojamientosForm
         type={'PUT'}
         actions={[
-          { actionType: 'PUT', text: 'actualizar' },
-          { actionType: 'DELETE', text: 'borrar' },
+          { actionType: 'PUT', text: 'actualizar', stylesClassName: 'update' },
+          { actionType: 'DELETE', text: 'borrar', stylesClassName: 'delete' },
         ]}
       ></TipoAlojamientosForm>
     </>

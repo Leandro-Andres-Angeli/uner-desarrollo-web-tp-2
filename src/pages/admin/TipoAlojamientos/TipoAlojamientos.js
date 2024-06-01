@@ -1,9 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import {
-  BaseURL,
-  getAllTiposDeAlojamiento,
-  tiposDeAlojamiento,
-} from '../../../dbEndpoints';
+import { crudTipoAlojamientosEndpoints } from '../../../dbEndpoints';
 import ErrorMsg from '../../../components/ErrorMsg';
 import {
   Link,
@@ -81,7 +77,7 @@ const TipoAlojamientos = () => {
   //   }
   // );
   const [tipoAlojamientosState, setTipoAlojamientosState] = UseCrud(
-    'http://localhost:3001/tiposAlojamiento/getTiposAlojamiento',
+    crudTipoAlojamientosEndpoints.readAll,
     'GET'
   );
   // useEffect(() => {
@@ -134,7 +130,14 @@ const TipoAlojamientos = () => {
     <section style={{ paddingTop: ' var(--pad-x)' }}>
       <TipoAlojamientosForm
         type={'add'}
-        actions={[{ actionType: 'POST', text: 'agregar' }]}
+        actions={[
+          {
+            actionType: 'POST',
+            text: 'agregar',
+            stylesClassName: 'add',
+            endpoint: 'create',
+          },
+        ]}
       ></TipoAlojamientosForm>
 
       {loading ? <span>Cargando</span> : <></>}

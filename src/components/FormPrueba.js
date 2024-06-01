@@ -7,7 +7,7 @@ const FormPrueba = () => {
     event.preventDefault();
     // console.log(event.target.nombre.value);
     // console.log(event.target.apellido.value);
-    console.log(event);
+
     const formularioNombre = event.target.nombre.value;
     const formularioApellido = event.target.apellido.value;
 

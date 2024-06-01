@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './testStyles.module.css';
 const TestComponent = () => {
-  console.log(styles);
+  // console.log(styles);
 
   const { estilo1, estilo2 } = styles;
   // console.log("estilo 1",estilo1)

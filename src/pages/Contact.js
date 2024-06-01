@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
-import "./Contact.css";
+import './Contact.css';
 import Formulario from '../components/Formulario';
 import DatosUsuario from '../components/DatosUsuario';
 
-
 const Contact = () => {
-    const [datosFormulario, setDatosFormulario] = useState({
+  const [datosFormulario, setDatosFormulario] = useState({
     nombre: '',
     email: '',
     telefono: '',
-    mensaje: ''
+    mensaje: '',
   });
 
-  
   const handleSubmit = (data) => {
-    console.log(data); 
-    setDatosFormulario(data); 
+    // console.log(data);
+    setDatosFormulario(data);
   };
 
   return (
@@ -24,6 +22,6 @@ const Contact = () => {
       <DatosUsuario datos={datosFormulario} />
     </div>
   );
-}
+};
 
 export default Contact;
