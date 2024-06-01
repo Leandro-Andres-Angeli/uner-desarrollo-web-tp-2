@@ -11,12 +11,11 @@ const Contact = () => {
     mensaje: '',
   });
 
-<<<<<<< HEAD
   const handleChange = (event) => {
     const { name, value } = event.target;
     setDatosFormulario({
       ...datosFormulario,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -25,23 +24,18 @@ const Contact = () => {
       nombre: '',
       email: '',
       telefono: '',
-      mensaje: ''
+      mensaje: '',
     });
-=======
-  const handleSubmit = (data) => {
-    // console.log(data);
-    setDatosFormulario(data);
->>>>>>> leand
   };
 
   return (
     <div>
-      <Formulario 
-        datosFormulario={datosFormulario} 
-        setDatosFormulario={setDatosFormulario} 
-        onChange={handleChange} 
+      <Formulario
+        datosFormulario={datosFormulario}
+        setDatosFormulario={setDatosFormulario}
+        onChange={handleChange}
         onReset={resetFormulario}
-      /> 
+      />
       <DatosUsuario datos={datosFormulario} />
     </div>
   );
