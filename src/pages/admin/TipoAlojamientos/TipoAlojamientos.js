@@ -1,14 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { crudTipoAlojamientosEndpoints } from '../../../dbEndpoints';
 import ErrorMsg from '../../../components/ErrorMsg';
-import {
-  Link,
-  useParams,
-  useRouteMatch,
-} from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import TipoAlojamientosForm from '../tipoAlojamientosForm/TipoAlojamientosForm';
-import { SpinnerCircular } from 'spinners-react';
-import UseCrud from '../../../hooks/UseCrud';
+
+import handleCRUD from '../../../utils/handleCrud';
 
 const TipoAlojamientoLink = ({ el }) => {
   const { path } = useRouteMatch();
@@ -24,20 +20,15 @@ const TipoAlojamientoLink = ({ el }) => {
     >
       {' '}
       Tipo de alojamiento :<strong>{el.Descripcion}</strong>{' '}
-      {/* <button className='btn btn-edit'>
-          <ion-icon name='trash-outline'></ion-icon>
-        </button>
-        <button
-          className='btn btn-delete'
-          onClick={handleDelete}
-          data-id={el.idTipoAlojamiento}
-        >
-          <ion-icon name='pencil-outline'></ion-icon>
-        </button> */}
     </Link>
   );
 };
 const TipoAlojamientosLinks = ({ list }) => {
+  useEffect(() => {
+    console.log('render list');
+    return () => {};
+  }, [list]);
+
   return (
     <>
       <h2>Listado : Tipos de Alojamientos</h2>
@@ -55,77 +46,29 @@ const TipoAlojamientosLinks = ({ list }) => {
 };
 
 const TipoAlojamientos = () => {
-  // const [tipoAlojamientosState, setTipoAlojamientosState] = useState({
-  //   data: [],
-  //   loading: true,
-  //   done: false,
-  //   error: null,
-  // });
-  const [d, setD] = useState(null);
+  const intialState = {
+    data: [],
+    loading: true,
+    done: false,
+    error: null,
+    update: false,
+  };
+  const [tipoAlojamientos, setTipoAlojamientos] = useState(intialState);
 
-  // const [crud, setCrud] = UseCrud(
-  //   'https://jsonplaceholder.typicode.com/posts',
-  //   'GET'
-  // );
-  // const [p, setP] = UseCrud(
-  //   'https://jsonplaceholder.typicode.com/posts',
-  //   'POST',
-  //   {
-  //     title: 'foo',
-  //     body: 'bar',
-  //     userId: 1,
-  //   }
-  // );
-  const [tipoAlojamientosState, setTipoAlojamientosState] = UseCrud(
-    crudTipoAlojamientosEndpoints.readAll,
-    'GET'
-  );
-  // useEffect(() => {
-  //   console.log('render');
-  // }, []);
-
-  /* useEffect(() => {
-    // console.log('render');
-
-    Funcion refactorizada en class apiCrud
-    
-    const getTiposDeAloj = async () => {
-      try {
-        const res = await fetch(
-          `${BaseURL}${tiposDeAlojamiento}${getAllTiposDeAlojamiento}`
-        );
-        console.log(res);
-        const data = await res.json();
-        console.log(data);
-        if (!res.ok) {
-          return;
-        }
-        setTipoAlojamientosState((prev) => ({
-          ...prev,
-          data,
-          error: false,
-        }));
-      } catch (err) {
-        const { status } = err;
-
-        setTipoAlojamientosState((prev) => ({
-          ...prev,
-          error: true,
-
-          status,
-        }));
-      } finally {
-        setTipoAlojamientosState((prev) => ({
-          ...prev,
-          done: true,
-          loading: false,
-        }));
-      }
+  useEffect(() => {
+    setTipoAlojamientos((prev) => ({ ...prev, update: false }));
+    console.log('render done');
+    return async () => {
+      await handleCRUD(
+        crudTipoAlojamientosEndpoints.readAll,
+        undefined,
+        setTipoAlojamientos
+      );
     };
+  }, [tipoAlojamientos.update]);
 
-    getTiposDeAloj();
-  }, []); */
-  const { error, data, loading } = tipoAlojamientosState;
+  const { error, data, loading } = tipoAlojamientos;
+  console.log(data);
   return (
     <section style={{ paddingTop: ' var(--pad-x)' }}>
       <TipoAlojamientosForm
@@ -138,6 +81,7 @@ const TipoAlojamientos = () => {
             endpoint: 'create',
           },
         ]}
+        {...{ setTipoAlojamientos }}
       ></TipoAlojamientosForm>
 
       {loading ? <span>Cargando</span> : <></>}
