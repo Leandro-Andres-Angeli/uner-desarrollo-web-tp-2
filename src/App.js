@@ -2,7 +2,7 @@ import './normalize.css';
 
 import { Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import { routes } from './data/routes';
+import { routes } from './data/routes/routes';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import Footer from './components/Footer';
 import Components from './pages/Components';
@@ -17,7 +17,12 @@ function App() {
       <Switch>
         {routes.map(({ route, component, exact }) => {
           return (
-            <Route key={route} exact={exact ?? false} path={route}>
+            <Route
+              key={route}
+              exact={exact ?? false}
+              strict={false}
+              path={route}
+            >
               {component}
             </Route>
           );

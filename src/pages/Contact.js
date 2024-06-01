@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./Contact.css";
+import './Contact.css';
 import Formulario from '../components/Formulario';
 import DatosUsuario from '../components/DatosUsuario';
 
@@ -8,9 +8,10 @@ const Contact = () => {
     nombre: '',
     email: '',
     telefono: '',
-    mensaje: ''
+    mensaje: '',
   });
 
+<<<<<<< HEAD
   const handleChange = (event) => {
     const { name, value } = event.target;
     setDatosFormulario({
@@ -26,6 +27,11 @@ const Contact = () => {
       telefono: '',
       mensaje: ''
     });
+=======
+  const handleSubmit = (data) => {
+    // console.log(data);
+    setDatosFormulario(data);
+>>>>>>> leand
   };
 
   return (
@@ -39,6 +45,6 @@ const Contact = () => {
       <DatosUsuario datos={datosFormulario} />
     </div>
   );
-}
+};
 
 export default Contact;
