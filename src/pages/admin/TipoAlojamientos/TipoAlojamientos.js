@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   BaseURL,
   getAllTiposDeAlojamiento,
@@ -12,6 +12,7 @@ import {
 } from 'react-router-dom/cjs/react-router-dom.min';
 import TipoAlojamientosForm from '../tipoAlojamientosForm/TipoAlojamientosForm';
 import { SpinnerCircular } from 'spinners-react';
+import UseCrud from '../../../hooks/UseCrud';
 
 const TipoAlojamientoLink = ({ el }) => {
   const { path } = useRouteMatch();
@@ -58,15 +59,40 @@ const TipoAlojamientosLinks = ({ list }) => {
 };
 
 const TipoAlojamientos = () => {
-  const [tipoAlojamientosState, setTipoAlojamientosState] = useState({
-    data: [],
-    loading: true,
-    done: false,
-    error: null,
-  });
+  // const [tipoAlojamientosState, setTipoAlojamientosState] = useState({
+  //   data: [],
+  //   loading: true,
+  //   done: false,
+  //   error: null,
+  // });
+  const [d, setD] = useState(null);
 
-  useEffect(() => {
+  // const [crud, setCrud] = UseCrud(
+  //   'https://jsonplaceholder.typicode.com/posts',
+  //   'GET'
+  // );
+  // const [p, setP] = UseCrud(
+  //   'https://jsonplaceholder.typicode.com/posts',
+  //   'POST',
+  //   {
+  //     title: 'foo',
+  //     body: 'bar',
+  //     userId: 1,
+  //   }
+  // );
+  const [tipoAlojamientosState, setTipoAlojamientosState] = UseCrud(
+    'http://localhost:3001/tiposAlojamiento/getTiposAlojamiento',
+    'GET'
+  );
+  // useEffect(() => {
+  //   console.log('render');
+  // }, []);
+
+  /* useEffect(() => {
     // console.log('render');
+
+    Funcion refactorizada en class apiCrud
+    
     const getTiposDeAloj = async () => {
       try {
         const res = await fetch(
@@ -102,14 +128,15 @@ const TipoAlojamientos = () => {
     };
 
     getTiposDeAloj();
-  }, []);
+  }, []); */
   const { error, data, loading } = tipoAlojamientosState;
   return (
     <section style={{ paddingTop: ' var(--pad-x)' }}>
       <TipoAlojamientosForm
         type={'add'}
-        actions={[{ actionType: 'add', text: 'agregar' }]}
+        actions={[{ actionType: 'POST', text: 'agregar' }]}
       ></TipoAlojamientosForm>
+
       {loading ? <span>Cargando</span> : <></>}
       {!error ? (
         <TipoAlojamientosLinks list={data}></TipoAlojamientosLinks>

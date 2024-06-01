@@ -9,10 +9,10 @@ const TipoAlojamiento = () => {
   return (
     <>
       <TipoAlojamientosForm
-        type={'update'}
+        type={'PUT'}
         actions={[
-          { actionType: 'update', text: 'actualizar' },
-          { actionType: 'delete', text: 'borrar' },
+          { actionType: 'PUT', text: 'actualizar' },
+          { actionType: 'DELETE', text: 'borrar' },
         ]}
       ></TipoAlojamientosForm>
     </>
