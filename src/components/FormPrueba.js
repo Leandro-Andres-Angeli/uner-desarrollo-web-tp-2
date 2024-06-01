@@ -5,13 +5,10 @@ const FormPrueba = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(event.target.nombre.value);
-    // console.log(event.target.apellido.value);
-    console.log(event);
+
     const formularioNombre = event.target.nombre.value;
     const formularioApellido = event.target.apellido.value;
 
-    // setUser({nombre , apellido});
     setUser({ nombre: formularioNombre, apellido: formularioApellido });
     event.target.reset();
   };

@@ -6,7 +6,7 @@ const RemovableEv = () => {
   const ref = useRef();
   function handleClick({ currentTarget }) {
     // console.log(currentTarget);
-    console.log('doning');
+    // console.log('doning');
     currentTarget.setAttribute('data-fun', 'done');
   }
   useEffect(() => {
@@ -24,12 +24,7 @@ const RemovableEv = () => {
   }, [ref]);
 
   return (
-    <button
-      ref={ref}
-      data-fun='pending'
-      // onClick={() => console.log(ref)}
-      onClick={handleClick}
-    >
+    <button ref={ref} data-fun='pending' onClick={handleClick}>
       text
     </button>
   );
