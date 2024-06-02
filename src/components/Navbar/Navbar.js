@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useState } from 'react';
 import { SiteIcon } from '../../icons/SiteIcon';
 import { linksData } from '../../data/routes/routes.js';
 import { Link, NavLink } from 'react-router-dom/cjs/react-router-dom.min';
@@ -14,7 +8,6 @@ import navbarStyles from './navbar.module.css';
 const Navbar = () => {
   const { nav, navLogo, navLinks, header, navLinksMobile } = navbarStyles;
   const [mobileNavbarDisplay, setmobileNavbarDisplay] = useState('hidden');
-  const navRef = useRef();
 
   return (
     <header className={header}>

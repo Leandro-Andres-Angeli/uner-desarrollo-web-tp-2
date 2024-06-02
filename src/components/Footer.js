@@ -12,7 +12,7 @@ const Footer = () => {
             <li>Avenida Siempre Viva 742, CABA, Argentina</li>
             <li>+54 911 03 03 456</li>
             <li>
-              <a href='mailto:info@alojar.com' target='_blank'>
+              <a href='mailto:info@alojar.com' target='_blank' rel='noreferrer'>
                 info@alojar.com
               </a>
             </li>
@@ -40,7 +40,11 @@ const Footer = () => {
             </h3>
             <ul className='flex-row'>
               <li>
-                <a href='https://play.google.com' target='_blank'>
+                <a
+                  href='https://play.google.com'
+                  target='_blank'
+                  rel='noreferrer'
+                >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'
@@ -54,7 +58,11 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href='https://www.apple.com' target='_blank'>
+                <a
+                  href='https://www.apple.com'
+                  target='_blank'
+                  rel='noreferrer'
+                >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'
@@ -77,7 +85,7 @@ const Footer = () => {
 
             <ul className='flex-row'>
               <li>
-                <a href='https://facebook.com' target='_blank'>
+                <a href='https://facebook.com' target='_blank' rel='noreferrer'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'
@@ -91,7 +99,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href='https://whatsapp.com' target='_blank'>
+                <a href='https://whatsapp.com' target='_blank' rel='noreferrer'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'
@@ -105,7 +113,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href='https://telegram.com' target='_blank'>
+                <a href='https://telegram.com' target='_blank' rel='noreferrer'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'
@@ -119,7 +127,11 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href='https://instagram.com' target='_blank'>
+                <a
+                  href='https://instagram.com'
+                  target='_blank'
+                  rel='noreferrer'
+                >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'
