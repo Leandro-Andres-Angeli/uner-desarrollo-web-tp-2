@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import formStyles from './tipoAlojamientosForm.module.css';
 import {
-  Redirect,
   useHistory,
   useLocation,
 } from 'react-router-dom/cjs/react-router-dom.min';
 import { crudTipoAlojamientosEndpoints } from '../../../dbEndpoints';
 
-import crudOperations from '../../../hooks/crudOperations';
+import crudOperations from '../../../utils/crudOperations';
 import handleCRUD from '../../../utils/handleCrud';
 const TipoAlojamientosForm = (props) => {
-  console.log('in');
+  // console.log('in');
 
   const location = useLocation();
   const history = useHistory();

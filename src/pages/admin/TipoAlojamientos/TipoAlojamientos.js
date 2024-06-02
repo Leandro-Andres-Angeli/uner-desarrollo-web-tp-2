@@ -25,7 +25,7 @@ const TipoAlojamientoLink = ({ el }) => {
 };
 const TipoAlojamientosLinks = ({ list }) => {
   useEffect(() => {
-    console.log('render list');
+    // console.log('render list');
     return () => {};
   }, [list]);
 
@@ -57,7 +57,7 @@ const TipoAlojamientos = () => {
 
   useEffect(() => {
     setTipoAlojamientos((prev) => ({ ...prev, update: false }));
-    console.log('render done');
+    // console.log('render done');
     return async () => {
       await handleCRUD(
         crudTipoAlojamientosEndpoints.readAll,

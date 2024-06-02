@@ -11,7 +11,7 @@ const handleCRUD = async (
 ) => {
   try {
     const res = await fetch(URL, method);
-    console.log(method);
+    // console.log(method);
 
     // const data = await res.json();
 
