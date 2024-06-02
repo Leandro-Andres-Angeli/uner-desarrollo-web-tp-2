@@ -79,7 +79,7 @@ const TipoAlojamientosForm = (props) => {
           ))}
         </div>
       </fieldset>
-      {JSON.stringify(crudRes)}
+      {/*{JSON.stringify(crudRes)*/}
     </form>
   );
 };
