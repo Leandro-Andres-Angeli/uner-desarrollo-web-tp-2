@@ -6,7 +6,7 @@ const createTipoAlojamiento = 'createTipoAlojamiento';
 const putTipoAlojamiento = 'putTipoAlojamiento';
 const deleteTipoAlojamiento = 'deleteTipoAlojamiento';
 export const crudTipoAlojamientosEndpoints = {
-  readAll: `${baseURL}${tiposDeAlojamiento}${getAllTiposDeAlojamiento}`,
+  readAll: 'http://localhost:3001/tiposAlojamiento/getTiposAlojamiento',
   POST: `${baseURL}${tiposDeAlojamiento}${createTipoAlojamiento}`,
   PUT: `${baseURL}${tiposDeAlojamiento}${putTipoAlojamiento}`,
   DELETE: `${baseURL}${tiposDeAlojamiento}${deleteTipoAlojamiento}`,
