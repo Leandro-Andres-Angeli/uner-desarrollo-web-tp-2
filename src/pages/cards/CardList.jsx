@@ -2,15 +2,15 @@ import React from "react";
 import Card from "./Card";
 import "./Cards.css";
 
-const CardList = (props) => {
+const CardList = ({ titulo = "", lista }) => {
   return (
     <div className="card-list">
-      <h2>{props.titulo}</h2>
+      <h2>{titulo}</h2>
       <div className="tarjetas">
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
+        {lista &&
+          lista.map((item, index) => {
+            return <Card key={index} item={item}></Card>;
+          })}
       </div>
     </div>
   );

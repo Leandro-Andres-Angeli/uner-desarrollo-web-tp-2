@@ -1,30 +1,36 @@
-import About from '../../pages/About';
+import About from "../../pages/About";
 
-import Contact from '../../pages/Contact';
-import Home from '../../pages/Home';
-import Admin from '../../pages/admin/Admin';
-import Alojamiento from '../../pages/alojamiento/Alojamiento';
+import Contact from "../../pages/Contact";
+import Home from "../../pages/Home";
+import Admin from "../../pages/admin/Admin";
+import Buscador from "../../pages/buscador/buscador";
 
 export const routes = [
   {
-    text: 'home',
-    route: '/',
+    text: "home",
+    route: "/",
     exact: true,
     component: <Home></Home>,
   },
   {
-    text: 'contacto',
-    route: '/contacto',
+    text: "buscar",
+    route: "/buscar",
+    component: <Buscador></Buscador>,
+  },
+  {
+    text: "contacto",
+    route: "/contacto",
     component: <Contact></Contact>,
   },
   {
-    text: 'acerca',
-    route: '/acerca',
+    text: "acerca",
+    route: "/acerca",
     component: <About></About>,
   },
+
   {
-    text: 'admin',
-    route: '/admin',
+    text: "admin",
+    route: "/admin",
     exact: false,
     component: <Admin></Admin>,
   },
