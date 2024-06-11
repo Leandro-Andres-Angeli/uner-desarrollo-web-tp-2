@@ -2,11 +2,12 @@ import './normalize.css';
 
 import { Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import { routes } from './data/routes/routes';
+
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import Footer from './components/Footer';
 import Components from './pages/Components';
 import Alojamiento from './pages/alojamiento/Alojamiento';
+import { routes } from './routes/routes';
 
 function App() {
   return (

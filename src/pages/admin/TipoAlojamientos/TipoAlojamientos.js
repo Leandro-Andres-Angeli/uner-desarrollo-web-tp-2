@@ -5,6 +5,7 @@ import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import TipoAlojamientosForm from '../tipoAlojamientosForm/TipoAlojamientosForm';
 
 import handleCRUD from '../../../utils/handleCrud';
+import EntitiesList from './../EntitiesList';
 
 const TipoAlojamientoLink = ({ el }) => {
   const { path } = useRouteMatch();
@@ -25,7 +26,6 @@ const TipoAlojamientoLink = ({ el }) => {
 };
 const TipoAlojamientosLinks = ({ list }) => {
   useEffect(() => {
-    // console.log('render list');
     return () => {};
   }, [list]);
 
@@ -83,13 +83,15 @@ const TipoAlojamientos = () => {
         ]}
         {...{ setTipoAlojamientos }}
       ></TipoAlojamientosForm>
-
+      {/* refactorizando para evitar ifs  y abstrayendo */}
+      {/* 
       {loading ? <span>Cargando</span> : <></>}
       {!error ? (
         <TipoAlojamientosLinks list={data}></TipoAlojamientosLinks>
       ) : (
         <ErrorMsg></ErrorMsg>
-      )}
+      )} */}
+      <EntitiesList {...{ error, data, loading }} list={data}></EntitiesList>
     </section>
   );
 };

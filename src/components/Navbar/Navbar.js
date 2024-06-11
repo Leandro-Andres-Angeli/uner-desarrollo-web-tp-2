@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { SiteIcon } from '../../icons/SiteIcon';
-import { linksData } from '../../data/routes/routes.js';
+
 import { Link, NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 import NavbarBtn from './NavbarBtn.js';
 import navbarStyles from './navbar.module.css';
+import { linksData } from '../../routes/routes.js';
 
 const Navbar = () => {
   const { nav, navLogo, navLinks, header, navLinksMobile } = navbarStyles;
