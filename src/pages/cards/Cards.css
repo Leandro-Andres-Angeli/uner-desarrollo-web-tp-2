@@ -21,7 +21,7 @@
   border-top-left-radius: 2rem;
 }
 
-.descripcion-alojamiento {
+.tarjeta-descripcion {
   text-align: left;
   display: flex;
   gap: 1rem;
