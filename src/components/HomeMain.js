@@ -6,6 +6,7 @@ import { listaOpiniones } from "./opinion/listaOpiniones";
 import Carrusel from "./carrusel/Carrusel";
 import { useHistory } from "react-router-dom";
 import lista from "../data/BD_alojamientos.json";
+import Buscador from "../pages/buscador/buscador";
 
 const HomeMain = () => {
   const history = useHistory();
@@ -30,7 +31,8 @@ const HomeMain = () => {
         </button>
       </section>
       <section className="sobre-chapa">
-        <CardList titulo="Recomendados" lista={lista.alojamientos} />{" "}
+        <Buscador titulo="Recomendados"></Buscador>
+        {/* <CardList titulo="Recomendados" lista={lista.alojamientos} />{" "} */}
       </section>
       <section className="sobre-chapa">
         <h2>{"Lo que dicen nuestros clientes"}</h2>

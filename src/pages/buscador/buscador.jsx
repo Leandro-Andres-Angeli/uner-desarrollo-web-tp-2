@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CardList from "../cards/CardList";
 import "./buscador.css";
 
-const Buscador = () => {
+const Buscador = ({ titulo }) => {
   const [alojamientos, setAlojamientos] = useState([]);
 
   useEffect(() => {
@@ -45,11 +45,11 @@ const Buscador = () => {
 
   return (
     <div className="buscador">
-      <div className="chapa"></div>
+      {/* <div className="chapa"></div> */}
       <section className="contenido">
         <CardList
           lista={alojamientos}
-          titulo="Encontrá tu próximo destino"
+          titulo={titulo || "Encontrá tu próximo destino"}
         ></CardList>
       </section>
     </div>

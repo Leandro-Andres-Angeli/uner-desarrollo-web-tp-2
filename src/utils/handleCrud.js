@@ -1,14 +1,16 @@
-const handleCRUD = async (
-  URL,
-  method = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-  },
-  setter
-) => {
+import crudOperations from './crudOperations';
+/* funcion asincrona que se encarga de ejecutar los distintos 
+metodos CRUD en la DB 
+
+*/
+/**
+ *
+ * @param {*} URL => API Endpoint
+ * @param {*} method => e.g : GET ,POST ,PUT ,etc
+ * @param {*} setter => setter que proviene de algun hook useState
+ * @returns null && ejecuta el setter
+ */
+const handleCRUD = async (URL, method = crudOperations.GET, setter) => {
   try {
     const res = await fetch(URL, method);
     // console.log(method);
@@ -41,8 +43,6 @@ const handleCRUD = async (
     }));
   }
 
-  setTimeout(() => {
-    setter((prev) => ({ ...prev, loading: false }));
-  }, 2000);
+  setter((prev) => ({ ...prev, loading: false }));
 };
 export default handleCRUD;
