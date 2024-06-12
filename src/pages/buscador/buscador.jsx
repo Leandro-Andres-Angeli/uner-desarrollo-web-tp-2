@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import CardList from "../cards/CardList";
-import "./buscador.css";
+import React, { useState, useEffect } from 'react';
+import CardList from '../cards/CardList';
+import './buscador.css';
 
 const Buscador = ({ titulo }) => {
   const [alojamientos, setAlojamientos] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    /*   const fetchData = async () => {
       try {
         const response = await fetch(
           "http://localhost:3001/alojamiento/getAlojamientos"
@@ -40,17 +40,18 @@ const Buscador = ({ titulo }) => {
       }
     };
 
-    fetchData();
+    fetchData(); */
   }, []);
 
   return (
-    <div className="buscador">
+    <div className='buscador'>
       {/* <div className="chapa"></div> */}
-      <section className="contenido">
-        <CardList
+      <section className='contenido' style={{ color: 'black' }}>
+        <p>hola</p>
+        {/*  <CardList
           lista={alojamientos}
-          titulo={titulo || "Encontrá tu próximo destino"}
-        ></CardList>
+          titulo={titulo || 'Encontrá tu próximo destino'}
+        ></CardList> */}
       </section>
     </div>
   );
