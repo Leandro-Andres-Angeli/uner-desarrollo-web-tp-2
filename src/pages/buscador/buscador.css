@@ -1,7 +1,7 @@
 .buscador {
   position: relative;
   padding: 2rem;
-  background-color: #162e44;
+  /* background-color: #162e44; */
   color: var(--light-color);
 }
 .buscador .contenido {

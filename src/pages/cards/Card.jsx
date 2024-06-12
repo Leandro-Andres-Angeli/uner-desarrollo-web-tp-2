@@ -5,15 +5,16 @@ import "./Cards.css";
 const Card = ({ item }) => {
   return (
     <div className="tarjeta-alojamiento">
-      <Link to="/alojamiento">
+      <Link to={`/alojamiento/${item.idAlojamiento}`}>
         <div>
           <img src="images/img7.png" alt="" />
         </div>
-        <div className="descripcion-alojamiento">
+        <div className="tarjeta-descripcion">
           <h3>
-            <strong>{item.titulo}</strong>
+            <strong>
+              {item.TipoAlojamiento} en {item.Titulo}
+            </strong>
           </h3>
-          <p>Tipo: {item.tipoAlojamiento}</p>
           {/* <p>
             Ubicación:
             <br />
@@ -21,11 +22,11 @@ const Card = ({ item }) => {
             <br />
             Longitud:{item.ubicacion.longitud}
           </p> */}
-          <p>Disponibilidad: {item.estado}</p>
-          <p>Dormitorios: {item.dormitorios}</p>
-          <p>Baños: {item.banos}</p>
+          <p>{item.Estado}</p>
+          <p>Dormitorios: {item.CantidadDormitorios}</p>
+          <p>Baños: {item.CantidadBanios}</p>
           <p>
-            <strong>{item.precio} </strong>noche
+            <strong>{item.PrecioPorDia} </strong>noche
           </p>
         </div>
       </Link>
