@@ -2,55 +2,51 @@
   "alojamientos": [
     {
       "idAlojamiento": "5",
-      "titulo": "Mar del Plata | Playa Grande",
-      "tipoAlojamiento": "Departamento",
-      "ubicacion": {
-        "latitud": " -38.0278044,",
-        "longitud": "-57.5356977"
-      },
-      "precio": "40 uss",
-      "dormitorios": "2",
-      "banos": "2",
-      "estado": "Disponible"
+      "Titulo": "Mar del Plata | Playa Grande",
+      "Descripción": "Descripción del alojamiento",
+      "TipoAlojamiento": "Departamento",
+      "Latitud": " -38.0278044",
+      "Longitud": "-57.5356977",
+      "PrecioPorDia": "40 uss",
+      "CantidadDormitorios": "2",
+      "CantidadBanios": "2",
+      "Estado": "Disponible"
     },
     {
       "idAlojamiento": "3",
-      "titulo": "Tandil | Tandil",
-      "tipoAlojamiento": "Casa",
-      "ubicacion": {
-        "latitud": " -38.0278044,",
-        "longitud": "-57.5356977"
-      },
-      "precio": "50 uss",
-      "dormitorios": "4",
-      "banos": "2",
-      "estado": "Reservado"
+      "Titulo": "Tandil | Tandil",
+      "Descripción": "Descripción del alojamiento",
+      "TipoAlojamiento": "Casa",
+      "Latitud": " -38.0278044",
+      "Longitud": "-57.5356977",
+      "PrecioPorDia": "50 uss",
+      "CantidadDormitorios": "4",
+      "CantidadBanios": "2",
+      "Estado": "Reservado"
     },
     {
       "idAlojamiento": "20",
-      "titulo": "Bariloche | Río Negro",
-      "tipoAlojamiento": "Habitación",
-      "ubicacion": {
-        "latitud": " -38.0278044,",
-        "longitud": "-57.5356977"
-      },
-      "precio": "50 uss",
-      "dormitorios": "1",
-      "banos": "1",
-      "estado": "Disponible"
+      "Titulo": "Bariloche | Río Negro",
+      "Descripción": "Descripción del alojamiento",
+      "TipoAlojamiento": "Habitación",
+      "Latitud": " -38.0278044",
+      "Longitud": "-57.5356977",
+      "PrecioPorDia": "50 uss",
+      "CantidadDormitorios": "1",
+      "CantidadBanios": "1",
+      "Estado": "Disponible"
     },
     {
       "idAlojamiento": "20",
-      "titulo": "San Rafael| Mendoza",
-      "tipoAlojamiento": "Departamento",
-      "ubicacion": {
-        "latitud": " -38.0278044,",
-        "longitud": "-57.5356977"
-      },
-      "precio": "30 uss",
-      "dormitorios": "1",
-      "banos": "1",
-      "estado": "Disponible"
+      "Titulo": "San Rafael| Mendoza",
+      "Descripción": "Descripción del alojamiento",
+      "TipoAlojamiento": "Departamento",
+      "Latitud": " -38.0278044",
+      "Longitud": "-57.5356977",
+      "PrecioPorDia": "30 uss",
+      "CantidadDormitorios": "1",
+      "CantidadBanios": "1",
+      "Estado": "Disponible"
     }
   ]
 }
