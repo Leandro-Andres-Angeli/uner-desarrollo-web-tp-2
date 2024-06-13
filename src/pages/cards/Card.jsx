@@ -25,7 +25,7 @@ const Card = ({ item }) => {
         <div className='tarjeta-descripcion'>
           <h3>
             <strong>
-              {item.TipoAlojamiento} en {item.Titulo}
+              {item.desc} en {item.Titulo}
             </strong>
           </h3>
           {/* <p>

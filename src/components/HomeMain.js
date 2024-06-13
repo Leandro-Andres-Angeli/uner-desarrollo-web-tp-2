@@ -13,6 +13,7 @@ import {
   crudImagenes,
   crudTipoAlojamientosEndpoints,
 } from '../dbEndpoints';
+import CardSemantica from '../pages/cards/CardSemantica';
 
 const HomeMain = () => {
   const history = useHistory();
@@ -25,7 +26,9 @@ const HomeMain = () => {
   };
   const [alojamientos, setAlojamientos] = useState(intialState);
   const [imgs, setImgs] = useState(intialState);
+  const [tipoAlojamientos, setTipoAlojamientos] = useState(intialState);
   const [joined, setJoinedData] = useState({ data: [] });
+
   useEffect(() => {
     return async () => {
       // await handleCRUD(
@@ -40,13 +43,22 @@ const HomeMain = () => {
           setAlojamientos
         ),
         handleCRUD(crudImagenes.readAll, undefined, setImgs),
+        handleCRUD(
+          crudTipoAlojamientosEndpoints.readAll,
+          undefined,
+          setTipoAlojamientos
+        ),
       ])
-        .then(([alojamientos, pics]) => {
+        .then(([alojamientos, pics, tipos]) => {
+          console.log(tipos);
           setJoinedData((prev) => {
             return {
               ...prev,
               data: alojamientos.map((el) => ({
                 ...el,
+                desc: tipos.filter(
+                  (aloj) => aloj.idTipoAlojamiento === el.TipoAlojamiento
+                )[0].Descripcion,
                 pictures: pics.filter(
                   (pic) => pic.idAlojamiento === el.idAlojamiento
                 ),
@@ -85,7 +97,22 @@ const HomeMain = () => {
       <section className='sobre-chapa'>
         {/* {JSON.stringify(alojamientos)} */}
         {/* <Buscador titulo='Recomendados'></Buscador> */}
-        <CardList titulo='Recomendados' lista={joined.data} />{' '}
+        {/* <CardList titulo='Recomendados' lista={joined.data} />{' '} */}
+        <div>
+          <h3>Listado con Card Semantica</h3>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '33% 33% 33% ',
+              gap: '1rem',
+            }}
+          >
+            {joined?.data &&
+              joined?.data.map((aloj) => (
+                <CardSemantica item={aloj} key={aloj.idAlojamiento} />
+              ))}
+          </div>
+        </div>
       </section>
       <section className='sobre-chapa'>
         <h2>{'Lo que dicen nuestros clientes'}</h2>
