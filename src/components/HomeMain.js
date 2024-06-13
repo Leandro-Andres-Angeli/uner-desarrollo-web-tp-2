@@ -103,7 +103,7 @@ const HomeMain = () => {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: '33% 33% 33% ',
+              gridTemplateColumns: ' repeat(4,25%)  ',
               gap: '1rem',
             }}
           >
