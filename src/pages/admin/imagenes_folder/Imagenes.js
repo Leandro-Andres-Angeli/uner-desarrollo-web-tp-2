@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 const imgValidate = (str) => Boolean(str.match(/(png)|(jpe?g)|(webp)$/));
 const Imagenes = () => {
   const [errors, setErrors] = useState({});
+  useEffect(() => {}, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -63,9 +65,8 @@ const Imagenes = () => {
             enviar
           </button>
         </fieldset>
+        <select></select>
       </form>
-      {JSON.stringify(errors)}
-      {JSON.stringify(Boolean(Object.keys(errors).length))}
     </main>
   );
 };
