@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 // import "./Opinion.css";
 import "./Carrusel.css";
+import { ArrowLeft } from "../../icons/ArrowLeft";
+import { ArrowRight } from "../../icons/ArrowRight";
 
 const Carrusel = ({ children, automatico = false }) => {
   const [indiceActual, setIndiceActual] = useState(0);
@@ -32,7 +34,7 @@ const Carrusel = ({ children, automatico = false }) => {
         className="boton-carrusel izquierda"
         onClick={clickIzquierda}
       >
-        {"<"}
+        {<ArrowLeft></ArrowLeft>}
       </button>
       <div className="contenido-carrusel">
         {Array.isArray(children)
@@ -53,7 +55,7 @@ const Carrusel = ({ children, automatico = false }) => {
         className="boton-carrusel derecha"
         onClick={clickDerecha}
       >
-        {">"}
+        {<ArrowRight></ArrowRight>}
       </button>
     </div>
   );

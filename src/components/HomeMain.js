@@ -1,12 +1,10 @@
 import React from "react";
 import { SiteIcon } from "../icons/SiteIcon";
-import CardList from "../pages/cards/CardList";
 import Opinion from "./opinion/Opinion";
 import { listaOpiniones } from "./opinion/listaOpiniones";
 import Carrusel from "./carrusel/Carrusel";
 import { useHistory } from "react-router-dom";
-import lista from "../data/BD_alojamientos.json";
-import Buscador from "../pages/buscador/buscador";
+import PaginaBuscador from "../pages/buscador/PaginaBuscador";
 
 const HomeMain = () => {
   const history = useHistory();
@@ -31,8 +29,11 @@ const HomeMain = () => {
         </button>
       </section>
       <section className="sobre-chapa">
-        <Buscador titulo="Recomendados"></Buscador>
-        {/* <CardList titulo="Recomendados" lista={lista.alojamientos} />{" "} */}
+        <PaginaBuscador
+          mostrarFiltro={false}
+          cantidad={5}
+          titulo="Recomendados"
+        ></PaginaBuscador>
       </section>
       <section className="sobre-chapa">
         <h2>{"Lo que dicen nuestros clientes"}</h2>
