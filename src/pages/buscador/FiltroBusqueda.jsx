@@ -9,8 +9,8 @@ function FiltroBusqueda({
 }) {
   const [filtros, setFiltros] = useState({
     idTipoAlojamiento: "",
-    Estado: "Disponible",
-    PrecioPorDia: "0|1000",
+    Estado: "",
+    PrecioPorDia: "",
     CantidadDormitorios: 0,
     CantidadBanios: 0,
   });

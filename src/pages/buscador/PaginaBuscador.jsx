@@ -13,6 +13,7 @@ const PaginaBuscador = ({
   titulo = undefined,
   mostrarFiltro = true,
   cantidad = 0,
+  estado,
 }) => {
   const intialState = {
     data: [],
@@ -53,6 +54,18 @@ const PaginaBuscador = ({
           done: true,
           loading: false,
           data: alojamientosJoined.data.slice(0, cantidad),
+        };
+      });
+    }
+    if (estado) {
+      setAlojamientosFiltrados((prev) => {
+        return {
+          ...prev,
+          done: true,
+          loading: false,
+          data: alojamientosJoined.data.filter((alojamiento) => {
+            return alojamiento.Estado === estado;
+          }),
         };
       });
     }

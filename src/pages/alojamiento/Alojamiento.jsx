@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Alojamiento.css";
 import MapComponent from "../../components/mapa/MapComponent";
 import { useParams } from "react-router-dom";
+import Carrusel from "../../components/carrusel/Carrusel";
 
 const Alojamiento = () => {
   const { id } = useParams();
@@ -48,7 +49,16 @@ const Alojamiento = () => {
             <h1>{alojamiento.Titulo}</h1>
 
             <div className="lugar separador">
-              <img className="foto-principal" src="/images/img1.jpeg" />
+              <div className="fotos">
+                <Carrusel>
+                  <img src="/images/img1.jpeg" />
+                  <img src="/images/img3.jpeg" />
+                  <img src="/images/img4.jpeg" />
+                  <img src="/images/img2.jpeg" />
+                </Carrusel>
+              </div>
+
+              {/* <img className="foto-principal" src="/images/img1.jpeg" />
               <div className="fotos">
                 <img src="/images/img3.jpeg" />
                 <img src="/images/img4.jpeg" />
@@ -57,7 +67,7 @@ const Alojamiento = () => {
                   <img src="/images/img2.jpeg" />
                   <p>Ver más...</p>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="detalles-alojamiento separador">
               <div className="descripcion-alojamiento ">

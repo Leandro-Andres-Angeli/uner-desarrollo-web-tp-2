@@ -30,8 +30,9 @@ const HomeMain = () => {
       </section>
       <section className="sobre-chapa">
         <PaginaBuscador
+          estado="Disponible"
           mostrarFiltro={false}
-          cantidad={5}
+          cantidad={4}
           titulo="Recomendados"
         ></PaginaBuscador>
       </section>
