@@ -5,7 +5,7 @@
   box-sizing: border-box;
   margin: 0 auto;
   color: black;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
 }
 
 .contenido-carrusel {
@@ -22,12 +22,14 @@
   position: absolute;
   top: 0;
   left: 0;
+  pointer-events: none;
 }
 
 .item-carrusel.item-activo {
   opacity: 1;
   transform: scale(1);
   position: relative;
+  pointer-events: all;
 }
 
 .boton-carrusel {
