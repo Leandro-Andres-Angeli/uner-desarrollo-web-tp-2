@@ -17,7 +17,7 @@ const Buscador = ({ titulo }) => {
           const alojamientosDetalles = await Promise.all(
             data.map(async (alojamiento) => {
               const tipoResponse = await fetch(
-                `http://localhost:3001/tiposAlojamiento/getTipoAlojamiento/${alojamiento.idTipoAlojamiento}`
+                `http://localhost:3001/tiposAlojamiento/getTipoAlojamiento/${alojamiento.TipoAlojamiento}`
               );
               if (tipoResponse.ok) {
                 const tipoData = await tipoResponse.json();
