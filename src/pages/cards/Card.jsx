@@ -26,7 +26,7 @@ const Card = ({ item }) => {
           <p>Dormitorios: {item.CantidadDormitorios}</p>
           <p>Baños: {item.CantidadBanios}</p>
           <p>
-            <strong>{item.PrecioPorDia} </strong>noche
+            <strong>${item.PrecioPorDia} </strong>día
           </p>
         </div>
       </Link>

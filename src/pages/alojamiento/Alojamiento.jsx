@@ -2,70 +2,135 @@ import React, { useState, useEffect } from "react";
 import "./Alojamiento.css";
 import MapComponent from "../../components/mapa/MapComponent";
 import { useParams } from "react-router-dom";
+import Carrusel from "../../components/carrusel/Carrusel";
+import handleCRUD from "../../utils/handleCrud";
+import {
+  crudAlojamientosEndpoints,
+  crudImagenes,
+} from "../../dbEndpointsAlojamiento";
+import { crudTipoAlojamientosEndpoints } from "../../dbEndpoints";
 
 const Alojamiento = () => {
   const { id } = useParams();
-  const [alojamiento, setAlojamiento] = useState();
+  const intialState = {
+    data: [],
+    loading: true,
+    done: false,
+    error: null,
+  };
+
+  const [alojamiento, setAlojamiento] = useState(intialState);
+  const [alojamientoJoined, setAlojamientoJoined] = useState(intialState);
+  const [tipoAlojamiento, setTipoAlojamiento] = useState(intialState);
+  const [imagenes, setImagenes] = useState(intialState);
+  const [imagenesCarrusel, setImagenesCarrusel] = useState([]);
+  const [imagenPrincipal, setImagenPrincipal] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:3001/alojamiento/getAlojamiento/${id}`
-        );
-        if (response.ok) {
-          const data = await response.json();
-          const tipoResponse = await fetch(
-            `http://localhost:3001/tiposAlojamiento/getTipoAlojamiento/${data.idTipoAlojamiento}`
-          );
-          if (tipoResponse.ok) {
-            const tipoData = await tipoResponse.json();
-            setAlojamiento({
-              ...data,
-              TipoAlojamiento: tipoData.Descripcion,
-            });
-          } else {
-            console.error("Error al obtener el tipo de alojamiento.");
-            return alojamiento;
-          }
-        } else {
-          console.error("Error al obtener el alojamiento.");
-        }
-      } catch (error) {
-        console.error("Error al conectarse con la API:", error);
-      }
+    const cargar = async () => {
+      await handleCRUD(
+        `${crudAlojamientosEndpoints.readOne}/${id}`,
+        undefined,
+        setAlojamiento
+      );
+      await handleCRUD(crudImagenes.readAll, undefined, setImagenes);
+    };
+    cargar();
+  }, []);
+
+  useEffect(() => {
+    const cargar = async () => {
+      await handleCRUD(
+        `${crudTipoAlojamientosEndpoints.readOne}/${alojamiento.data.idTipoAlojamiento}`,
+        undefined,
+        setTipoAlojamiento
+      );
     };
 
-    fetchData();
-  }, [id]);
+    if (alojamiento.done) {
+      cargar();
+    }
+  }, [alojamiento]);
+
+  useEffect(() => {
+    if (alojamiento.done && tipoAlojamiento.done && imagenes.done) {
+      setAlojamientoJoined(() => {
+        return {
+          ...alojamiento.data,
+          done: true,
+          TipoAlojamiento: tipoAlojamiento.data.Descripcion,
+          Imagenes: imagenes.data.filter(
+            (imagen) => imagen.idAlojamiento === alojamiento.data.idAlojamiento
+          ),
+        };
+      });
+    }
+  }, [alojamiento, tipoAlojamiento, imagenes]);
+
+  useEffect(() => {
+    if (alojamientoJoined.done && alojamientoJoined.Imagenes.length > 0) {
+      setImagenPrincipal(alojamientoJoined.Imagenes[0].RutaArchivo);
+      const imgs = cortarArray(alojamientoJoined.Imagenes, 4);
+      setImagenesCarrusel(imgs);
+    }
+  }, [alojamientoJoined]);
+
+  const cortarArray = (array, size) => {
+    if (array.length <= size) {
+      return [array];
+    }
+    const result = [];
+    for (let i = 0; i < array.length; i += size) {
+      result.push(array.slice(i, i + size));
+    }
+    return result;
+  };
 
   return (
     <main className="alojamiento">
-      {alojamiento ? (
+      {alojamientoJoined.done ? (
         <>
           <div className="chapa"></div>
           <section className="contenido">
-            <h1>{alojamiento.Titulo}</h1>
+            <h1>{alojamientoJoined.Titulo}</h1>
 
             <div className="lugar separador">
-              <img className="foto-principal" src="/images/img1.jpeg" />
-              <div className="fotos">
-                <img src="/images/img3.jpeg" />
-                <img src="/images/img4.jpeg" />
-                <img src="/images/img2.jpeg" />
-                <div className="foto-ver-mas">
-                  <img src="/images/img2.jpeg" />
-                  <p>Ver más...</p>
-                </div>
-              </div>
+              {alojamientoJoined.Imagenes.length > 0 && (
+                <>
+                  <img className="foto-principal" src={imagenPrincipal} />
+                  {alojamientoJoined.Imagenes.length > 1 && (
+                    <div className="fotos-container">
+                      <Carrusel>
+                        {imagenesCarrusel.map((porcion, index) => {
+                          return (
+                            <div key={index} className="fotos">
+                              {porcion.map((img, idx) => {
+                                return (
+                                  <img
+                                    key={idx}
+                                    src={img.RutaArchivo}
+                                    onClick={() =>
+                                      setImagenPrincipal(img.RutaArchivo)
+                                    }
+                                  />
+                                );
+                              })}
+                            </div>
+                          );
+                        })}
+                      </Carrusel>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
             <div className="detalles-alojamiento separador">
               <div className="descripcion-alojamiento ">
-                <h2>{alojamiento.TipoAlojamiento}</h2>
+                <h2>{alojamientoJoined.TipoAlojamiento}</h2>
                 <p>
-                  Dormitorios: {alojamiento.CantidadDormitorios} | Baños:{" "}
-                  {alojamiento.CantidadBanios} | Precio por día:{" "}
-                  {alojamiento.PrecioPorDia}
+                  Dormitorios: {alojamientoJoined.CantidadDormitorios} | Baños:{" "}
+                  {alojamientoJoined.CantidadBanios} | Precio por día:{" "}
+                  {alojamientoJoined.PrecioPorDia}
                 </p>
                 <div className="especificaciones-alojamiento">
                   <ul>
@@ -80,7 +145,7 @@ const Alojamiento = () => {
                       <strong>Wifi </strong>
                     </li>
 
-                    {alojamiento.ServicioWifi}
+                    {alojamientoJoined.ServicioWifi}
                     <li>
                       <img
                         src="/servicios/estacionamiento.svg"
@@ -114,14 +179,14 @@ const Alojamiento = () => {
               </p> */}
                     <strong>Descripción</strong>
                     <li>
-                      <p>{alojamiento.Descripcion}</p>
+                      <p>{alojamientoJoined.Descripcion}</p>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className="contenedor-mapa">
                 <h2>Ubicación </h2>
-                <MapComponent alojamiento={alojamiento} />
+                <MapComponent alojamiento={alojamientoJoined} />
               </div>
             </div>
           </section>

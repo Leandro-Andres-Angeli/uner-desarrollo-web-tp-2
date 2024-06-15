@@ -1,0 +1,21 @@
+.filtro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: flex-end;
+}
+
+.filtro select,
+.filtro input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: fit-content;
+  margin: 0;
+}
+
+.filtro .filtro-item label {
+  display: block;
+  width: 100%;
+}

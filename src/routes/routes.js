@@ -2,7 +2,7 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import Home from "../pages/Home";
 import Admin from "../pages/admin/Admin";
-import Buscador from "../pages/buscador/buscador";
+import PaginaBuscador from "../pages/buscador/PaginaBuscador";
 
 export const routes = [
   {
@@ -15,7 +15,7 @@ export const routes = [
     text: "buscar",
     route: "/buscar",
     exact: false,
-    component: <Buscador></Buscador>,
+    component: <PaginaBuscador></PaginaBuscador>,
   },
   {
     text: "contacto",
