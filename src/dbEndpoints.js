@@ -27,8 +27,10 @@ export const crudAlojamientosEndpoints = {
   PUT: `${baseURL}${alojamiento}${putAlojamiento}`,
   DELETE: `${baseURL}${alojamiento}${deleteAlojamiento}`,
 };
+const createImagen = 'createImagen';
 export const crudImagenes = {
   readAll: `${baseURL}imagen/getAllImagenes`,
+  POST: `${baseURL}imagen/${createImagen}`,
 };
 // export const getSingleAloj = 'getTiposAlojamiento';
 // export const   = '';

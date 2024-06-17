@@ -1,25 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import callApi from '../../../utils/callApi';
-import { crudAlojamientosEndpoints } from '../../../dbEndpoints';
+import { crudAlojamientosEndpoints, crudImagenes } from '../../../dbEndpoints';
+import handleCRUD from '../../../utils/handleCrud';
+import crudOperations from '../../../utils/crudOperations';
 const imgValidate = (str) => Boolean(str.match(/(png)|(jpe?g)|(webp)$/));
 const Imagenes = () => {
   const [errors, setErrors] = useState({});
   const [imagePreview, setImagePreview] = useState(null);
   const [alojamientos, setAlojamientos] = useState(null);
+  const [result, setResult] = useState({});
 
   useEffect(() => {
-    callApi(crudAlojamientosEndpoints.readAll, setAlojamientos);
+    return async function () {
+      return await callApi(crudAlojamientosEndpoints.readAll, setAlojamientos);
+    };
+  }, []);
+  useEffect(() => {
+    // handleCRUD(
+    //   crudImagenes.POST,
+    //   crudOperations.POST({ idImagen: 2, rutaArchivo: 1 }),
+    //   setResult
+    // );
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(e);
-    const { file } = e.target;
-    console.log(file);
-    console.log(file?.files[0].type);
-    console.log(file.value);
-    const { type } = file.files[0];
+    console.log('in');
+    if (!e.target.file) {
+      console.log('not file');
+      return;
+    }
+    // console.log(e);
+    // const { file } = e.target;
+    // console.log(file);
+    // console.log(file?.files[0].type);
+    // console.log(file.value);
+    // const { type } = file?.files[0];
   };
   const handleInputCapture = ({ target }) => {
     const [file] = target?.files;
@@ -67,11 +83,11 @@ const Imagenes = () => {
 
           <div className='form-control'>
             <label>vincular a alojamiento</label>
-            <select>
+            <select name='idAlojamiento'>
               {alojamientos &&
                 alojamientos.data.map((el) => {
                   return (
-                    <option value={el.idAlojamiento} key=''>
+                    <option value={el.idAlojamiento} key={el.idAlojamiento}>
                       {el.Titulo}
                     </option>
                   );
@@ -83,12 +99,16 @@ const Imagenes = () => {
             style={{
               borderRadius: '20px',
               padding: '10px 15px',
-              backgroundColor: 'var(--primary-color)',
+              backgroundColor: `${
+                Boolean(Object.keys(errors).length === 0)
+                  ? 'var(--primary-color)'
+                  : 'gray'
+              }`,
               boxShadow: 'var(--box-shadow)',
               cursor: 'pointer',
             }}
             // disabled={String(Boolean(Object.keys(errors).length !== 0))}
-            disabled={Boolean(Object.keys(errors).length !== 0)}
+            disabled={!Boolean(Object.keys(errors).length === 0)}
           >
             enviar
           </button>
