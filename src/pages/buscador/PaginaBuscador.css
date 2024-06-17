@@ -12,3 +12,8 @@
   display: flex;
   gap: 1rem;
 }
+
+.volver {
+  display: flex;
+  align-items: center;
+}
