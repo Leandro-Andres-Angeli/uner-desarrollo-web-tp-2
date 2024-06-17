@@ -1,18 +1,7 @@
-/* about.css */
+
 .about-section {
-    /* Estilos específicos para el componente Acerca */
-  }
-  
-  .about-title {
-    /* Estilos para el título */
-  }
-  
-  .about-paragraph {
-    /* Estilos para los párrafos */
-  }
-  
-  /* Agrega más estilos según sea necesario */
-  
+  padding: 1.85em;
+}
 
 .imagen-container {
     display: flex;
@@ -39,3 +28,8 @@
     padding: var(--padding-helper-horiz);
   }
   
+@media (max-width: 768px) {
+  .imagen-container figure {
+    width: 100%; /* Cambia el ancho del elemento figure para dispositivos móviles */
+  }
+}
