@@ -20,6 +20,7 @@
     width: 100%; /* Ajusta el ancho de la imagen para llenar el contenedor */
     height: 300px; /* Permite que la altura de la imagen se ajuste automáticamente */
     border-radius: 10px; /* Aplica un borde redondeado con un radio de 10px */
+    object-fit: cover;/* Ajuste para cubrir el contenedor manteniendo la relación de aspecto */
   }
   .custom-icon {
     color: #ffeb3b; /*Elijo color*/
