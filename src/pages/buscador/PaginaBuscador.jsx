@@ -83,8 +83,8 @@ const PaginaBuscador = ({
                 (tipo) =>
                   tipo.idTipoAlojamiento === alojamiento.idTipoAlojamiento
               )[0]?.Descripcion,
-              Pictures: imagenes.data.filter(
-                (pic) => pic.idAlojamiento === alojamiento.idAlojamiento
+              Imagenes: imagenes.data.filter(
+                (imagen) => imagen.idAlojamiento === alojamiento.idAlojamiento
               ),
             };
           }),
