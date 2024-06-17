@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 
-const EntityLi = ({ el }) => {
+const EntityLi = ({ el, children }) => {
   const { path } = useRouteMatch();
 
   return (
@@ -15,6 +15,7 @@ const EntityLi = ({ el }) => {
         }}
       >
         {' '}
+        {/* {children} */}
         Tipo de alojamiento :<strong>{el.Descripcion}</strong>{' '}
       </Link>
     </li>

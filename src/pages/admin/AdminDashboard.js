@@ -1,19 +1,38 @@
 import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
-
+import {
+  Link,
+  NavLink,
+  useRouteMatch,
+} from 'react-router-dom/cjs/react-router-dom.min';
+import adminStyle from './admin.module.css';
 const AdminDashboard = () => {
   const { path } = useRouteMatch();
+  const { adminNavbar, activeLink } = adminStyle;
+
   return (
-    <aside>
-      {' '}
-      <div>
-        <ul>
-          <li>
-            <Link to={`${path}/tipo-alojamientos`}>tipo de alojamientos</Link>
-          </li>
-        </ul>
-      </div>
-    </aside>
+    <nav className={`${adminNavbar}`}>
+      <ul>
+        <li>
+          <NavLink to={`/`}>home</NavLink>
+        </li>
+        <li>
+          <NavLink
+            to={`${path}/alojamientos`}
+            activeClassName={`${activeLink}`}
+          >
+            alojamientos
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to={`${path}/tipo-alojamientos`}
+            activeClassName={`${activeLink}`}
+          >
+            tipo de alojamientos
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

@@ -14,6 +14,8 @@ import { Link } from 'react-router-dom';
 import AdminDashboard from './AdminDashboard';
 import adminModule from './admin.module.css';
 import TipoAlojamiento from './TipoAlojamiento/TipoAlojamiento';
+import Alojamientos from './alojamientos/Alojamientos';
+import Alojamiento from './alojamientos/Alojamiento';
 
 const Admin = () => {
   const { adminPanel, btnAdd } = adminModule;
@@ -33,6 +35,14 @@ const Admin = () => {
         </Route>
         <Route path={`${url}/tipo-alojamientos/:id`}>
           <TipoAlojamiento></TipoAlojamiento>
+        </Route>
+        <Route exact path={`${url}/alojamientos`}>
+          <>
+            <Alojamientos></Alojamientos>
+          </>
+        </Route>
+        <Route path={`${url}/alojamientos/:id`}>
+          <Alojamiento></Alojamiento>
         </Route>
       </Switch>
     </main>
