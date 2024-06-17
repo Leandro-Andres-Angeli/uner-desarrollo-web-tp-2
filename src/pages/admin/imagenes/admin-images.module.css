@@ -1,0 +1,26 @@
+.formContainer {
+  margin: 30px 0;
+  display: grid;
+  grid-template-columns: 60% auto;
+  padding: 20px 30px;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+}
+.formContainer form {
+  display: flex;
+  flex-direction: column;
+  margin: 10% 0;
+}
+.formContainer div img {
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+}
+.btnWrapper {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.btnWrapper button {
+  cursor: pointer;
+}

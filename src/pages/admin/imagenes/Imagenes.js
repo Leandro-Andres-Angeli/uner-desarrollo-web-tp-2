@@ -1,7 +1,12 @@
 import React from 'react';
+import ImagenForm from './ImagenForm';
 
 const Imagenes = () => {
-  return <div>Imagenes</div>;
+  return (
+    <main>
+      <ImagenForm></ImagenForm>
+    </main>
+  );
 };
 
 export default Imagenes;
