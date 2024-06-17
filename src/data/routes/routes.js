@@ -4,6 +4,9 @@ import Contact from '../../pages/Contact';
 import Home from '../../pages/Home';
 import Admin from '../../pages/admin/Admin';
 import Alojamiento from '../../pages/alojamiento/Alojamiento';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 export const routes = [
   {
