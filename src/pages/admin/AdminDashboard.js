@@ -31,6 +31,11 @@ const AdminDashboard = () => {
             tipo de alojamientos
           </NavLink>
         </li>
+        <li>
+          <NavLink to={`${path}/imagenes`} activeClassName={`${activeLink}`}>
+            imagenes
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
