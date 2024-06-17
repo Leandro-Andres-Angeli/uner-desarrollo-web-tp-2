@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import callApi from '../../../utils/callApi';
+import { crudAlojamientosEndpoints } from '../../../dbEndpoints';
 const imgValidate = (str) => Boolean(str.match(/(png)|(jpe?g)|(webp)$/));
 const Imagenes = () => {
   const [errors, setErrors] = useState({});
   const [imagePreview, setImagePreview] = useState(null);
-  useEffect(() => {}, []);
+  const [alojamientos, setAlojamientos] = useState(null);
+
+  useEffect(() => {
+    callApi(crudAlojamientosEndpoints.readAll, setAlojamientos);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,11 +22,6 @@ const Imagenes = () => {
     const { type } = file.files[0];
   };
   const handleInputCapture = ({ target }) => {
-    // const { file } = e.target;
-    // console.log(file);
-    // console.log(file.files[0].type);
-    // console.log(file.value);
-
     const [file] = target?.files;
     console.log(file);
     const { type } = file;
@@ -64,19 +65,17 @@ const Imagenes = () => {
             />
           </div>
 
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '10px',
-              paddingBottom: '2rem ',
-            }}
-          >
-            <label style={{ width: 'auto' }}>vincular a alojamiento</label>
-            <select style={{ width: 'fit-content' }}>
-              <option value='' key=''>
-                test
-              </option>
+          <div className='form-control'>
+            <label>vincular a alojamiento</label>
+            <select>
+              {alojamientos &&
+                alojamientos.data.map((el) => {
+                  return (
+                    <option value={el.idAlojamiento} key=''>
+                      {el.Titulo}
+                    </option>
+                  );
+                })}
             </select>
           </div>
           <button
@@ -93,27 +92,20 @@ const Imagenes = () => {
           >
             enviar
           </button>
-          {/* <div>
-            <label>vincular a alojamiento</label>
-            <select>
-              <option value='' key=''>
-                test
-              </option>
-            </select>
-          </div> */}
         </form>
         <div style={{ flex: 1 }}>
-          {imagePreview && (
-            <img
-              style={{
-                maxWidth: '30vw',
-                boxShadow: 'var(--box-shadow)',
-                borderRadius: '10px',
-              }}
-              src={imagePreview.route}
-              alt=''
-            />
-          )}
+          <img
+            style={{
+              maxWidth: '30vw',
+              boxShadow: 'var(--box-shadow)',
+              borderRadius: '10px',
+            }}
+            src={
+              imagePreview?.route ??
+              '/images/tipo_alojamientos_pics/img_not_found.png'
+            }
+            alt=''
+          />
         </div>
       </div>
     </section>
