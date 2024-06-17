@@ -17,8 +17,8 @@ const PaginaBuscador = ({
 }) => {
   const intialState = {
     data: [],
-    loading: false,
-    done: true,
+    loading: true,
+    done: false,
     error: null,
   };
   const [alojamientos, setAlojamientos] = useState(intialState);
@@ -98,22 +98,19 @@ const PaginaBuscador = ({
       {mostrarFiltro && (
         <h2 className="titulo">Encontrá tu próximo alojamiento</h2>
       )}
-      {alojamientos.done && tipoAlojamientos.done && imagenes.done && (
-        <>
-          {mostrarFiltro && (
-            <FiltroBusqueda
-              tipoAlojamientos={tipoAlojamientos.data}
-              alojamientos={alojamientosJoined}
-              setAlojamientosFiltrados={setAlojamientosFiltrados}
-            ></FiltroBusqueda>
-          )}
 
-          <BuscadorAlojamiento
-            titulo={titulo}
-            alojamientos={alojamientosFiltrados}
-          ></BuscadorAlojamiento>
-        </>
+      {mostrarFiltro && (
+        <FiltroBusqueda
+          tipoAlojamientos={tipoAlojamientos.data}
+          alojamientos={alojamientosJoined}
+          setAlojamientosFiltrados={setAlojamientosFiltrados}
+        ></FiltroBusqueda>
       )}
+
+      <BuscadorAlojamiento
+        titulo={titulo}
+        alojamientos={alojamientosFiltrados}
+      ></BuscadorAlojamiento>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const BuscadorAlojamiento = ({ titulo, alojamientos }) => {
   return (
     <div className="buscador">
       <section className="contenido">
-        {!alojamientos || alojamientos.loading ? (
+        {alojamientos.loading ? (
           <LoadingIcon></LoadingIcon>
         ) : alojamientos.data.length > 0 ? (
           <CardList

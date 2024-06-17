@@ -7,13 +7,17 @@ function FiltroBusqueda({
   alojamientos,
   setAlojamientosFiltrados,
 }) {
-  const [filtros, setFiltros] = useState({
-    idTipoAlojamiento: "",
-    Estado: "",
-    PrecioPorDia: "",
-    CantidadDormitorios: 0,
-    CantidadBanios: 0,
-  });
+  const [filtros, setFiltros] = useState(
+    localStorage.getItem("filtro_busqueda")
+      ? JSON.parse(localStorage.getItem("filtro_busqueda"))
+      : {
+          idTipoAlojamiento: "",
+          Estado: "",
+          PrecioPorDia: "",
+          CantidadDormitorios: 0,
+          CantidadBanios: 0,
+        }
+  );
 
   // Función para manejar cambios en los filtros
   const handleFilterChange = (event) => {
@@ -33,11 +37,15 @@ function FiltroBusqueda({
 
   const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+  const handleFiltrar = (e) => {
+    e.preventDefault();
+    filtrarAlojamientos();
+  };
+
   // Función para aplicar filtros y obtener resultados filtrados
   const filtrarAlojamientos = async (e) => {
-    console.log(alojamientos);
+    localStorage.setItem("filtro_busqueda", JSON.stringify(filtros));
 
-    e.preventDefault();
     setAlojamientosFiltrados((prev) => {
       return { ...prev, loading: true };
     });
@@ -97,9 +105,15 @@ function FiltroBusqueda({
     });
   };
 
+  useEffect(() => {
+    if (alojamientos.data.length > 0) {
+      filtrarAlojamientos();
+    }
+  }, [alojamientos]);
+
   return (
     <div>
-      <form onSubmit={(e) => filtrarAlojamientos(e)}>
+      <form onSubmit={(e) => handleFiltrar(e)}>
         <div className="filtro">
           <div className="filtro-item">
             <label htmlFor="idTipoAlojamiento">Tipo</label>
