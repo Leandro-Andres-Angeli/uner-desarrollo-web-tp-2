@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import {
-  BaseURL,
-  getAllTiposDeAlojamiento,
-  tiposDeAlojamiento,
-} from '../../dbEndpoints';
+import React from 'react';
+
 import {
   Route,
   Switch,
   useRouteMatch,
 } from 'react-router-dom/cjs/react-router-dom.min';
 import TipoAlojamientos from './TipoAlojamientos/TipoAlojamientos';
-import { Link } from 'react-router-dom';
+
 import AdminDashboard from './AdminDashboard';
 import adminModule from './admin.module.css';
 import TipoAlojamiento from './TipoAlojamiento/TipoAlojamiento';
 import Alojamientos from './alojamientos/Alojamientos';
 import Alojamiento from './alojamientos/Alojamiento';
+import Imagenes from './imagenes/Imagenes';
+import Imagen from './imagenes/Imagen';
 
 const Admin = () => {
   const { adminPanel, btnAdd } = adminModule;
@@ -43,6 +41,14 @@ const Admin = () => {
         </Route>
         <Route path={`${url}/alojamientos/:id`}>
           <Alojamiento></Alojamiento>
+        </Route>
+        <Route exact path={`${url}/imagenes`}>
+          <>
+            <Imagenes></Imagenes>
+          </>
+        </Route>
+        <Route path={`${url}/imagenes/:id`}>
+          <Imagen></Imagen>
         </Route>
       </Switch>
     </main>
