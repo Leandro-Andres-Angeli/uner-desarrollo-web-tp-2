@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Formulario = ({ datosFormulario, setDatosFormulario, onChange, onReset }) => {
-  const handleSubmit = (event) => {
+const Formulario = ({ datosFormulario, onChange, onReset }) => {
+  const [enviando, setEnviando] = useState(false);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    onReset(); 
+
+    try {
+      setEnviando(true);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      toast.success('¡Mensaje enviado con éxito!', {
+        position: 'top-right'
+      });
+      onReset();
+
+    } catch (error) {
+      
+      console.error('Error en la simulación de envío:', error);
+      toast.error('Hubo un problema al enviar el formulario. Por favor, intenta nuevamente.', { position: 'top-right' });
+    } finally {
+      
+      setEnviando(false);
+    }
   };
 
   return (
@@ -22,6 +43,7 @@ const Formulario = ({ datosFormulario, setDatosFormulario, onChange, onReset }) 
           value={datosFormulario.nombre}
           onChange={onChange}
           required
+          disabled={enviando}
         />
         <label htmlFor="email">E-mail:</label>
         <input
@@ -32,6 +54,7 @@ const Formulario = ({ datosFormulario, setDatosFormulario, onChange, onReset }) 
           value={datosFormulario.email}
           onChange={onChange}
           required
+          disabled={enviando}
         />
         <label htmlFor="telefono">Teléfono:</label>
         <input
@@ -42,6 +65,7 @@ const Formulario = ({ datosFormulario, setDatosFormulario, onChange, onReset }) 
           value={datosFormulario.telefono}
           onChange={onChange}
           required
+          disabled={enviando}
         />
         <label htmlFor="mensaje">Mensaje:</label>
         <textarea
@@ -52,11 +76,15 @@ const Formulario = ({ datosFormulario, setDatosFormulario, onChange, onReset }) 
           value={datosFormulario.mensaje}
           onChange={onChange}
           required
+          disabled={enviando}
         ></textarea>
-        <button className="icon-btn btn-index ml-30" type="submit">ENVIAR</button>
+        <button className="icon-btn btn-index ml-30" type="submit" disabled={enviando}>
+          {enviando ? 'Enviando...' : 'ENVIAR'}
+        </button>
       </form>
+      <ToastContainer position="top-right"/> 
     </main>
   );
-}
+};
 
 export default Formulario;

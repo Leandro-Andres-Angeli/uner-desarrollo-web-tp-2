@@ -1,0 +1,19 @@
+.pagina-buscador {
+  padding: 2rem;
+  background-color: #41698f;
+  color: var(--light-color);
+  flex: auto;
+}
+
+.titulo .pagina-buscador {
+  text-align: center;
+  padding: 20rem;
+  margin: 0.2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.volver {
+  display: flex;
+  align-items: center;
+}

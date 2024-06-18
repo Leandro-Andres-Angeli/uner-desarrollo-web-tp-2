@@ -1,14 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Cards.css";
+import Carrusel from "../../components/carrusel/Carrusel";
 
 const Card = ({ item }) => {
   return (
     <div className="tarjeta-alojamiento">
-      <Link to={`/alojamiento/${item.idAlojamiento}`}>
-        <div>
+      <div>
+        {item.Imagenes.length > 0 ? (
+          <Carrusel arrowSize={10}>
+            {item.Imagenes.map((imagen) => {
+              return <img src={imagen.RutaArchivo} alt="" />;
+            })}
+          </Carrusel>
+        ) : (
           <img src="images/img7.png" alt="" />
-        </div>
+        )}
+      </div>
+      <Link to={`/alojamiento/${item.idAlojamiento}`}>
         <div className="tarjeta-descripcion">
           <h3>
             <strong>
@@ -26,7 +35,7 @@ const Card = ({ item }) => {
           <p>Dormitorios: {item.CantidadDormitorios}</p>
           <p>Baños: {item.CantidadBanios}</p>
           <p>
-            <strong>{item.PrecioPorDia} </strong>noche
+            <strong>${item.PrecioPorDia} </strong>día
           </p>
         </div>
       </Link>
