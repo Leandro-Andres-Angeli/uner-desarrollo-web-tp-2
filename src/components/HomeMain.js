@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { SiteIcon } from '../icons/SiteIcon';
-import CardList from '../pages/cards/CardList';
 import Opinion from './opinion/Opinion';
 import { listaOpiniones } from './opinion/listaOpiniones';
 import Carrusel from './carrusel/Carrusel';
 import { useHistory } from 'react-router-dom';
-import lista from '../data/BD_alojamientos.json';
-import Buscador from '../pages/buscador/Buscador';
-import handleCRUD from '../utils/handleCrud';
-import {
-  crudAlojamientosEndpoints,
-  crudImagenes,
-  crudTipoAlojamientosEndpoints,
-} from '../dbEndpoints';
-import CardSemantica from '../pages/cards/CardSemantica';
+import PaginaBuscador from '../pages/buscador/PaginaBuscador';
 
 const HomeMain = () => {
   const history = useHistory();
@@ -95,24 +86,12 @@ const HomeMain = () => {
         </button>
       </section>
       <section className='sobre-chapa'>
-        {/* {JSON.stringify(alojamientos)} */}
-        {/* <Buscador titulo='Recomendados'></Buscador> */}
-        {/* <CardList titulo='Recomendados' lista={joined.data} />{' '} */}
-        <div>
-          <h3>Listado con Card Semantica</h3>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: ' repeat(4,25%)  ',
-              gap: '1rem',
-            }}
-          >
-            {joined?.data &&
-              joined?.data.map((aloj) => (
-                <CardSemantica item={aloj} key={aloj.idAlojamiento} />
-              ))}
-          </div>
-        </div>
+        <PaginaBuscador
+          estado='Disponible'
+          mostrarFiltro={false}
+          cantidad={4}
+          titulo='Recomendados'
+        ></PaginaBuscador>
       </section>
       <section className='sobre-chapa'>
         <h2>{'Lo que dicen nuestros clientes'}</h2>

@@ -53,7 +53,7 @@ const Formulario = ({ datosFormulario, setDatosFormulario, onChange, onReset }) 
           onChange={onChange}
           required
         ></textarea>
-        <button className="icon-btn btn-index ml-30" type="submit">ENVIAR</button>
+        <button className="icon-btn btn-index ml-30" type="button">ENVIAR</button>
       </form>
     </main>
   );

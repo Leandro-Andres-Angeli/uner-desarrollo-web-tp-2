@@ -43,6 +43,7 @@ body * {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 nav,
@@ -68,7 +69,10 @@ a:hover {
 
 .main-index {
   color: var(--light-color);
-  background-image: url('../public/images/img1.jpeg');
+  background-image: url("../public/images/img1.jpeg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: top;
 }
 .main {
   background-size: cover;

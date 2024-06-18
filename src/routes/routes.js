@@ -2,8 +2,8 @@ import About from '../pages/About';
 import Contact from '../pages/Contact';
 import Home from '../pages/Home';
 import Admin from '../pages/admin/Admin';
+import PaginaBuscador from '../pages/buscador/PaginaBuscador';
 
-import Buscador from '../pages/buscador/Buscador';
 export const routes = [
   {
     text: 'home',
@@ -15,7 +15,7 @@ export const routes = [
     text: 'buscar',
     route: '/buscar',
     exact: false,
-    component: <Buscador></Buscador>,
+    component: <PaginaBuscador></PaginaBuscador>,
   },
   {
     text: 'contacto',

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 // import "./Opinion.css";
 import "./Carrusel.css";
+import { ArrowLeft } from "../../icons/ArrowLeft";
+import { ArrowRight } from "../../icons/ArrowRight";
 
-const Carrusel = ({ children, automatico = false }) => {
+const Carrusel = ({ children, automatico = false, arrowSize = 30 }) => {
   const [indiceActual, setIndiceActual] = useState(0);
 
   const clickDerecha = () => {
@@ -27,13 +29,15 @@ const Carrusel = ({ children, automatico = false }) => {
 
   return (
     <div className="carrusel">
-      <button
-        hidden={automatico}
-        className="boton-carrusel izquierda"
-        onClick={clickIzquierda}
-      >
-        {"<"}
-      </button>
+      {Array.isArray(children) && children.length > 1 && (
+        <button
+          hidden={automatico}
+          className="boton-carrusel izquierda"
+          onClick={clickIzquierda}
+        >
+          {<ArrowLeft size={arrowSize}></ArrowLeft>}
+        </button>
+      )}
       <div className="contenido-carrusel">
         {Array.isArray(children)
           ? children.map((child, index) => (
@@ -48,13 +52,15 @@ const Carrusel = ({ children, automatico = false }) => {
             ))
           : children}
       </div>
-      <button
-        hidden={automatico}
-        className="boton-carrusel derecha"
-        onClick={clickDerecha}
-      >
-        {">"}
-      </button>
+      {Array.isArray(children) && children.length > 1 && (
+        <button
+          hidden={automatico}
+          className="boton-carrusel derecha"
+          onClick={clickDerecha}
+        >
+          {<ArrowRight size={arrowSize}></ArrowRight>}
+        </button>
+      )}
     </div>
   );
 };
