@@ -3,9 +3,11 @@ import callApi from '../../../utils/callApi';
 import { crudAlojamientosEndpoints, crudImagenes } from '../../../dbEndpoints';
 import handleCRUD from '../../../utils/handleCrud';
 import crudOperations from '../../../utils/crudOperations';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const imgValidate = (str) => Boolean(str.match(/(png)|(jpe?g)|(webp)$/));
 const Imagenes = () => {
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({ error: 'empty' });
   const [imagePreview, setImagePreview] = useState(null);
   const [alojamientos, setAlojamientos] = useState(null);
   const [result, setResult] = useState({});
@@ -15,13 +17,8 @@ const Imagenes = () => {
       return await callApi(crudAlojamientosEndpoints.readAll, setAlojamientos);
     };
   }, []);
-  useEffect(() => {
-    // handleCRUD(
-    //   crudImagenes.POST,
-    //   crudOperations.POST({ idImagen: 2, rutaArchivo: 1 }),
-    //   setResult
-    // );
-  }, []);
+
+  const notify = (text, type = 'error') => toast[type](text);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +27,23 @@ const Imagenes = () => {
       console.log('not file');
       return;
     }
+    const {
+      file: { name: RutaArchivo },
+      idAlojamiento,
+    } = Object.fromEntries(new FormData(e.target));
+    fetch(crudImagenes.POST, {
+      method: 'POST',
+
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+
+      body: JSON.stringify({ idAlojamiento, RutaArchivo }), // body data type must match "Content-Type" header
+    })
+      .then((res) => res.json())
+      .then((res) => notify(res.message, 'success'))
+      .catch((err) => console.log(err));
     // console.log(e);
     // const { file } = e.target;
     // console.log(file);
@@ -37,12 +51,16 @@ const Imagenes = () => {
     // console.log(file.value);
     // const { type } = file?.files[0];
   };
+  useEffect(() => {}, []);
+
   const handleInputCapture = ({ target }) => {
     const [file] = target?.files;
     console.log(file);
     const { type } = file;
     if (!imgValidate(type)) {
-      return setErrors({ error: 'debe cargar archivos de tipo imagen' });
+      setErrors({ error: 'debe cargar archivos de tipo imagen' });
+      notify(errors.error);
+      return;
     }
     setImagePreview({
       type,
@@ -60,7 +78,11 @@ const Imagenes = () => {
           borderRadius: '10px',
         }}
       >
-        <form onSubmit={handleSubmit} style={{ flexGrow: 1 }}>
+        <form
+          onReset={() => setErrors({ error: 'empty' })}
+          onSubmit={handleSubmit}
+          style={{ flexGrow: 1 }}
+        >
           <h2> Imagenes </h2>
 
           <div
@@ -112,6 +134,7 @@ const Imagenes = () => {
           >
             enviar
           </button>
+          <button type='reset'>cancelar</button>
         </form>
         <div style={{ flex: 1 }}>
           <img
@@ -128,6 +151,7 @@ const Imagenes = () => {
           />
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };
