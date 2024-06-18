@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SiteIcon } from '../icons/SiteIcon';
 import Opinion from './opinion/Opinion';
 import { listaOpiniones } from './opinion/listaOpiniones';
 import Carrusel from './carrusel/Carrusel';
 import { useHistory } from 'react-router-dom';
 import PaginaBuscador from '../pages/buscador/PaginaBuscador';
+import handleCRUD from '../utils/handleCrud';
+import {
+  crudAlojamientosEndpoints,
+  crudImagenes,
+  crudTipoAlojamientosEndpoints,
+} from '../dbEndpoints';
 
 const HomeMain = () => {
   const history = useHistory();
