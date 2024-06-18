@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { crudTipoAlojamientosEndpoints } from '../../../dbEndpoints';
-import ErrorMsg from '../../../components/ErrorMsg';
+
 import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import TipoAlojamientosForm from '../tipoAlojamientosForm/TipoAlojamientosForm';
 

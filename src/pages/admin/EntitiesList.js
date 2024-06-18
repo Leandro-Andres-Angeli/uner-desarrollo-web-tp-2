@@ -21,7 +21,11 @@ const EntitiesList = ({ error, loading, list }) => {
       <ul>
         {list &&
           list.map((el) => (
-            <EntityLi key={el.idTipoAlojamiento} {...{ el }}></EntityLi>
+            <EntityLi
+              key={el.idTipoAlojamiento}
+              id={el.idTipoAlojamiento}
+              desc={el.Descripcion}
+            ></EntityLi>
           ))}
       </ul>
     </>
