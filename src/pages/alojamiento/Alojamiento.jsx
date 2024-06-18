@@ -18,6 +18,7 @@ import { ArrowBack } from "../../icons/ArrowBack";
 import Servicios from "./Servicios";
 
 const Alojamiento = () => {
+  
   const history = useHistory();
   const { id } = useParams();
   const intialState = {
