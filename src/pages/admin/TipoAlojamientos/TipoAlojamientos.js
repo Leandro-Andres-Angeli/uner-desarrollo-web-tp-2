@@ -6,7 +6,6 @@ import TipoAlojamientosForm from '../tipoAlojamientosForm/TipoAlojamientosForm';
 
 import handleCRUD from '../../../utils/handleCrud';
 import EntitiesList from './../EntitiesList';
-import callApi from '../../../utils/callApi';
 
 const TipoAlojamientoLink = ({ el }) => {
   const { path } = useRouteMatch();
@@ -59,12 +58,13 @@ const TipoAlojamientos = () => {
   useEffect(() => {
     setTipoAlojamientos((prev) => ({ ...prev, update: false }));
     // console.log('render done');
-
-    callApi(
-      crudTipoAlojamientosEndpoints.readAll,
-
-      setTipoAlojamientos
-    );
+    return async () => {
+      await handleCRUD(
+        crudTipoAlojamientosEndpoints.readAll,
+        undefined,
+        setTipoAlojamientos
+      );
+    };
   }, [tipoAlojamientos.update]);
 
   const { error, data, loading } = tipoAlojamientos;
