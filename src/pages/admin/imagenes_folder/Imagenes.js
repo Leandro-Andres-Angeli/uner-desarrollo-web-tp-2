@@ -22,9 +22,8 @@ const Imagenes = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('in');
+
     if (!e.target.file) {
-      console.log('not file');
       return;
     }
     const {
@@ -41,9 +40,17 @@ const Imagenes = () => {
 
       body: JSON.stringify({ idAlojamiento, RutaArchivo }), // body data type must match "Content-Type" header
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          console.log(res);
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
       .then((res) => notify(res.message, 'success'))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        notify(err.message || 'error cargando imagen');
+      });
     // console.log(e);
     // const { file } = e.target;
     // console.log(file);
@@ -145,7 +152,7 @@ const Imagenes = () => {
             }}
             src={
               imagePreview?.route ??
-              '/images/tipo_alojamientos_pics/img_not_found.png'
+              '/images/tipo_alojamientos_pics/broken-image.png'
             }
             alt=''
           />
