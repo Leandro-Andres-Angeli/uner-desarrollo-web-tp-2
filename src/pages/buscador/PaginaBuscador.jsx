@@ -29,17 +29,15 @@ const PaginaBuscador = ({
   const [imagenes, setImagenes] = useState(intialState);
 
   const cargaInicial = async () => {
-    await handleCRUD(
-      crudAlojamientosEndpoints.readAll,
-      undefined,
-      setAlojamientos
-    );
-    await handleCRUD(
-      crudTipoAlojamientosEndpoints.readAll,
-      undefined,
-      setTipoAlojamientos
-    );
-    await handleCRUD(crudImagenes.readAll, undefined, setImagenes);
+    await Promise.all([
+      handleCRUD(crudAlojamientosEndpoints.readAll, undefined, setAlojamientos),
+      handleCRUD(
+        crudTipoAlojamientosEndpoints.readAll,
+        undefined,
+        setTipoAlojamientos
+      ),
+      handleCRUD(crudImagenes.readAll, undefined, setImagenes),
+    ]);
   };
 
   useEffect(() => {
