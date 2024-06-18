@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import EntityLi from './EntityLi';
 import LoadingIcon from '../../components/LoadingIcon';
 
-const EntitiesList = ({ error, data, loading, list }) => {
+const EntitiesList = ({ error, loading, list }) => {
   useEffect(() => {
     return () => {};
   }, [list]);
