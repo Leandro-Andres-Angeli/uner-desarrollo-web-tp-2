@@ -86,7 +86,10 @@ const Imagenes = () => {
         }}
       >
         <form
-          onReset={() => setErrors({ error: 'empty' })}
+          onReset={() => {
+            setErrors({ error: 'empty' });
+            setImagePreview(null);
+          }}
           onSubmit={handleSubmit}
           style={{ flexGrow: 1 }}
         >
@@ -141,7 +144,9 @@ const Imagenes = () => {
           >
             enviar
           </button>
-          <button type='reset'>cancelar</button>
+          <button className='btn btn-delete' type='reset'>
+            cancelar
+          </button>
         </form>
         <div style={{ flex: 1 }}>
           <img

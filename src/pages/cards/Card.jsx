@@ -10,11 +10,17 @@ const Card = ({ item }) => {
         {item.Imagenes.length > 0 ? (
           <Carrusel arrowSize={10}>
             {item.Imagenes.map((imagen) => {
-              return <img src={imagen.RutaArchivo} alt='' />;
+              console.log(imagen);
+              return (
+                <img
+                  src={`./images/tipo_alojamientos_pics/${imagen.RutaArchivo}`}
+                  alt=''
+                />
+              );
             })}
           </Carrusel>
         ) : (
-          <img src='images/img7.png' alt='' />
+          <img src='./images/tipo_alojamientos_pics/broken-image.png' alt='' />
         )}
       </div>
       <Link to={`/alojamiento/${item.idAlojamiento}`}>
