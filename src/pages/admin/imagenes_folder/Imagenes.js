@@ -117,7 +117,8 @@ const Imagenes = () => {
             <label>vincular a alojamiento</label>
             <select name='idAlojamiento'>
               {alojamientos &&
-                alojamientos.data.map((el) => {
+                alojamientos?.data?.map((el) => {
+                  console.log(el);
                   return (
                     <option value={el.idAlojamiento} key={el.idAlojamiento}>
                       {el.Titulo}
