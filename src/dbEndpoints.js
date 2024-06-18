@@ -2,18 +2,36 @@ const baseURL = 'http://localhost:3001/';
 
 const tiposDeAlojamiento = 'tiposAlojamiento/';
 const getAllTiposDeAlojamiento = 'getTiposAlojamiento';
-const getTipoDeAlojamiento = "getTipoAlojamiento";
 const createTipoAlojamiento = 'createTipoAlojamiento';
 const putTipoAlojamiento = 'putTipoAlojamiento';
 const deleteTipoAlojamiento = 'deleteTipoAlojamiento';
+/////
+
 export const crudTipoAlojamientosEndpoints = {
   readAll: `${baseURL}${tiposDeAlojamiento}${getAllTiposDeAlojamiento}`,
-  readOne: `${baseURL}${tiposDeAlojamiento}${getTipoDeAlojamiento}`,
   POST: `${baseURL}${tiposDeAlojamiento}${createTipoAlojamiento}`,
   PUT: `${baseURL}${tiposDeAlojamiento}${putTipoAlojamiento}`,
   DELETE: `${baseURL}${tiposDeAlojamiento}${deleteTipoAlojamiento}`,
 };
 
+const alojamiento = 'alojamiento/';
+const getAllAlojamientos = 'getAlojamientos';
+const getAlojamiento = 'getAlojamiento';
+const createAlojamiento = 'createAlojamiento';
+const putAlojamiento = 'putAlojamiento';
+const deleteAlojamiento = 'deleteAlojamiento';
+export const crudAlojamientosEndpoints = {
+  readAll: `${baseURL}${alojamiento}${getAllAlojamientos}`,
+  readOne: `${baseURL}${alojamiento}${getAlojamiento}`,
+  POST: `${baseURL}${alojamiento}${createAlojamiento}`,
+  PUT: `${baseURL}${alojamiento}${putAlojamiento}`,
+  DELETE: `${baseURL}${alojamiento}${deleteAlojamiento}`,
+};
+const createImagen = 'createImagen';
+export const crudImagenes = {
+  readAll: `${baseURL}imagen/getAllImagenes`,
+  POST: `${baseURL}imagen/${createImagen}`,
+};
 // export const getSingleAloj = 'getTiposAlojamiento';
 // export const   = '';
 // export const  = '';
