@@ -6,7 +6,7 @@ import TipoAlojamientosForm from '../tipoAlojamientosForm/TipoAlojamientosForm';
 
 import handleCRUD from '../../../utils/handleCrud';
 import EntitiesList from './../EntitiesList';
-import EntityLi from './../EntityLi';
+import TipoAlojamientoLi from '../TipoAlojamientoLi';
 
 const TipoAlojamientoLink = ({ el }) => {
   const { path } = useRouteMatch();
@@ -76,7 +76,7 @@ const TipoAlojamientos = () => {
         <ul>
           {data.map((el) => {
             const { idTipoAlojamiento: id, Descripcion: desc } = el;
-            return <EntityLi {...{ id, desc }}></EntityLi>;
+            return <TipoAlojamientoLi {...{ id, desc }}></TipoAlojamientoLi>;
           })}
         </ul>
       </EntitiesList>

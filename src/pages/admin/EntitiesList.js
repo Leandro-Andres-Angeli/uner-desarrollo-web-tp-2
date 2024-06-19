@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import EntityLi from './EntityLi';
+
 import LoadingIcon from '../../components/LoadingIcon';
 
 const EntitiesList = ({ error, loading, list, children }) => {

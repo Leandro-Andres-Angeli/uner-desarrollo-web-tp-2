@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import EntitiesList from './../EntitiesList';
 import notify from '../../../utils/toastNotify';
+import ImagenesLi from '../ImagenesLi';
 const imgValidate = (str) => Boolean(str.match(/(png)|(jpe?g)|(webp)$/));
 const intialState = {
   data: [],
@@ -194,7 +195,22 @@ const Imagenes = () => {
         </div>
       </div>
 
-      <EntitiesList list={imagenes.data}></EntitiesList>
+      <EntitiesList list={imagenes.data}>
+        <ul>
+          {imagenes?.data.map((el) => {
+            console.log('img', el);
+            const { idImagen, idAlojamiento, RutaArchivo } = el;
+            return (
+              <ImagenesLi
+                key={idImagen}
+                id={idImagen}
+                idAloj={idAlojamiento}
+                route={RutaArchivo}
+              ></ImagenesLi>
+            );
+          })}
+        </ul>
+      </EntitiesList>
       <ToastContainer />
     </section>
   );

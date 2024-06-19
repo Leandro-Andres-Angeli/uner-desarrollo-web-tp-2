@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 
-const EntityLi = ({ id, desc }) => {
+const TipoAlojamientoLi = ({ id, desc }) => {
   const { path } = useRouteMatch();
 
   return (
@@ -21,4 +21,4 @@ const EntityLi = ({ id, desc }) => {
   );
 };
 
-export default EntityLi;
+export default TipoAlojamientoLi;
