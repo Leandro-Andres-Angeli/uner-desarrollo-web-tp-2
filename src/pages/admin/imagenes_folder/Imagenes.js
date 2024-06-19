@@ -86,7 +86,10 @@ const Imagenes = () => {
         }}
       >
         <form
-          onReset={() => setErrors({ error: 'empty' })}
+          onReset={() => {
+            setErrors({ error: 'empty' });
+            setImagePreview(null);
+          }}
           onSubmit={handleSubmit}
           style={{ flexGrow: 1 }}
         >
@@ -114,7 +117,8 @@ const Imagenes = () => {
             <label>vincular a alojamiento</label>
             <select name='idAlojamiento'>
               {alojamientos &&
-                alojamientos.data.map((el) => {
+                alojamientos?.data?.map((el) => {
+                  console.log(el);
                   return (
                     <option value={el.idAlojamiento} key={el.idAlojamiento}>
                       {el.Titulo}
@@ -141,7 +145,9 @@ const Imagenes = () => {
           >
             enviar
           </button>
-          <button type='reset'>cancelar</button>
+          <button className='btn btn-delete' type='reset'>
+            cancelar
+          </button>
         </form>
         <div style={{ flex: 1 }}>
           <img

@@ -9,8 +9,8 @@ const Card = ({ item }) => {
       <div>
         {item.Imagenes.length > 0 ? (
           <Carrusel arrowSize={10}>
-            {item.Imagenes.map((imagen) => {
-              return <img src={imagen.RutaArchivo} alt="" />;
+            {item.Imagenes.map((imagen, index) => {
+              return <img key={index} src={imagen.RutaArchivo} alt="" />;
             })}
           </Carrusel>
         ) : (

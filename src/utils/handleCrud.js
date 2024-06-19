@@ -27,6 +27,7 @@ const handleCRUD = async (URL, method = crudOperations.GET, setter) => {
       data,
       error: false,
     }));
+    return data;
   } catch (err) {
     const { status } = err;
     setter((prev) => ({
@@ -35,6 +36,7 @@ const handleCRUD = async (URL, method = crudOperations.GET, setter) => {
 
       status,
     }));
+    return err;
   } finally {
     setter((prev) => ({
       ...prev,
@@ -42,7 +44,5 @@ const handleCRUD = async (URL, method = crudOperations.GET, setter) => {
       loading: false,
     }));
   }
-
-  setter((prev) => ({ ...prev, loading: false }));
 };
 export default handleCRUD;
