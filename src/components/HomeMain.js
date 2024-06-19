@@ -26,7 +26,7 @@ const HomeMain = () => {
   const [tipoAlojamientos, setTipoAlojamientos] = useState(intialState);
   const [joined, setJoinedData] = useState({ data: [] });
 
-  useEffect(() => {
+  /*  useEffect(() => {
     return async () => {
       // await handleCRUD(
       //   crudAlojamientosEndpoints.readAll,
@@ -67,7 +67,7 @@ const HomeMain = () => {
     };
   }, []);
   const { data: dataAlojamientos } = alojamientos;
-  const { data: dataImgs } = imgs;
+  const { data: dataImgs } = imgs; */
 
   return (
     <main className='main main-index'>
@@ -75,7 +75,7 @@ const HomeMain = () => {
       <section className='contenido'>
         {/* {JSON.stringify(dataImgs)}
         {JSON.stringify(dataAlojamientos)} */}
-        {JSON.stringify(joined)}
+        {/* {JSON.stringify(joined)} */}
         <h1>Tu lugar en el mundo</h1>
         <p>
           Encontrá en un solo sitio el lugar perfecto para descansar y

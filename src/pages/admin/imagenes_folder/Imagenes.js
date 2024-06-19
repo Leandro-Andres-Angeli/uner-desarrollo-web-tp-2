@@ -5,20 +5,35 @@ import handleCRUD from '../../../utils/handleCrud';
 import crudOperations from '../../../utils/crudOperations';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import EntitiesList from './../EntitiesList';
+import notify from '../../../utils/toastNotify';
 const imgValidate = (str) => Boolean(str.match(/(png)|(jpe?g)|(webp)$/));
 const Imagenes = () => {
   const [errors, setErrors] = useState({ error: 'empty' });
   const [imagePreview, setImagePreview] = useState(null);
   const [alojamientos, setAlojamientos] = useState(null);
+  const [imagenes, setImagenes] = useState({});
   const [result, setResult] = useState({});
 
   useEffect(() => {
-    return async function () {
-      return await callApi(crudAlojamientosEndpoints.readAll, setAlojamientos);
-    };
-  }, []);
+    Promise.all([
+      fetch(crudAlojamientosEndpoints.readAll),
+      fetch(crudImagenes.readAll),
+    ])
+      .then((data) => {
+        return Promise.all(data.map((res) => res.json()));
+      })
+      .then(([alojamientos, imagenes]) => {
+        setAlojamientos((prev) => ({ ...prev, data: alojamientos }));
+        setImagenes((prev) => ({ ...prev, data: imagenes }));
+      })
+      .catch((err) => notify(err.message || 'error cargando data'));
 
-  const notify = (text, type = 'error') => toast[type](text);
+    // return async function () {
+    //   return await callApi(crudAlojamientosEndpoints.readAll, setAlojamientos);
+    // };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,12 +66,6 @@ const Imagenes = () => {
       .catch((err) => {
         notify(err.message || 'error cargando imagen');
       });
-    // console.log(e);
-    // const { file } = e.target;
-    // console.log(file);
-    // console.log(file?.files[0].type);
-    // console.log(file.value);
-    // const { type } = file?.files[0];
   };
   useEffect(() => {}, []);
 
@@ -66,7 +75,7 @@ const Imagenes = () => {
     const { type } = file;
     if (!imgValidate(type)) {
       setErrors({ error: 'debe cargar archivos de tipo imagen' });
-      notify(errors.error);
+      notify('debe cargar archivos de tipo imagen');
       return;
     }
     setImagePreview({
@@ -163,6 +172,7 @@ const Imagenes = () => {
           />
         </div>
       </div>
+      <EntitiesList></EntitiesList>
       <ToastContainer />
     </section>
   );

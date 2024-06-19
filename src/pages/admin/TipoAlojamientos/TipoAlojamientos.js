@@ -24,26 +24,6 @@ const TipoAlojamientoLink = ({ el }) => {
     </Link>
   );
 };
-const TipoAlojamientosLinks = ({ list }) => {
-  useEffect(() => {
-    return () => {};
-  }, [list]);
-
-  return (
-    <>
-      <h2>Listado : Tipos de Alojamientos</h2>
-
-      <ul>
-        {list &&
-          list.map((el) => (
-            <li key={el.idTipoAlojamiento} className='tipoAlojamientoLink'>
-              <TipoAlojamientoLink {...{ el }}></TipoAlojamientoLink>
-            </li>
-          ))}
-      </ul>
-    </>
-  );
-};
 
 const TipoAlojamientos = () => {
   const intialState = {
