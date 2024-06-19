@@ -6,6 +6,7 @@ import TipoAlojamientosForm from '../tipoAlojamientosForm/TipoAlojamientosForm';
 
 import handleCRUD from '../../../utils/handleCrud';
 import EntitiesList from './../EntitiesList';
+import EntityLi from './../EntityLi';
 
 const TipoAlojamientoLink = ({ el }) => {
   const { path } = useRouteMatch();
@@ -71,7 +72,14 @@ const TipoAlojamientos = () => {
       ) : (
         <ErrorMsg></ErrorMsg>
       )} */}
-      <EntitiesList {...{ error, data, loading }} list={data}></EntitiesList>
+      <EntitiesList {...{ error, data, loading }} list={data}>
+        <ul>
+          {data.map((el) => {
+            const { idTipoAlojamiento: id, Descripcion: desc } = el;
+            return <EntityLi {...{ id, desc }}></EntityLi>;
+          })}
+        </ul>
+      </EntitiesList>
     </section>
   );
 };

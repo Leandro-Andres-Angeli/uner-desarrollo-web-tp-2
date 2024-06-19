@@ -9,14 +9,35 @@ import 'react-toastify/dist/ReactToastify.css';
 import EntitiesList from './../EntitiesList';
 import notify from '../../../utils/toastNotify';
 const imgValidate = (str) => Boolean(str.match(/(png)|(jpe?g)|(webp)$/));
+const intialState = {
+  data: [],
+  loading: true,
+  done: false,
+  error: null,
+};
 const Imagenes = () => {
   const [errors, setErrors] = useState({ error: 'empty' });
   const [imagePreview, setImagePreview] = useState(null);
-  const [alojamientos, setAlojamientos] = useState(null);
-  const [imagenes, setImagenes] = useState({});
+  const [alojamientos, setAlojamientos] = useState(intialState);
+  const [imagenes, setImagenes] = useState(intialState);
   const [result, setResult] = useState({});
 
   useEffect(() => {
+    Promise.all([
+      handleCRUD(crudAlojamientosEndpoints.readAll, undefined, setAlojamientos),
+      handleCRUD(crudImagenes.readAll, undefined, setImagenes),
+    ])
+      .then((data) => {
+        return data;
+      })
+
+      .catch((err) => notify(err.message || 'error cargando data'));
+
+    // return async function () {
+    //   return await callApi(crudAlojamientosEndpoints.readAll, setAlojamientos);
+    // };
+  }, []);
+  /* useEffect(() => {
     Promise.all([
       fetch(crudAlojamientosEndpoints.readAll),
       fetch(crudImagenes.readAll),
@@ -33,7 +54,7 @@ const Imagenes = () => {
     // return async function () {
     //   return await callApi(crudAlojamientosEndpoints.readAll, setAlojamientos);
     // };
-  }, []);
+  }, []); */
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -172,7 +193,8 @@ const Imagenes = () => {
           />
         </div>
       </div>
-      <EntitiesList></EntitiesList>
+
+      <EntitiesList list={imagenes.data}></EntitiesList>
       <ToastContainer />
     </section>
   );

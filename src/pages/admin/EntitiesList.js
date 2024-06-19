@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import EntityLi from './EntityLi';
 import LoadingIcon from '../../components/LoadingIcon';
 
-const EntitiesList = ({ error, loading, list }) => {
+const EntitiesList = ({ error, loading, list, children }) => {
   useEffect(() => {
+    console.log('render');
     return () => {};
   }, [list]);
 
@@ -18,16 +19,7 @@ const EntitiesList = ({ error, loading, list }) => {
     <>
       <h2>Listado : Tipos de Alojamientos</h2>
 
-      <ul>
-        {list &&
-          list.map((el) => (
-            <EntityLi
-              key={el.idTipoAlojamiento}
-              id={el.idTipoAlojamiento}
-              desc={el.Descripcion}
-            ></EntityLi>
-          ))}
-      </ul>
+      {list && children}
     </>
   );
 };
