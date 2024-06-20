@@ -69,7 +69,7 @@ a:hover {
 
 .main-index {
   color: var(--light-color);
-  background-image: url("../public/images/img1.jpeg");
+  background-image: url('../public/images/img1.jpeg');
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: top;
@@ -580,22 +580,22 @@ form .admin-btn:hover {
   box-shadow: var(--box-shadow);
   cursor: pointer;
 }
-ul:has(.tipoAlojamientoLink) {
+ul:has(.adminEntityLink) {
   padding-top: 2rem;
 }
-section:has(.tipoAlojamientoLink) h2 {
+section:has(.adminEntityLink) h2 {
   margin-top: 2rem;
 }
-.tipoAlojamientoLink {
+.adminEntityLink {
   box-shadow: var(--box-shadow);
   display: flex;
 }
-.tipoAlojamientoLink > a {
+.adminEntityLink > a {
   padding: 15px;
   flex: 1;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-.tipoAlojamientoLink > a:hover {
+.adminEntityLink > a:hover {
   background-color: var(--primary-color);
 }
 

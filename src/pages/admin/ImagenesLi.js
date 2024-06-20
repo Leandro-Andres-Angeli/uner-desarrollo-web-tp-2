@@ -5,7 +5,7 @@ const ImagenesLi = ({ id, idAloj, route }) => {
   const { path } = useRouteMatch();
   console.log(id);
   return (
-    <li className='ImagenesLink'>
+    <li className='adminEntityLink'>
       <Link
         to={{
           pathname: `${path}/${id}`,
@@ -19,9 +19,6 @@ const ImagenesLi = ({ id, idAloj, route }) => {
           style={{
             display: 'grid',
             gridTemplateColumns: '20% auto',
-            padding: '1rem',
-            boxShadow: 'var(--box-shadow)',
-            margin: '1rem 0',
           }}
         >
           <div className='img-container'>

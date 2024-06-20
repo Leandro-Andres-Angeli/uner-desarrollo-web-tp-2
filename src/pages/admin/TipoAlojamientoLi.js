@@ -5,7 +5,7 @@ const TipoAlojamientoLi = ({ id, desc }) => {
   const { path } = useRouteMatch();
 
   return (
-    <li className='tipoAlojamientoLink'>
+    <li className='adminEntityLink'>
       <Link
         to={{
           pathname: `${path}/${id}`,

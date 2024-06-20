@@ -9,19 +9,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import EntitiesList from './../EntitiesList';
 import notify from '../../../utils/toastNotify';
 import ImagenesLi from '../ImagenesLi';
-const imgValidate = (str) => Boolean(str.match(/(png)|(jpe?g)|(webp)$/));
-const intialState = {
-  data: [],
-  loading: true,
-  done: false,
-  error: null,
-};
+import ImagenForm from './ImagenForm';
+import intialState from '../../../utils/initialState';
+import imgValidate from '../../../utils/imgValidate';
+
 const Imagenes = () => {
   const [errors, setErrors] = useState({ error: 'empty' });
   const [imagePreview, setImagePreview] = useState(null);
   const [alojamientos, setAlojamientos] = useState(intialState);
   const [imagenes, setImagenes] = useState(intialState);
-  const [result, setResult] = useState({});
 
   useEffect(() => {
     Promise.all([
@@ -33,29 +29,7 @@ const Imagenes = () => {
       })
 
       .catch((err) => notify(err.message || 'error cargando data'));
-
-    // return async function () {
-    //   return await callApi(crudAlojamientosEndpoints.readAll, setAlojamientos);
-    // };
   }, []);
-  /* useEffect(() => {
-    Promise.all([
-      fetch(crudAlojamientosEndpoints.readAll),
-      fetch(crudImagenes.readAll),
-    ])
-      .then((data) => {
-        return Promise.all(data.map((res) => res.json()));
-      })
-      .then(([alojamientos, imagenes]) => {
-        setAlojamientos((prev) => ({ ...prev, data: alojamientos }));
-        setImagenes((prev) => ({ ...prev, data: imagenes }));
-      })
-      .catch((err) => notify(err.message || 'error cargando data'));
-
-    // return async function () {
-    //   return await callApi(crudAlojamientosEndpoints.readAll, setAlojamientos);
-    // };
-  }, []); */
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -89,7 +63,6 @@ const Imagenes = () => {
         notify(err.message || 'error cargando imagen');
       });
   };
-  useEffect(() => {}, []);
 
   const handleInputCapture = ({ target }) => {
     const [file] = target?.files;
@@ -116,7 +89,18 @@ const Imagenes = () => {
           borderRadius: '10px',
         }}
       >
-        <form
+        <ImagenForm
+          {...{
+            setErrors,
+            setImagePreview,
+            handleSubmit,
+            handleInputCapture,
+            alojamientos,
+            errors,
+          }}
+        ></ImagenForm>
+        {/* REFACTORED INTO COMPONENT */}
+        {/*      <form
           onReset={() => {
             setErrors({ error: 'empty' });
             setImagePreview(null);
@@ -178,7 +162,8 @@ const Imagenes = () => {
           <button className='btn btn-delete' type='reset'>
             cancelar
           </button>
-        </form>
+        </form> */}
+        {/* REFACTORED INTO COMPONENT */}
         <div style={{ flex: 1 }}>
           <img
             style={{
