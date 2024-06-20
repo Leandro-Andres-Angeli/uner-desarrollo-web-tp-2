@@ -12,7 +12,7 @@ import intialState from '../../../utils/initialState';
 
 const Imagen = () => {
   const [errors, setErrors] = useState({ error: 'empty' });
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState('broken-image.png');
   const [alojamientos, setAlojamientos] = useState(intialState);
   const [imagenes, setImagenes] = useState(intialState);
 

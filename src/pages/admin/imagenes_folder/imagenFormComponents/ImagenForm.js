@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import { handleLinkToEntityImages } from '../../../../utils/linkToEntities';
+import alojImgsRoute from '../../../../utils/publicImagesAlojRoutes';
 
 const ImagenForm = ({
   setErrors,
@@ -124,11 +125,7 @@ const ImagenForm = ({
             boxShadow: 'var(--box-shadow)',
             borderRadius: '10px',
           }}
-          src={
-            imagePreview?.route ||
-            location?.state?.el?.route ||
-            '/images/tipo_alojamientos_pics/broken-image.png'
-          }
+          src={`${alojImgsRoute}${imagePreview}`}
           alt=''
         />
       </div>
