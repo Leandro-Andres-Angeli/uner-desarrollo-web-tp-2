@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ImagenForm from './ImagenForm';
+import ImagenForm from './imagenFormComponents/ImagenForm';
 import {
   useLocation,
   useParams,

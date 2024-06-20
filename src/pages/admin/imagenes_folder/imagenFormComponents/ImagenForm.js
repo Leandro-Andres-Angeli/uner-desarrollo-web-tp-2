@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { handleLinkToEntityImages } from '../../../../utils/linkToEntities';
 
 const ImagenForm = ({
   setErrors,
@@ -10,7 +11,22 @@ const ImagenForm = ({
   errors,
 }) => {
   const location = useLocation();
-  const [imgValues, setImgValues] = useState(null);
+  const [linkSelection, setLinkSelection] = useState(null);
+  // const memoized = useMemo(
+  //   () =>
+  //     setLinkSelection(
+  //       handleLinkToEntityImages(location.state || null).map((el) => el)
+  //     ),
+  //   [location.state]
+  // );
+  const ref = useRef(handleLinkToEntityImages(location.state || null));
+
+  useEffect(() => {
+    setLinkSelection({
+      options: ref.current.toReversed(),
+      selected: ref.current.toReversed()[0],
+    });
+  }, []);
 
   return (
     <form
@@ -40,7 +56,27 @@ const ImagenForm = ({
           onInputCapture={handleInputCapture}
         />
       </div>
-
+      <div className='form-control'>
+        <label>Gestion de relacion con alojamientos</label>
+        <select
+          onChange={(ev) =>
+            setLinkSelection(function (prev) {
+              return {
+                ...prev,
+                selected: prev.options[ev.target.selectedIndex],
+              };
+            })
+          }
+        >
+          {linkSelection &&
+            linkSelection.options.map((el) => (
+              <option key={el} value={el}>
+                {el}
+              </option>
+            ))}
+        </select>
+        {linkSelection && linkSelection.selected}
+      </div>
       <div className='form-control'>
         <label>vincular a alojamiento</label>
         <select name='idAlojamiento'>
@@ -54,6 +90,7 @@ const ImagenForm = ({
             })}
         </select>
       </div>
+
       <button
         type='submit'
         style={{

@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import EntitiesList from './../EntitiesList';
 import notify from '../../../utils/toastNotify';
 import ImagenesLi from '../ImagenesLi';
-import ImagenForm from './ImagenForm';
+import ImagenForm from './imagenFormComponents/ImagenForm';
 import intialState from '../../../utils/initialState';
 import imgValidate from '../../../utils/imgValidate';
 
