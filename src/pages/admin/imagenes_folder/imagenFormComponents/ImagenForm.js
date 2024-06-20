@@ -125,7 +125,8 @@ const ImagenForm = ({
             borderRadius: '10px',
           }}
           src={
-            imagePreview?.route ??
+            imagePreview?.route ||
+            location?.state?.el?.route ||
             '/images/tipo_alojamientos_pics/broken-image.png'
           }
           alt=''
