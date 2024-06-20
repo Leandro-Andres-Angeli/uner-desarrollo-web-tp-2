@@ -5,20 +5,31 @@ import handleCRUD from '../../../utils/handleCrud';
 import crudOperations from '../../../utils/crudOperations';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-const imgValidate = (str) => Boolean(str.match(/(png)|(jpe?g)|(webp)$/));
+
+import EntitiesList from './../EntitiesList';
+import notify from '../../../utils/toastNotify';
+import ImagenesLi from '../ImagenesLi';
+import ImagenForm from './imagenFormComponents/ImagenForm';
+import intialState from '../../../utils/initialState';
+import imgValidate from '../../../utils/imgValidate';
+
 const Imagenes = () => {
   const [errors, setErrors] = useState({ error: 'empty' });
   const [imagePreview, setImagePreview] = useState(null);
-  const [alojamientos, setAlojamientos] = useState(null);
-  const [result, setResult] = useState({});
+  const [alojamientos, setAlojamientos] = useState(intialState);
+  const [imagenes, setImagenes] = useState(intialState);
 
   useEffect(() => {
-    return async function () {
-      return await callApi(crudAlojamientosEndpoints.readAll, setAlojamientos);
-    };
-  }, []);
+    Promise.all([
+      handleCRUD(crudAlojamientosEndpoints.readAll, undefined, setAlojamientos),
+      handleCRUD(crudImagenes.readAll, undefined, setImagenes),
+    ])
+      .then((data) => {
+        return data;
+      })
 
-  const notify = (text, type = 'error') => toast[type](text);
+      .catch((err) => notify(err.message || 'error cargando data'));
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +53,7 @@ const Imagenes = () => {
     })
       .then((res) => {
         if (!res.ok) {
-          console.log(res);
+          // console.log(res);
           throw new Error(res.statusText);
         }
         return res.json();
@@ -51,22 +62,15 @@ const Imagenes = () => {
       .catch((err) => {
         notify(err.message || 'error cargando imagen');
       });
-    // console.log(e);
-    // const { file } = e.target;
-    // console.log(file);
-    // console.log(file?.files[0].type);
-    // console.log(file.value);
-    // const { type } = file?.files[0];
   };
-  useEffect(() => {}, []);
 
   const handleInputCapture = ({ target }) => {
     const [file] = target?.files;
-    console.log(file);
+    // console.log(file);
     const { type } = file;
     if (!imgValidate(type)) {
       setErrors({ error: 'debe cargar archivos de tipo imagen' });
-      notify(errors.error);
+      notify('debe cargar archivos de tipo imagen');
       return;
     }
     setImagePreview({
@@ -77,15 +81,19 @@ const Imagenes = () => {
   };
   return (
     <section style={{ paddingTop: 'var(--pad-x)' }}>
-      <div
-        style={{
-          display: 'flex',
-          boxShadow: 'var(--box-shadow)',
-          padding: '1rem',
-          borderRadius: '10px',
+      <ImagenForm
+        {...{
+          setErrors,
+          setImagePreview,
+          imagePreview,
+          handleSubmit,
+          handleInputCapture,
+          alojamientos,
+          errors,
         }}
-      >
-        <form
+      ></ImagenForm>
+      {/* REFACTORED INTO COMPONENT */}
+      {/*      <form
           onReset={() => {
             setErrors({ error: 'empty' });
             setImagePreview(null);
@@ -148,22 +156,25 @@ const Imagenes = () => {
           <button className='btn btn-delete' type='reset'>
             cancelar
           </button>
-        </form>
-        <div style={{ flex: 1 }}>
-          <img
-            style={{
-              maxWidth: '30vw',
-              boxShadow: 'var(--box-shadow)',
-              borderRadius: '10px',
-            }}
-            src={
-              imagePreview?.route ??
-              '/images/tipo_alojamientos_pics/broken-image.png'
-            }
-            alt=''
-          />
-        </div>
-      </div>
+        </form> */}
+      {/* REFACTORED INTO COMPONENT */}
+
+      <EntitiesList list={imagenes.data}>
+        <ul>
+          {imagenes?.data.map((el) => {
+            // console.log('img', el);
+            const { idImagen, idAlojamiento, RutaArchivo } = el;
+            return (
+              <ImagenesLi
+                key={idImagen}
+                id={idImagen}
+                idAloj={idAlojamiento}
+                route={RutaArchivo}
+              ></ImagenesLi>
+            );
+          })}
+        </ul>
+      </EntitiesList>
       <ToastContainer />
     </section>
   );

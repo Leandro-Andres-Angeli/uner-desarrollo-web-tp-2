@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { crudTipoAlojamientosEndpoints } from '../../../dbEndpoints';
-import ErrorMsg from '../../../components/ErrorMsg';
+
 import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import TipoAlojamientosForm from '../tipoAlojamientosForm/TipoAlojamientosForm';
 
 import handleCRUD from '../../../utils/handleCrud';
 import EntitiesList from './../EntitiesList';
+import TipoAlojamientoLi from '../TipoAlojamientoLi';
 
 const TipoAlojamientoLink = ({ el }) => {
   const { path } = useRouteMatch();
@@ -22,26 +23,6 @@ const TipoAlojamientoLink = ({ el }) => {
       {' '}
       Tipo de alojamiento :<strong>{el.Descripcion}</strong>{' '}
     </Link>
-  );
-};
-const TipoAlojamientosLinks = ({ list }) => {
-  useEffect(() => {
-    return () => {};
-  }, [list]);
-
-  return (
-    <>
-      <h2>Listado : Tipos de Alojamientos</h2>
-
-      <ul>
-        {list &&
-          list.map((el) => (
-            <li key={el.idTipoAlojamiento} className='tipoAlojamientoLink'>
-              <TipoAlojamientoLink {...{ el }}></TipoAlojamientoLink>
-            </li>
-          ))}
-      </ul>
-    </>
   );
 };
 
@@ -91,7 +72,16 @@ const TipoAlojamientos = () => {
       ) : (
         <ErrorMsg></ErrorMsg>
       )} */}
-      <EntitiesList {...{ error, data, loading }} list={data}></EntitiesList>
+      <EntitiesList {...{ error, data, loading }} list={data}>
+        <ul>
+          {data.map((el) => {
+            const { idTipoAlojamiento: id, Descripcion: desc } = el;
+            return (
+              <TipoAlojamientoLi key={id} {...{ id, desc }}></TipoAlojamientoLi>
+            );
+          })}
+        </ul>
+      </EntitiesList>
     </section>
   );
 };

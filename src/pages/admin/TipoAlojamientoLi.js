@@ -1,24 +1,24 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 
-const EntityLi = ({ el }) => {
+const TipoAlojamientoLi = ({ id, desc }) => {
   const { path } = useRouteMatch();
 
   return (
-    <li className='tipoAlojamientoLink'>
+    <li className='adminEntityLink'>
       <Link
         to={{
-          pathname: `${path}/${el.idTipoAlojamiento}`,
+          pathname: `${path}/${id}`,
           state: {
-            el,
+            el: { id, desc },
           },
         }}
       >
         {' '}
-        Tipo de alojamiento :<strong>{el.Descripcion}</strong>{' '}
+        Tipo de alojamiento :<strong>{desc}</strong>{' '}
       </Link>
     </li>
   );
 };
 
-export default EntityLi;
+export default TipoAlojamientoLi;
