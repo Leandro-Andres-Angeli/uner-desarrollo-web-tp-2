@@ -3,7 +3,7 @@ import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 
 const ImagenesLi = ({ id, idAloj, route }) => {
   const { path } = useRouteMatch();
-  console.log(id);
+  // console.log(id);
   return (
     <li className='adminEntityLink'>
       <Link

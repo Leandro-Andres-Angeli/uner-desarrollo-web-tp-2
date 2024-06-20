@@ -4,7 +4,7 @@ import LoadingIcon from '../../components/LoadingIcon';
 
 const EntitiesList = ({ error, loading, list, children }) => {
   useEffect(() => {
-    console.log('render');
+    // console.log('render');
     return () => {};
   }, [list]);
 

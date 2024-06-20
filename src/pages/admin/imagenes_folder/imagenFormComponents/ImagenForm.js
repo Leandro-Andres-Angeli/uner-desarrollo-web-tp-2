@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import { handleLinkToEntityImages } from '../../../../utils/linkToEntities';
 
@@ -17,8 +17,8 @@ const ImagenForm = ({
 
   useEffect(() => {
     setLinkSelection({
-      options: ref.current.toReversed(),
-      selected: ref.current.toReversed()[0],
+      options: ref.current.toSorted().toReversed(),
+      selected: ref.current.toSorted().toReversed()[0],
     });
   }, []);
 
@@ -69,21 +69,22 @@ const ImagenForm = ({
               </option>
             ))}
         </select>
-        {linkSelection && linkSelection.selected}
       </div>
-      <div className='form-control'>
-        <label>vincular a alojamiento</label>
-        <select name='idAlojamiento'>
-          {alojamientos &&
-            alojamientos.data.map((el) => {
-              return (
-                <option value={el.idAlojamiento} key={el.idAlojamiento}>
-                  {el.Titulo}
-                </option>
-              );
-            })}
-        </select>
-      </div>
+      {linkSelection && linkSelection.selected === 'vincular' && (
+        <div className='form-control'>
+          <label>vincular a alojamiento</label>
+          <select name='idAlojamiento'>
+            {alojamientos &&
+              alojamientos.data.map((el) => {
+                return (
+                  <option value={el.idAlojamiento} key={el.idAlojamiento}>
+                    {el.Titulo}
+                  </option>
+                );
+              })}
+          </select>
+        </div>
+      )}
 
       <button
         type='submit'

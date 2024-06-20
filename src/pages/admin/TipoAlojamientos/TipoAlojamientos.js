@@ -76,7 +76,9 @@ const TipoAlojamientos = () => {
         <ul>
           {data.map((el) => {
             const { idTipoAlojamiento: id, Descripcion: desc } = el;
-            return <TipoAlojamientoLi {...{ id, desc }}></TipoAlojamientoLi>;
+            return (
+              <TipoAlojamientoLi key={id} {...{ id, desc }}></TipoAlojamientoLi>
+            );
           })}
         </ul>
       </EntitiesList>

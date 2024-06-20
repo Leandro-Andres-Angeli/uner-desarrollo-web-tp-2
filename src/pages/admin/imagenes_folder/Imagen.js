@@ -31,6 +31,7 @@ const Imagen = () => {
     if (!e.target.file) {
       return;
     }
+    console.log(e.target.idAlojamiento);
     const {
       file: { name: RutaArchivo },
       idAlojamiento,

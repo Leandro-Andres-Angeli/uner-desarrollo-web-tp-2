@@ -53,7 +53,7 @@ const Imagenes = () => {
     })
       .then((res) => {
         if (!res.ok) {
-          console.log(res);
+          // console.log(res);
           throw new Error(res.statusText);
         }
         return res.json();
@@ -66,7 +66,7 @@ const Imagenes = () => {
 
   const handleInputCapture = ({ target }) => {
     const [file] = target?.files;
-    console.log(file);
+    // console.log(file);
     const { type } = file;
     if (!imgValidate(type)) {
       setErrors({ error: 'debe cargar archivos de tipo imagen' });
@@ -183,7 +183,7 @@ const Imagenes = () => {
       <EntitiesList list={imagenes.data}>
         <ul>
           {imagenes?.data.map((el) => {
-            console.log('img', el);
+            // console.log('img', el);
             const { idImagen, idAlojamiento, RutaArchivo } = el;
             return (
               <ImagenesLi
