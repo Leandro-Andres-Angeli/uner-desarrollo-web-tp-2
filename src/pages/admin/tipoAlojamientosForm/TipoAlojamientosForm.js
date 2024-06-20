@@ -34,7 +34,7 @@ const TipoAlojamientosForm = (props) => {
     console.log({ [name]: value });
     const endpoint =
       tipo !== null
-        ? `${crudTipoAlojamientosEndpoints[action]}/${tipo.idTipoAlojamiento}`
+        ? `${crudTipoAlojamientosEndpoints[action]}/${tipo.id}`
         : crudTipoAlojamientosEndpoints[action];
     await handleCRUD(
       endpoint,
@@ -59,7 +59,7 @@ const TipoAlojamientosForm = (props) => {
             type='text'
             placeholder='ej : depto'
             name='Descripcion'
-            defaultValue={tipo?.Descripcion}
+            defaultValue={tipo?.desc}
             required
           />
         </div>

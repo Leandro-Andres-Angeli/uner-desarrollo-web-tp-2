@@ -3,7 +3,7 @@ import About from '../../pages/About';
 import Contact from '../../pages/Contact';
 import Home from '../../pages/Home';
 import Admin from '../../pages/admin/Admin';
-import Alojamiento from '../../pages/alojamiento/Alojamiento';
+import Buscador from '../../pages/buscador/Buscador';
 
 export const routes = [
   {
@@ -11,6 +11,11 @@ export const routes = [
     route: '/',
     exact: true,
     component: <Home></Home>,
+  },
+  {
+    text: 'buscar',
+    route: '/buscar',
+    component: <Buscador></Buscador>,
   },
   {
     text: 'contacto',
@@ -22,6 +27,7 @@ export const routes = [
     route: '/acerca',
     component: <About></About>,
   },
+
   {
     text: 'admin',
     route: '/admin',

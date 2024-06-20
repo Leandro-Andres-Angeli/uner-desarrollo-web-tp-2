@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  useLocation,
-  useParams,
-} from 'react-router-dom/cjs/react-router-dom.min';
+
 import TipoAlojamientosForm from '../tipoAlojamientosForm/TipoAlojamientosForm';
 
 const TipoAlojamiento = () => {
