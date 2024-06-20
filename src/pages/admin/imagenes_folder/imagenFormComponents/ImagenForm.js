@@ -12,13 +12,7 @@ const ImagenForm = ({
 }) => {
   const location = useLocation();
   const [linkSelection, setLinkSelection] = useState(null);
-  // const memoized = useMemo(
-  //   () =>
-  //     setLinkSelection(
-  //       handleLinkToEntityImages(location.state || null).map((el) => el)
-  //     ),
-  //   [location.state]
-  // );
+
   const ref = useRef(handleLinkToEntityImages(location.state || null));
 
   useEffect(() => {
