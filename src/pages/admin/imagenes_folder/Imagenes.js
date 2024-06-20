@@ -81,26 +81,19 @@ const Imagenes = () => {
   };
   return (
     <section style={{ paddingTop: 'var(--pad-x)' }}>
-      <div
-        style={{
-          display: 'flex',
-          boxShadow: 'var(--box-shadow)',
-          padding: '1rem',
-          borderRadius: '10px',
+      <ImagenForm
+        {...{
+          setErrors,
+          setImagePreview,
+          imagePreview,
+          handleSubmit,
+          handleInputCapture,
+          alojamientos,
+          errors,
         }}
-      >
-        <ImagenForm
-          {...{
-            setErrors,
-            setImagePreview,
-            handleSubmit,
-            handleInputCapture,
-            alojamientos,
-            errors,
-          }}
-        ></ImagenForm>
-        {/* REFACTORED INTO COMPONENT */}
-        {/*      <form
+      ></ImagenForm>
+      {/* REFACTORED INTO COMPONENT */}
+      {/*      <form
           onReset={() => {
             setErrors({ error: 'empty' });
             setImagePreview(null);
@@ -163,22 +156,7 @@ const Imagenes = () => {
             cancelar
           </button>
         </form> */}
-        {/* REFACTORED INTO COMPONENT */}
-        <div style={{ flex: 1 }}>
-          <img
-            style={{
-              maxWidth: '30vw',
-              boxShadow: 'var(--box-shadow)',
-              borderRadius: '10px',
-            }}
-            src={
-              imagePreview?.route ??
-              '/images/tipo_alojamientos_pics/broken-image.png'
-            }
-            alt=''
-          />
-        </div>
-      </div>
+      {/* REFACTORED INTO COMPONENT */}
 
       <EntitiesList list={imagenes.data}>
         <ul>

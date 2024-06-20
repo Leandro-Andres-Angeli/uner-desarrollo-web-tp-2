@@ -80,6 +80,7 @@ const Imagen = () => {
         {...{
           setErrors,
           setImagePreview,
+          imagePreview,
           handleSubmit,
           handleInputCapture,
           alojamientos,
