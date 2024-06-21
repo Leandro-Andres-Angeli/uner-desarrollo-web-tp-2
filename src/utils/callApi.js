@@ -1,11 +1,13 @@
 import handleCRUD from './handleCrud';
 
 const callApi = async (endpoint, setter) => {
-  await handleCRUD(
+  const crudRes = await handleCRUD(
     // crudTipoAlojamientosEndpoints.readAll,
     endpoint,
     undefined,
     setter
   );
+
+  console.log('crud res', crudRes);
 };
 export default callApi;

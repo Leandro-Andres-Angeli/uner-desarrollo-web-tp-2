@@ -3,6 +3,7 @@ import React from 'react';
 import { crudImagenes } from '../../../dbEndpoints';
 import notify from '../../../utils/toastNotify';
 export const ImagenesContext = createContext();
+//WORKING REFACTORING
 const handleSubmit = (e) => {
   e.preventDefault();
 
@@ -42,6 +43,7 @@ const handleSubmit = (e) => {
     })
     .finally(e.target.reset());
 };
+//WORKING REFACTORING
 const ImagenesProvider = ({ children }) => {
   return (
     <ImagenesContext.Provider value={{ handleSubmit: handleSubmit }}>
