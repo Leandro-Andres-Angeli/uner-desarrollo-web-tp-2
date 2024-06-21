@@ -6,6 +6,8 @@ import React, {
   useState,
 } from 'react';
 import {
+  Redirect,
+  useHistory,
   useLocation,
   useParams,
 } from 'react-router-dom/cjs/react-router-dom.min';
@@ -18,6 +20,7 @@ import ButtonsWrapper, {
   AdminFormBtn,
 } from './../../admin_shared/ButtonsWrapper';
 import { imgsNew, imgsUpdate } from '../../admin_shared/btnActions';
+import notify from '../../../../utils/toastNotify';
 
 const ImagenForm = ({
   setErrors,
@@ -32,6 +35,7 @@ const ImagenForm = ({
   const [linkSelection, setLinkSelection] = useState(null);
   const { id } = useParams();
   const ref = useRef(handleLinkToEntityImages(location.state || null));
+  const history = useHistory();
   /* const handleImagePreview = () => {
     if (location.state?.el) {
       setImagePreview({ route: location.state.el.route });
@@ -48,11 +52,11 @@ const ImagenForm = ({
       selected: ref.current.toSorted().toReversed()[0],
     });
     if (locationState) {
-      console.log('edit');
+      // console.log('edit');
       // setImagePreview({ route: locationState });
       previewImgRef.current = { route: locationState };
     }
-    console.log('render');
+
     return () => setImagePreview(previewImgRef.current);
   }, [locationState, setImagePreview]);
 
@@ -65,17 +69,27 @@ const ImagenForm = ({
         borderRadius: '10px',
       }}
     >
+      {JSON.stringify(location.state?.el?.id ?? null)}
       <form
         onReset={() => {
           setErrors({ error: 'empty' });
           setImagePreview({ route: 'broken-image.png' });
         }}
-        onSubmit={handleSubmit}
+        onSubmit={async function (e) {
+          // console.log('submit res');
+          await handleSubmit(e);
+
+          if (Boolean(location.state)) {
+            notify('text');
+            return history.push('/admin/imagenes');
+          }
+        }}
         style={{ flexGrow: 1 }}
-        data-action={location.state ? 'PUT' : 'POST'}
-        data-route={
-          location.state ? `${crudImagenes.PUT}${id}` : crudImagenes.POST
-        }
+        data-action-type={location.state ? 'UPDATE' : 'ADD'}
+        data-id={location.state?.el?.id ?? null}
+        // data-route={
+        //   location.state ? `${crudImagenes.PUT}${id}` : crudImagenes.POST
+        // }
       >
         <h2> Imagenes </h2>
 
@@ -146,27 +160,6 @@ const ImagenForm = ({
                 ></AdminFormBtn>
               ))}
         </ButtonsWrapper>
-        {/*     <button
-          type='submit'
-          style={{
-            borderRadius: '20px',
-            padding: '10px 15px',
-            backgroundColor: `${
-              Boolean(Object.keys(errors).length === 0)
-                ? 'var(--primary-color)'
-                : 'gray'
-            }`,
-            boxShadow: 'var(--box-shadow)',
-            cursor: 'pointer',
-          }}
-          // disabled={String(Boolean(Object.keys(errors).length !== 0))}
-          disabled={!Boolean(Object.keys(errors).length === 0)}
-        >
-          enviar
-        </button>
-        <button className='btn btn-delete' type='reset'>
-          cancelar
-        </button> */}
       </form>
 
       <div style={{ flex: 1 }}>

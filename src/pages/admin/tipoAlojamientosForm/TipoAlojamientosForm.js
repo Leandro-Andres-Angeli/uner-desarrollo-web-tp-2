@@ -27,7 +27,7 @@ const TipoAlojamientosForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const action = e.nativeEvent.submitter.getAttribute('data-action');
-    console.log(action);
+    // console.log(action);
     const {
       Descripcion: { name, value },
     } = e.target;
@@ -46,7 +46,9 @@ const TipoAlojamientosForm = (props) => {
         props?.setTipoAlojamientos((prev) => ({ ...prev, update: true }));
     }
     if (Boolean(location.state)) {
-      history.goBack(-1);
+      history.push(
+        location.pathname.slice(0, location.pathname.lastIndexOf('/'))
+      );
     }
   };
   return (

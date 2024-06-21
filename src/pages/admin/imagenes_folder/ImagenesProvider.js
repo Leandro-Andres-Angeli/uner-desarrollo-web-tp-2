@@ -2,7 +2,9 @@ import { createContext } from 'react';
 import React from 'react';
 import { crudImagenes } from '../../../dbEndpoints';
 import notify from '../../../utils/toastNotify';
+import handleCRUD from '../../../utils/handleCrud';
 export const ImagenesContext = createContext();
+
 //WORKING REFACTORING
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -10,7 +12,10 @@ const handleSubmit = (e) => {
   // const submitterAction =
   //   e.target.nativeEvent.submitter.getAttribute('data-action');
   // console.log(submitterAction);
-  const dataAction = e.nativeEvent.submitter.getAttribute('data-action');
+  const dataId = e.target.getAttribute('data-id');
+  const dataType = e.target.getAttribute('data-action-type');
+  console.log(dataId);
+  console.log(dataType);
 
   if (!e.target.file.files[0]) {
     notify('No se ha seleccionado una imagen');

@@ -49,7 +49,7 @@ const TipoAlojamientos = () => {
   }, [tipoAlojamientos.update]);
 
   const { error, data, loading } = tipoAlojamientos;
-  console.log(data);
+  // console.log(data);
   return (
     <section style={{ paddingTop: ' var(--pad-x)' }}>
       <TipoAlojamientosForm
