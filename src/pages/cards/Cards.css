@@ -33,5 +33,5 @@
 .card-list {
   flex-direction: column;
   display: flex;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
 }
