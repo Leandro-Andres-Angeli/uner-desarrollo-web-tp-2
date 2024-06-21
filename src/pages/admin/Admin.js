@@ -16,6 +16,7 @@ import AlojamientoDashboard from './alojamiento/AlojamientoDashboard';
 import ImagenesRoute from './imagenes_folder/Imagenes';
 import ImagenesProvider from './imagenes_folder/ImagenesProvider';
 // import Imagen from './imagenes_folder/Imagen';
+import ServiciosDashboard from './servicios/ServiciosDashboard';
 
 const Admin = () => {
   const { adminPanel, btnAdd } = adminModule;
@@ -63,6 +64,10 @@ const Admin = () => {
           </Route>
           <Imagenes></Imagenes>
         </Route> */}
+
+        <Route path={`${path}/servicios`}>
+          <ServiciosDashboard></ServiciosDashboard>
+        </Route>
       </Switch>
     </main>
   );
