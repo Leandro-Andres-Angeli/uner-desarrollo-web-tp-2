@@ -119,6 +119,12 @@ main img {
   z-index: 2;
 }
 
+.centrado {
+  text-align: center;
+  /* margin: 0 auto; */
+  align-self: center;
+}
+
 footer {
   padding: 2rem 2rem 1rem 2rem;
   background-color: #162e44;
