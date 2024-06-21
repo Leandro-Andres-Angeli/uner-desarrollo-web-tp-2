@@ -12,9 +12,10 @@ import intialState from '../../../utils/initialState';
 
 const Imagen = () => {
   const [errors, setErrors] = useState({ error: 'empty' });
-  const [imagePreview, setImagePreview] = useState('broken-image.png');
+  const [imagePreview, setImagePreview] = useState({
+    route: 'broken-image.png',
+  });
   const [alojamientos, setAlojamientos] = useState(intialState);
-  const [imagenes, setImagenes] = useState(intialState);
 
   useEffect(() => {
     handleCRUD(crudAlojamientosEndpoints.readAll, undefined, setAlojamientos)
@@ -27,7 +28,7 @@ const Imagen = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log('route', e.target.getAttribute('data-route'));
     if (!e.target.file) {
       return;
     }
@@ -70,7 +71,7 @@ const Imagen = () => {
     }
     setImagePreview({
       type,
-      route: `/images/tipo_alojamientos_pics/${file.name}`,
+      route: `${file.name}`,
     });
     setErrors({});
   };
