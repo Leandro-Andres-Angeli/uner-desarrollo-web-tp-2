@@ -18,7 +18,7 @@ const handleSubmit = (e) => {
   console.log(dataId);
   console.log(dataType);
 
-  if (!e.target.file.files[0]) {
+  if (!e.target.file.files[0] && buttonAttr !== 'DELETE') {
     notify('No se ha seleccionado una imagen');
     return;
   }
