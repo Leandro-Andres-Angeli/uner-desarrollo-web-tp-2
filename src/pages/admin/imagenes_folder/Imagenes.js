@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import callApi from '../../../utils/callApi';
+import React, { useContext, useEffect, useState } from 'react';
+
 import { crudAlojamientosEndpoints, crudImagenes } from '../../../dbEndpoints';
 import handleCRUD from '../../../utils/handleCrud';
-import crudOperations from '../../../utils/crudOperations';
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import EntitiesList from './../EntitiesList';
@@ -18,7 +18,10 @@ import {
   useRouteMatch,
 } from 'react-router-dom/cjs/react-router-dom.min';
 import Imagen from './Imagen';
-import ImagenesProvider, { ImagenesContext } from './ImagenesProvider';
+import ImagenesProvider, {
+  ImagenesContext,
+  handleSubmit,
+} from './ImagenesProvider';
 
 export const Imagenes = () => {
   const [errors, setErrors] = useState({ error: 'empty' });
@@ -26,42 +29,10 @@ export const Imagenes = () => {
     route: 'broken-image.png',
   });
   const [alojamientos, setAlojamientos] = useState(intialState);
-  const [imagenes, setImagenes] = useState(intialState);
-
-  /*   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('route', e.target.getAttribute('data-route'));
-    if (!e.target.file) {
-      return;
-    }
-    const {
-      file: { name: RutaArchivo },
-      idAlojamiento,
-    } = Object.fromEntries(new FormData(e.target));
-    fetch(crudImagenes.POST, {
-      method: 'POST',
-
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-
-      body: JSON.stringify({ idAlojamiento, RutaArchivo }), // body data type must match "Content-Type" header
-    })
-      .then((res) => {
-        if (!res.ok) {
-          // console.log(res);
-          throw new Error(res.statusText);
-        }
-        return res.json();
-      })
-      .then((res) => notify(res.message, 'success'))
-      .catch((err) => {
-        notify(err.message || 'error cargando imagen');
-      });
-  }; */
-
+  const { imagenesState } = useContext(ImagenesContext);
+  const [imagenes, setImagenes] = imagenesState;
   useEffect(() => {
+    setImagenes((prev) => ({ ...prev, update: false }));
     Promise.all([
       handleCRUD(crudAlojamientosEndpoints.readAll, undefined, setAlojamientos),
       handleCRUD(crudImagenes.readAll, undefined, setImagenes),
@@ -73,9 +44,6 @@ export const Imagenes = () => {
 
       .catch((err) => notify(err.message || 'error cargando data'));
     console.log('render');
-  }, []);
-  useEffect(() => {
-    console.log('data update');
   }, [imagenes.update]);
 
   const handleInputCapture = ({ target }) => {
@@ -174,7 +142,7 @@ export const Imagenes = () => {
         </form> */}
       {/* REFACTORED INTO COMPONENT */}
 
-      <EntitiesList list={imagenes.data}>
+      <EntitiesList list={imagenes}>
         <ul>
           {imagenes?.data.map((el) => {
             // console.log('img', el);
@@ -196,9 +164,11 @@ export const Imagenes = () => {
 
 const ImagenesRoute = () => {
   const { path } = useRouteMatch();
-
+  const [imagenes, setImagenes] = useState(intialState);
   return (
-    <ImagenesProvider>
+    <ImagenesContext.Provider
+      value={{ imagenesState: [imagenes, setImagenes], handleSubmit }}
+    >
       <Switch>
         <Route exact path={path}>
           <Imagenes></Imagenes>
@@ -208,7 +178,7 @@ const ImagenesRoute = () => {
         </Route>
       </Switch>
       <ToastContainer />
-    </ImagenesProvider>
+    </ImagenesContext.Provider>
   );
 };
 export default ImagenesRoute;

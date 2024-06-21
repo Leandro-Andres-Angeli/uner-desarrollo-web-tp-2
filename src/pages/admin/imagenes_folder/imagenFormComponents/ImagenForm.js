@@ -20,7 +20,6 @@ import ButtonsWrapper, {
   AdminFormBtn,
 } from './../../admin_shared/ButtonsWrapper';
 import { imgsNew, imgsUpdate } from '../../admin_shared/btnActions';
-import notify from '../../../../utils/toastNotify';
 
 const ImagenForm = ({
   setErrors,
@@ -41,7 +40,10 @@ const ImagenForm = ({
       setImagePreview({ route: location.state.el.route });
     }
   }; */
-  const { handleSubmit } = useContext(ImagenesContext);
+  const {
+    handleSubmit,
+    imagenesState: [_, setImagenes = {}],
+  } = useContext(ImagenesContext);
   const locationState = Boolean(location?.state)
     ? location.state.el.route
     : null;
@@ -77,7 +79,7 @@ const ImagenForm = ({
         }}
         onSubmit={async function (e) {
           // console.log('submit res');
-          await handleSubmit(e);
+          await handleSubmit(e, setImagenes);
 
           if (Boolean(location.state)) {
             return history.push('/admin/imagenes');

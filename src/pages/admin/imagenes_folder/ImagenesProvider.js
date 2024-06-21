@@ -6,9 +6,9 @@ import handleCRUD from '../../../utils/handleCrud';
 export const ImagenesContext = createContext();
 
 //WORKING REFACTORING
-const handleSubmit = (e) => {
+export const handleSubmit = (e, setter) => {
   e.preventDefault();
-
+  setter((prev) => ({ ...prev, update: false }));
   // const submitterAction =
   //   e.target.nativeEvent.submitter.getAttribute('data-action');
   // console.log(submitterAction);
@@ -48,6 +48,7 @@ const handleSubmit = (e) => {
         // console.log(res);
         throw new Error(res.statusText);
       }
+      setter((prev) => ({ ...prev, update: true }));
       return res.json();
     })
     .then((res) => notify(res.message, 'success'))
