@@ -12,6 +12,6 @@ export const imgsNew = [
   },
 ];
 export const imgsUpdate = [
-  { actionType: 'UPDATE', text: 'actualizar', stylesClassName: 'update' },
+  { actionType: 'PUT', text: 'actualizar', stylesClassName: 'update' },
   { actionType: 'DELETE', text: 'eliminar', stylesClassName: 'delete' },
 ];

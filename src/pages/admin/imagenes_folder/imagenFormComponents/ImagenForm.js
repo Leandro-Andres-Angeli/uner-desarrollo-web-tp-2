@@ -80,7 +80,6 @@ const ImagenForm = ({
           await handleSubmit(e);
 
           if (Boolean(location.state)) {
-            notify('text');
             return history.push('/admin/imagenes');
           }
         }}

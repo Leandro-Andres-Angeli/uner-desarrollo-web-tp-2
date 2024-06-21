@@ -14,6 +14,7 @@ const handleSubmit = (e) => {
   // console.log(submitterAction);
   const dataId = e.target.getAttribute('data-id');
   const dataType = e.target.getAttribute('data-action-type');
+  const buttonAttr = e.nativeEvent.submitter.getAttribute('data-action');
   console.log(dataId);
   console.log(dataType);
 
@@ -25,15 +26,22 @@ const handleSubmit = (e) => {
     file: { name: RutaArchivo },
     idAlojamiento,
   } = Object.fromEntries(new FormData(e.target));
-  fetch(crudImagenes.POST, {
-    method: 'POST',
+  const requestBody = { idAlojamiento, RutaArchivo };
+  const route = dataId
+    ? `${crudImagenes[buttonAttr]}${dataId} `
+    : crudImagenes[buttonAttr];
+  console.log('route', route);
+  console.log('attr', buttonAttr);
+  console.log('body', requestBody);
+  fetch(route, {
+    method: buttonAttr,
 
     headers: {
       'Content-Type': 'application/json',
       // 'Content-Type': 'application/x-www-form-urlencoded',
     },
 
-    body: JSON.stringify({ idAlojamiento, RutaArchivo }), // body data type must match "Content-Type" header
+    body: JSON.stringify(requestBody), // body data type must match "Content-Type" header
   })
     .then((res) => {
       if (!res.ok) {
