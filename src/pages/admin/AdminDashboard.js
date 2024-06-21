@@ -58,6 +58,17 @@ const AdminDashboard = () => {
               imagenes
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to={`${path}/servicios`}
+              activeStyle={{
+                outline: ' 2px solid var(--pink)',
+                outlineOffset: '4px',
+              }}
+            >
+              servicios
+            </NavLink>
+          </li>
         </ul>
       </div>
     </aside>
