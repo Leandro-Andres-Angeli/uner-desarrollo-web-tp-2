@@ -85,7 +85,6 @@ const Imagen = () => {
           alojamientos,
           errors,
         }}
-        handleSubmit={() => console.log('data')}
       ></ImagenForm>
     </div>
   );

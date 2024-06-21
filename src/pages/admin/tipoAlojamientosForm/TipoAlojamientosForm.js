@@ -8,6 +8,7 @@ import { crudTipoAlojamientosEndpoints } from '../../../dbEndpoints';
 
 import crudOperations from '../../../utils/crudOperations';
 import handleCRUD from '../../../utils/handleCrud';
+import { AdminFormBtn, ButtonsWrapper } from './../admin_shared/ButtonsWrapper';
 const TipoAlojamientosForm = (props) => {
   // console.log('in');
 
@@ -64,9 +65,12 @@ const TipoAlojamientosForm = (props) => {
           />
         </div>
 
-        <div className={`${formActionsContainer}`}>
+        <ButtonsWrapper>
           {props.actions.map(({ actionType, text, stylesClassName }) => (
-            <button
+            <AdminFormBtn
+              {...{ actionType, text, stylesClassName }}
+            ></AdminFormBtn>
+            /*  <button
               className={`btn-${stylesClassName}`}
               data-action={actionType}
               key={actionType}
@@ -74,11 +78,10 @@ const TipoAlojamientosForm = (props) => {
               type='submit'
             >
               {text}
-            </button>
+            </button> */
           ))}
-        </div>
+        </ButtonsWrapper>
       </fieldset>
-      {/*{JSON.stringify(crudRes)*/}
     </form>
   );
 };
