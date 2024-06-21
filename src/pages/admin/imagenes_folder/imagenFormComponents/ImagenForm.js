@@ -33,7 +33,7 @@ const ImagenForm = ({
 }) => {
   const location = useLocation();
   const [linkSelection, setLinkSelection] = useState(null);
-  const { id } = useParams();
+
   const ref = useRef(handleLinkToEntityImages(location.state || null));
   const history = useHistory();
   /* const handleImagePreview = () => {

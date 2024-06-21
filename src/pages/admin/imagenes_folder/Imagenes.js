@@ -67,11 +67,16 @@ export const Imagenes = () => {
       handleCRUD(crudImagenes.readAll, undefined, setImagenes),
     ])
       .then((data) => {
+        console.log(data[0]);
         return data;
       })
 
       .catch((err) => notify(err.message || 'error cargando data'));
+    console.log('render');
   }, []);
+  useEffect(() => {
+    console.log('data update');
+  }, [imagenes.update]);
 
   const handleInputCapture = ({ target }) => {
     const [file] = target?.files;
