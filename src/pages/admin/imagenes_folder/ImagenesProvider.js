@@ -5,8 +5,14 @@ import notify from '../../../utils/toastNotify';
 export const ImagenesContext = createContext();
 const handleSubmit = (e) => {
   e.preventDefault();
-  console.log('route', e.target.getAttribute('data-route'));
-  if (!e.target.file) {
+
+  // const submitterAction =
+  //   e.target.nativeEvent.submitter.getAttribute('data-action');
+  // console.log(submitterAction);
+  const dataAction = e.nativeEvent.submitter.getAttribute('data-action');
+
+  if (!e.target.file.files[0]) {
+    notify('No se ha seleccionado una imagen');
     return;
   }
   const {
@@ -33,11 +39,12 @@ const handleSubmit = (e) => {
     .then((res) => notify(res.message, 'success'))
     .catch((err) => {
       notify(err.message || 'error cargando imagen');
-    });
+    })
+    .finally(e.target.reset());
 };
 const ImagenesProvider = ({ children }) => {
   return (
-    <ImagenesContext.Provider value={{ handleSubmit: handleSubmit, data: 1 }}>
+    <ImagenesContext.Provider value={{ handleSubmit: handleSubmit }}>
       {children}
     </ImagenesContext.Provider>
   );

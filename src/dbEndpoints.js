@@ -31,10 +31,12 @@ const createImagen = 'createImagen';
 const imagen = 'imagen/';
 const updateImagen = 'updateImagen/';
 const getAll = 'getAllImagenes';
+const deleteImagen = 'deleteImagen/';
 export const crudImagenes = {
   readAll: `${baseURL}${imagen}${getAll}`,
   POST: `${baseURL}${imagen}${createImagen}`,
   PUT: `${baseURL}${imagen}${updateImagen}`,
+  DELETE: `${baseURL}${imagen}${deleteImagen}`,
 };
 // export const getSingleAloj = 'getTiposAlojamiento';
 // export const   = '';

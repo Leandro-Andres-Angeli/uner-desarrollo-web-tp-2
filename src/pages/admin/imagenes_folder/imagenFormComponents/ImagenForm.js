@@ -11,8 +11,7 @@ import {
 } from 'react-router-dom/cjs/react-router-dom.min';
 import { handleLinkToEntityImages } from '../../../../utils/linkToEntities';
 import alojImgsRoute from '../../../../utils/publicImagesAlojRoutes';
-import { useMemo } from 'react';
-import { render } from '@testing-library/react';
+
 import { crudImagenes } from '../../../../dbEndpoints';
 import { ImagenesContext } from '../ImagenesProvider';
 import ButtonsWrapper, {

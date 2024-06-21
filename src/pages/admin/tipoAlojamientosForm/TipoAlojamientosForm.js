@@ -8,7 +8,6 @@ import { crudTipoAlojamientosEndpoints } from '../../../dbEndpoints';
 
 import crudOperations from '../../../utils/crudOperations';
 import handleCRUD from '../../../utils/handleCrud';
-import { AdminFormBtn, ButtonsWrapper } from './../admin_shared/ButtonsWrapper';
 const TipoAlojamientosForm = (props) => {
   // console.log('in');
 
@@ -28,7 +27,7 @@ const TipoAlojamientosForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const action = e.nativeEvent.submitter.getAttribute('data-action');
-
+    console.log(action);
     const {
       Descripcion: { name, value },
     } = e.target;
@@ -65,13 +64,9 @@ const TipoAlojamientosForm = (props) => {
           />
         </div>
 
-        <ButtonsWrapper>
+        <div className={`${formActionsContainer}`}>
           {props.actions.map(({ actionType, text, stylesClassName }) => (
-            <AdminFormBtn
-              key={actionType}
-              {...{ actionType, text, stylesClassName }}
-            ></AdminFormBtn>
-            /*  <button
+            <button
               className={`btn-${stylesClassName}`}
               data-action={actionType}
               key={actionType}
@@ -79,9 +74,9 @@ const TipoAlojamientosForm = (props) => {
               type='submit'
             >
               {text}
-            </button> */
+            </button>
           ))}
-        </ButtonsWrapper>
+        </div>
       </fieldset>
     </form>
   );

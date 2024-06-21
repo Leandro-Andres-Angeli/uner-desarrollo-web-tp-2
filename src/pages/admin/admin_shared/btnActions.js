@@ -3,7 +3,7 @@ export const tipoAlojActions = [
   { actionType: 'DELETE', text: 'borrar', stylesClassName: 'delete' },
 ];
 export const imgsNew = [
-  { actionType: 'ADD', text: 'agregar', stylesClassName: 'update' },
+  { actionType: 'POST', text: 'agregar', stylesClassName: 'update' },
   {
     actionType: 'CANCEL',
     text: 'cancelar',
