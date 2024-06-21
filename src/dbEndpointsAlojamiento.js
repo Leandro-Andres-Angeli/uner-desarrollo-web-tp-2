@@ -1,11 +1,11 @@
-const baseURL = "http://localhost:3001/";
+const baseURL = 'http://localhost:3001/';
 
-const alojamiento = "alojamiento/";
-const getAllAlojamientos = "getAlojamientos";
-const getAlojamiento = "getAlojamiento";
-const createAlojamiento = "createAlojamiento";
-const putAlojamiento = "putAlojamiento";
-const deleteAlojamiento = "deleteAlojamiento";
+const alojamiento = 'alojamiento/';
+const getAllAlojamientos = 'getAlojamientos';
+const getAlojamiento = 'getAlojamiento';
+const createAlojamiento = 'createAlojamiento';
+const putAlojamiento = 'putAlojamiento';
+const deleteAlojamiento = 'deleteAlojamiento';
 
 export const crudAlojamientosEndpoints = {
   readAll: `${baseURL}${alojamiento}${getAllAlojamientos}`,
@@ -14,7 +14,12 @@ export const crudAlojamientosEndpoints = {
   PUT: `${baseURL}${alojamiento}${putAlojamiento}`,
   DELETE: `${baseURL}${alojamiento}${deleteAlojamiento}`,
 };
-
+const imagen = 'imagen';
+const createImagen = '/createImagen';
+const getAllImagenes = '/getAllImagenes';
+const updateImagen = '/updateImagen';
 export const crudImagenes = {
-  readAll: `${baseURL}imagen/getAllImagenes`,
+  readAll: `${baseURL}${imagen}${getAllImagenes}`,
+  POST: `${baseURL}${imagen}${createImagen}`,
+  PUT: `${baseURL}${imagen}${updateImagen}`,
 };

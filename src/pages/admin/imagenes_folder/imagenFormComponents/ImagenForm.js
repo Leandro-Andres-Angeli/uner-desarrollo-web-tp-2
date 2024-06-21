@@ -1,27 +1,60 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import {
+  useLocation,
+  useParams,
+} from 'react-router-dom/cjs/react-router-dom.min';
 import { handleLinkToEntityImages } from '../../../../utils/linkToEntities';
+import alojImgsRoute from '../../../../utils/publicImagesAlojRoutes';
+
+import { crudImagenes } from '../../../../dbEndpoints';
+import { ImagenesContext } from '../ImagenesProvider';
+import ButtonsWrapper, {
+  AdminFormBtn,
+} from './../../admin_shared/ButtonsWrapper';
+import { imgsNew, imgsUpdate } from '../../admin_shared/btnActions';
 
 const ImagenForm = ({
   setErrors,
   setImagePreview,
   imagePreview,
-  handleSubmit,
+
   handleInputCapture,
   alojamientos,
   errors,
 }) => {
   const location = useLocation();
   const [linkSelection, setLinkSelection] = useState(null);
-
+  const { id } = useParams();
   const ref = useRef(handleLinkToEntityImages(location.state || null));
-
+  /* const handleImagePreview = () => {
+    if (location.state?.el) {
+      setImagePreview({ route: location.state.el.route });
+    }
+  }; */
+  const { handleSubmit } = useContext(ImagenesContext);
+  const locationState = Boolean(location?.state)
+    ? location.state.el.route
+    : null;
+  const previewImgRef = useRef(imagePreview);
   useEffect(() => {
     setLinkSelection({
       options: ref.current.toSorted().toReversed(),
       selected: ref.current.toSorted().toReversed()[0],
     });
-  }, []);
+    if (locationState) {
+      console.log('edit');
+      // setImagePreview({ route: locationState });
+      previewImgRef.current = { route: locationState };
+    }
+    console.log('render');
+    return () => setImagePreview(previewImgRef.current);
+  }, [locationState, setImagePreview]);
 
   return (
     <div
@@ -35,10 +68,14 @@ const ImagenForm = ({
       <form
         onReset={() => {
           setErrors({ error: 'empty' });
-          setImagePreview(null);
+          setImagePreview({ route: 'broken-image.png' });
         }}
         onSubmit={handleSubmit}
         style={{ flexGrow: 1 }}
+        data-action={location.state ? 'PUT' : 'POST'}
+        data-route={
+          location.state ? `${crudImagenes.PUT}${id}` : crudImagenes.POST
+        }
       >
         <h2> Imagenes </h2>
 
@@ -94,8 +131,22 @@ const ImagenForm = ({
             </select>
           </div>
         )}
-
-        <button
+        <ButtonsWrapper>
+          {locationState
+            ? imgsUpdate.map(({ actionType, text, stylesClassName }) => (
+                <AdminFormBtn
+                  key={actionType}
+                  {...{ actionType, text, stylesClassName }}
+                ></AdminFormBtn>
+              ))
+            : imgsNew.map(({ actionType, text, stylesClassName, type }) => (
+                <AdminFormBtn
+                  key={actionType}
+                  {...{ actionType, text, stylesClassName, type }}
+                ></AdminFormBtn>
+              ))}
+        </ButtonsWrapper>
+        {/*     <button
           type='submit'
           style={{
             borderRadius: '20px',
@@ -115,8 +166,9 @@ const ImagenForm = ({
         </button>
         <button className='btn btn-delete' type='reset'>
           cancelar
-        </button>
+        </button> */}
       </form>
+
       <div style={{ flex: 1 }}>
         <img
           style={{
@@ -124,11 +176,7 @@ const ImagenForm = ({
             boxShadow: 'var(--box-shadow)',
             borderRadius: '10px',
           }}
-          src={
-            imagePreview?.route ||
-            location?.state?.el?.route ||
-            '/images/tipo_alojamientos_pics/broken-image.png'
-          }
+          src={`${alojImgsRoute}${imagePreview?.route}`}
           alt=''
         />
       </div>

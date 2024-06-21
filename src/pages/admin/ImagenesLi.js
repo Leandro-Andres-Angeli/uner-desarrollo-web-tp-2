@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
+import alojImgsRoute from './../../utils/publicImagesAlojRoutes';
 
-const ImagenesLi = ({ id, idAloj, route }) => {
+const ImagenesLi = ({ id, idAloj, route, handleSubmit }) => {
   const { path } = useRouteMatch();
   // console.log(id);
   return (
@@ -22,7 +23,7 @@ const ImagenesLi = ({ id, idAloj, route }) => {
           }}
         >
           <div className='img-container'>
-            <img src={`${route}`} alt=''></img>
+            <img src={`${alojImgsRoute}${route}`} alt=''></img>
           </div>
           <div style={{ padding: '1rem', lineHeight: ' 1.5rem' }}>
             <ul>

@@ -27,7 +27,7 @@ const TipoAlojamientosForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const action = e.nativeEvent.submitter.getAttribute('data-action');
-
+    console.log(action);
     const {
       Descripcion: { name, value },
     } = e.target;
@@ -78,7 +78,6 @@ const TipoAlojamientosForm = (props) => {
           ))}
         </div>
       </fieldset>
-      {/*{JSON.stringify(crudRes)*/}
     </form>
   );
 };

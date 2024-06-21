@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import ImagenForm from './imagenFormComponents/ImagenForm';
-import {
-  useLocation,
-  useParams,
-} from 'react-router-dom/cjs/react-router-dom.min';
+
 import imgValidate from '../../../utils/imgValidate';
 import notify from '../../../utils/toastNotify';
-import { crudAlojamientosEndpoints, crudImagenes } from '../../../dbEndpoints';
+import { crudAlojamientosEndpoints } from '../../../dbEndpoints';
 import handleCRUD from '../../../utils/handleCrud';
 import intialState from '../../../utils/initialState';
 
 const Imagen = () => {
+  console.log('img render');
   const [errors, setErrors] = useState({ error: 'empty' });
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState({
+    route: 'broken-image.png',
+  });
   const [alojamientos, setAlojamientos] = useState(intialState);
-  const [imagenes, setImagenes] = useState(intialState);
 
   useEffect(() => {
     handleCRUD(crudAlojamientosEndpoints.readAll, undefined, setAlojamientos)
@@ -25,9 +24,9 @@ const Imagen = () => {
       .catch((err) => notify(err.message || 'error cargando data'));
   }, []);
 
-  const handleSubmit = (e) => {
+  /*   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log('route', e.target.getAttribute('data-route'));
     if (!e.target.file) {
       return;
     }
@@ -57,7 +56,7 @@ const Imagen = () => {
       .catch((err) => {
         notify(err.message || 'error cargando imagen');
       });
-  };
+  }; */
 
   const handleInputCapture = ({ target }) => {
     const [file] = target?.files;
@@ -70,7 +69,7 @@ const Imagen = () => {
     }
     setImagePreview({
       type,
-      route: `/images/tipo_alojamientos_pics/${file.name}`,
+      route: `${file.name}`,
     });
     setErrors({});
   };
@@ -81,13 +80,12 @@ const Imagen = () => {
           setErrors,
           setImagePreview,
           imagePreview,
-          handleSubmit,
+
           handleInputCapture,
           alojamientos,
           errors,
         }}
       ></ImagenForm>
-      Imagen
     </div>
   );
 };

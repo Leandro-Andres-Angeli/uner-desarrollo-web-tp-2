@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import callApi from '../../../utils/callApi';
 import { crudAlojamientosEndpoints, crudImagenes } from '../../../dbEndpoints';
 import handleCRUD from '../../../utils/handleCrud';
@@ -12,28 +12,25 @@ import ImagenesLi from '../ImagenesLi';
 import ImagenForm from './imagenFormComponents/ImagenForm';
 import intialState from '../../../utils/initialState';
 import imgValidate from '../../../utils/imgValidate';
+import {
+  Route,
+  Switch,
+  useRouteMatch,
+} from 'react-router-dom/cjs/react-router-dom.min';
+import Imagen from './Imagen';
+import ImagenesProvider, { ImagenesContext } from './ImagenesProvider';
 
-const Imagenes = () => {
+export const Imagenes = () => {
   const [errors, setErrors] = useState({ error: 'empty' });
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState({
+    route: 'broken-image.png',
+  });
   const [alojamientos, setAlojamientos] = useState(intialState);
   const [imagenes, setImagenes] = useState(intialState);
 
-  useEffect(() => {
-    Promise.all([
-      handleCRUD(crudAlojamientosEndpoints.readAll, undefined, setAlojamientos),
-      handleCRUD(crudImagenes.readAll, undefined, setImagenes),
-    ])
-      .then((data) => {
-        return data;
-      })
-
-      .catch((err) => notify(err.message || 'error cargando data'));
-  }, []);
-
-  const handleSubmit = (e) => {
+  /*   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log('route', e.target.getAttribute('data-route'));
     if (!e.target.file) {
       return;
     }
@@ -62,7 +59,19 @@ const Imagenes = () => {
       .catch((err) => {
         notify(err.message || 'error cargando imagen');
       });
-  };
+  }; */
+
+  useEffect(() => {
+    Promise.all([
+      handleCRUD(crudAlojamientosEndpoints.readAll, undefined, setAlojamientos),
+      handleCRUD(crudImagenes.readAll, undefined, setImagenes),
+    ])
+      .then((data) => {
+        return data;
+      })
+
+      .catch((err) => notify(err.message || 'error cargando data'));
+  }, []);
 
   const handleInputCapture = ({ target }) => {
     const [file] = target?.files;
@@ -73,9 +82,10 @@ const Imagenes = () => {
       notify('debe cargar archivos de tipo imagen');
       return;
     }
+    console.log(file.name);
     setImagePreview({
       type,
-      route: `/images/tipo_alojamientos_pics/${file.name}`,
+      route: `${file.name}`,
     });
     setErrors({});
   };
@@ -86,7 +96,7 @@ const Imagenes = () => {
           setErrors,
           setImagePreview,
           imagePreview,
-          handleSubmit,
+
           handleInputCapture,
           alojamientos,
           errors,
@@ -175,9 +185,25 @@ const Imagenes = () => {
           })}
         </ul>
       </EntitiesList>
-      <ToastContainer />
     </section>
   );
 };
 
-export default Imagenes;
+const ImagenesRoute = () => {
+  const { path } = useRouteMatch();
+
+  return (
+    <ImagenesProvider>
+      <Switch>
+        <Route exact path={path}>
+          <Imagenes></Imagenes>
+        </Route>
+        <Route path={`${path}/:id`}>
+          <Imagen></Imagen>
+        </Route>
+      </Switch>
+      <ToastContainer />
+    </ImagenesProvider>
+  );
+};
+export default ImagenesRoute;
