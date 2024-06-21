@@ -4,7 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: antiquewhite;
+  background-color: var(--primary-color);
+  color: white;
   border-radius: 2rem;
   flex-wrap: wrap;
   flex-direction: row;
