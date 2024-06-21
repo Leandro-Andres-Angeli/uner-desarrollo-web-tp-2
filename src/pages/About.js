@@ -18,10 +18,6 @@ const About = () => {
         corporativos por igual. Nuestro compromiso con la excelencia, la
         confiabilidad y la satisfacción del cliente nos ha ganado una reputación
         como una de las empresas de reservas más confiables en la industria.{' '}
-        <a href='https://maps.app.goo.gl/3sddg8Ve1AJFT4k19'>
-          <i className='fa-solid fa-location-dot custom-icon'></i>
-          Estamos aca!
-        </a>
       </p>
       <AboutImages />
     </section>
