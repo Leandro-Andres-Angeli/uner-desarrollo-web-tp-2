@@ -4,7 +4,12 @@ export const tipoAlojActions = [
 ];
 export const imgsNew = [
   { actionType: 'ADD', text: 'agregar', stylesClassName: 'update' },
-  { actionType: 'CANCEL', text: 'cancelar', stylesClassName: 'delete' },
+  {
+    actionType: 'CANCEL',
+    text: 'cancelar',
+    stylesClassName: 'delete',
+    type: 'reset',
+  },
 ];
 export const imgsUpdate = [
   { actionType: 'UPDATE', text: 'actualizar', stylesClassName: 'update' },

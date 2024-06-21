@@ -15,6 +15,10 @@ import { useMemo } from 'react';
 import { render } from '@testing-library/react';
 import { crudImagenes } from '../../../../dbEndpoints';
 import { ImagenesContext } from '../ImagenesProvider';
+import ButtonsWrapper, {
+  AdminFormBtn,
+} from './../../admin_shared/ButtonsWrapper';
+import { imgsNew, imgsUpdate } from '../../admin_shared/btnActions';
 
 const ImagenForm = ({
   setErrors,
@@ -128,8 +132,22 @@ const ImagenForm = ({
             </select>
           </div>
         )}
-
-        <button
+        <ButtonsWrapper>
+          {locationState
+            ? imgsUpdate.map(({ actionType, text, stylesClassName }) => (
+                <AdminFormBtn
+                  key={actionType}
+                  {...{ actionType, text, stylesClassName }}
+                ></AdminFormBtn>
+              ))
+            : imgsNew.map(({ actionType, text, stylesClassName, type }) => (
+                <AdminFormBtn
+                  key={actionType}
+                  {...{ actionType, text, stylesClassName, type }}
+                ></AdminFormBtn>
+              ))}
+        </ButtonsWrapper>
+        {/*     <button
           type='submit'
           style={{
             borderRadius: '20px',
@@ -149,7 +167,7 @@ const ImagenForm = ({
         </button>
         <button className='btn btn-delete' type='reset'>
           cancelar
-        </button>
+        </button> */}
       </form>
 
       <div style={{ flex: 1 }}>

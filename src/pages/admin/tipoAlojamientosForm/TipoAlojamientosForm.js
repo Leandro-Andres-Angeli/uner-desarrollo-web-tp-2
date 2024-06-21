@@ -68,6 +68,7 @@ const TipoAlojamientosForm = (props) => {
         <ButtonsWrapper>
           {props.actions.map(({ actionType, text, stylesClassName }) => (
             <AdminFormBtn
+              key={actionType}
               {...{ actionType, text, stylesClassName }}
             ></AdminFormBtn>
             /*  <button
