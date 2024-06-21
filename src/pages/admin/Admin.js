@@ -13,11 +13,12 @@ import TipoAlojamiento from './TipoAlojamiento/TipoAlojamiento';
 import Imagenes from './imagenes_folder/Imagenes';
 import AlojamientosDashboard from './alojamientos/AlojamientosDashboard';
 import AlojamientoDashboard from './alojamiento/AlojamientoDashboard';
-import Imagen from './imagenes_folder/Imagen';
+import ImagenesRoute from './imagenes_folder/Imagenes';
+// import Imagen from './imagenes_folder/Imagen';
 
 const Admin = () => {
   const { adminPanel, btnAdd } = adminModule;
-  let { url } = useRouteMatch();
+  let { url, path } = useRouteMatch();
 
   return (
     <main className='main'>
@@ -25,6 +26,7 @@ const Admin = () => {
       <section className={`${adminPanel}`}>
         <AdminDashboard></AdminDashboard>
       </section>
+
       <Switch>
         <Route exact path={`${url}/tipo-alojamientos`}>
           <>
@@ -41,12 +43,24 @@ const Admin = () => {
         <Route path={`${url}/alojamientos/:id`}>
           <AlojamientoDashboard></AlojamientoDashboard>
         </Route>
-        <Route exact path={`${url}/imagenes`}>
+
+        <Route path={`${path}/imagenes`}>
+          {/* <Imagenes></Imagenes> */}
+          <ImagenesRoute></ImagenesRoute>
+        </Route>
+        {/* <Route exact path={`${url}/imagenes`}>
           <Imagenes></Imagenes>
         </Route>
         <Route exact path={`${url}/imagenes/:id`}>
           <Imagen></Imagen>
-        </Route>
+        </Route> */}
+
+        {/*  <Route exact path={`${url}/imagenes`}>
+          <Route path={`${url}/:id`}>
+            <Imagen></Imagen>
+          </Route>
+          <Imagenes></Imagenes>
+        </Route> */}
       </Switch>
     </main>
   );

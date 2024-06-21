@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import alojImgsRoute from './../../utils/publicImagesAlojRoutes';
 
-const ImagenesLi = ({ id, idAloj, route }) => {
+const ImagenesLi = ({ id, idAloj, route, handleSubmit }) => {
   const { path } = useRouteMatch();
   // console.log(id);
   return (

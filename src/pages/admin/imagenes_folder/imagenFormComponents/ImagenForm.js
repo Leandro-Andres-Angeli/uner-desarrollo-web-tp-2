@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import {
   useLocation,
   useParams,
@@ -8,6 +14,7 @@ import alojImgsRoute from '../../../../utils/publicImagesAlojRoutes';
 import { useMemo } from 'react';
 import { render } from '@testing-library/react';
 import { crudImagenes } from '../../../../dbEndpoints';
+import { ImagenesContext } from '../Imagenes';
 
 const ImagenForm = ({
   setErrors,
