@@ -184,7 +184,6 @@ export const Imagenes = () => {
           })}
         </ul>
       </EntitiesList>
-      <ToastContainer />
     </section>
   );
 };
@@ -202,6 +201,7 @@ const ImagenesRoute = () => {
           <Imagen></Imagen>
         </Route>
       </Switch>
+      <ToastContainer />
     </ImagenesProvider>
   );
 };
