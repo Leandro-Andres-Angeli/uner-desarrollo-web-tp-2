@@ -16,6 +16,7 @@ import {
 } from '../../dbEndpointsServicios';
 import { ArrowBack } from '../../icons/ArrowBack';
 import Servicios from './Servicios';
+import alojImgsRoute from '../../utils/publicImagesAlojRoutes';
 
 const Alojamiento = () => {
   const history = useHistory();
@@ -111,7 +112,6 @@ const Alojamiento = () => {
   }, [alojamiento, tipoAlojamiento, imagenes, alojamientoServicios, servicios]);
 
   useEffect(() => {
-    // console.log(alojamientoJoined);
     if (alojamientoJoined.done && alojamientoJoined.Imagenes.length > 0) {
       setImagenPrincipal(alojamientoJoined.Imagenes[0].RutaArchivo);
       const imgs = cortarArray(alojamientoJoined.Imagenes, 4);
@@ -153,9 +153,12 @@ const Alojamiento = () => {
             </h1>
 
             <div className='lugar separador'>
-              {alojamientoJoined.Imagenes.length > 0 && (
+              {alojamientoJoined.Imagenes.length > 0 ? (
                 <>
-                  <img className='foto-principal' src={imagenPrincipal} />
+                  <img
+                    className='foto-principal'
+                    src={alojImgsRoute + imagenPrincipal}
+                  />
                   {alojamientoJoined.Imagenes.length > 1 && (
                     <div className='fotos-container'>
                       <Carrusel>
@@ -166,7 +169,7 @@ const Alojamiento = () => {
                                 return (
                                   <img
                                     key={idx}
-                                    src={img.RutaArchivo}
+                                    src={alojImgsRoute + img.RutaArchivo}
                                     onClick={() =>
                                       setImagenPrincipal(img.RutaArchivo)
                                     }
@@ -180,6 +183,12 @@ const Alojamiento = () => {
                     </div>
                   )}
                 </>
+              ) : (
+                <img
+                  className='foto-principal'
+                  src={alojImgsRoute + 'img_not_found.png'}
+                  alt='Sin imagen'
+                />
               )}
             </div>
             <div className='detalles-alojamiento separador'>
