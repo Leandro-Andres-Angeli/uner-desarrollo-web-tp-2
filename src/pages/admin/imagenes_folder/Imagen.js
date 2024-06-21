@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ImagenForm from './imagenFormComponents/ImagenForm';
 
 import imgValidate from '../../../utils/imgValidate';
@@ -87,7 +87,6 @@ const Imagen = () => {
         }}
         handleSubmit={() => console.log('data')}
       ></ImagenForm>
-      Imagen
     </div>
   );
 };

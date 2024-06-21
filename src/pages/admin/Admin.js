@@ -14,6 +14,7 @@ import Imagenes from './imagenes_folder/Imagenes';
 import AlojamientosDashboard from './alojamientos/AlojamientosDashboard';
 import AlojamientoDashboard from './alojamiento/AlojamientoDashboard';
 import ImagenesRoute from './imagenes_folder/Imagenes';
+import ImagenesProvider from './imagenes_folder/ImagenesProvider';
 // import Imagen from './imagenes_folder/Imagen';
 
 const Admin = () => {
@@ -46,6 +47,7 @@ const Admin = () => {
 
         <Route path={`${path}/imagenes`}>
           {/* <Imagenes></Imagenes> */}
+
           <ImagenesRoute></ImagenesRoute>
         </Route>
         {/* <Route exact path={`${url}/imagenes`}>

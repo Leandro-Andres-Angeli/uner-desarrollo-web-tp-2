@@ -14,13 +14,13 @@ import alojImgsRoute from '../../../../utils/publicImagesAlojRoutes';
 import { useMemo } from 'react';
 import { render } from '@testing-library/react';
 import { crudImagenes } from '../../../../dbEndpoints';
-import { ImagenesContext } from '../Imagenes';
+import { ImagenesContext } from '../ImagenesProvider';
 
 const ImagenForm = ({
   setErrors,
   setImagePreview,
   imagePreview,
-  handleSubmit,
+
   handleInputCapture,
   alojamientos,
   errors,
@@ -34,7 +34,7 @@ const ImagenForm = ({
       setImagePreview({ route: location.state.el.route });
     }
   }; */
-
+  const { handleSubmit } = useContext(ImagenesContext);
   const locationState = Boolean(location?.state)
     ? location.state.el.route
     : null;

@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import callApi from '../../../utils/callApi';
 import { crudAlojamientosEndpoints, crudImagenes } from '../../../dbEndpoints';
 import handleCRUD from '../../../utils/handleCrud';
@@ -18,6 +18,7 @@ import {
   useRouteMatch,
 } from 'react-router-dom/cjs/react-router-dom.min';
 import Imagen from './Imagen';
+import ImagenesProvider, { ImagenesContext } from './ImagenesProvider';
 
 export const Imagenes = () => {
   const [errors, setErrors] = useState({ error: 'empty' });
@@ -26,7 +27,8 @@ export const Imagenes = () => {
   });
   const [alojamientos, setAlojamientos] = useState(intialState);
   const [imagenes, setImagenes] = useState(intialState);
-  const handleSubmit = (e) => {
+
+  /*   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('route', e.target.getAttribute('data-route'));
     if (!e.target.file) {
@@ -57,7 +59,7 @@ export const Imagenes = () => {
       .catch((err) => {
         notify(err.message || 'error cargando imagen');
       });
-  };
+  }; */
 
   useEffect(() => {
     Promise.all([
@@ -94,7 +96,7 @@ export const Imagenes = () => {
           setErrors,
           setImagePreview,
           imagePreview,
-          handleSubmit,
+
           handleInputCapture,
           alojamientos,
           errors,
@@ -177,7 +179,6 @@ export const Imagenes = () => {
                 id={idImagen}
                 idAloj={idAlojamiento}
                 route={RutaArchivo}
-                {...{ handleSubmit }}
               ></ImagenesLi>
             );
           })}
@@ -189,17 +190,19 @@ export const Imagenes = () => {
 };
 
 const ImagenesRoute = () => {
-  const { path, url } = useRouteMatch();
+  const { path } = useRouteMatch();
 
   return (
-    <Switch>
-      <Route exact path={path}>
-        <Imagenes></Imagenes>
-      </Route>
-      <Route path={`${path}/:id`}>
-        <Imagen></Imagen>
-      </Route>
-    </Switch>
+    <ImagenesProvider>
+      <Switch>
+        <Route exact path={path}>
+          <Imagenes></Imagenes>
+        </Route>
+        <Route path={`${path}/:id`}>
+          <Imagen></Imagen>
+        </Route>
+      </Switch>
+    </ImagenesProvider>
   );
 };
 export default ImagenesRoute;
