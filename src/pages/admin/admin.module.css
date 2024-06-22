@@ -1,11 +1,3 @@
-/* .adminPanel {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-.adminPanel section {
-  box-shadow: var(--box-shadow);
-}*/
 .adminPanel aside {
   display: flex;
   justify-content: end;

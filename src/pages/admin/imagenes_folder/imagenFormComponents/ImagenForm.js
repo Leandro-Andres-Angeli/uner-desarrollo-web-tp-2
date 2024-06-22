@@ -6,15 +6,12 @@ import React, {
   useState,
 } from 'react';
 import {
-  Redirect,
   useHistory,
   useLocation,
-  useParams,
 } from 'react-router-dom/cjs/react-router-dom.min';
 import { handleLinkToEntityImages } from '../../../../utils/linkToEntities';
 import alojImgsRoute from '../../../../utils/publicImagesAlojRoutes';
 
-import { crudImagenes } from '../../../../dbEndpoints';
 import { ImagenesContext } from '../ImagenesProvider';
 import ButtonsWrapper, {
   AdminFormBtn,
@@ -28,7 +25,6 @@ const ImagenForm = ({
 
   handleInputCapture,
   alojamientos,
-  errors,
 }) => {
   const location = useLocation();
   const [linkSelection, setLinkSelection] = useState(null);
@@ -42,7 +38,7 @@ const ImagenForm = ({
   }; */
   const {
     handleSubmit,
-    imagenesState: [_, setImagenes = {}],
+    imagenesState: [, setImagenes = {}],
   } = useContext(ImagenesContext);
   const locationState = Boolean(location?.state)
     ? location.state.el.route
@@ -69,9 +65,9 @@ const ImagenForm = ({
         boxShadow: 'var(--box-shadow)',
         padding: '1rem',
         borderRadius: '10px',
+        flexWrap: 'wrap',
       }}
     >
-      {JSON.stringify(location.state?.el?.id ?? null)}
       <form
         onReset={() => {
           setErrors({ error: 'empty' });
@@ -85,7 +81,7 @@ const ImagenForm = ({
             return history.push('/admin/imagenes');
           }
         }}
-        style={{ flexGrow: 1 }}
+        style={{ flex: '1 1' }}
         data-action-type={location.state ? 'UPDATE' : 'ADD'}
         data-id={location.state?.el?.id ?? null}
         // data-route={
@@ -163,12 +159,12 @@ const ImagenForm = ({
         </ButtonsWrapper>
       </form>
 
-      <div style={{ flex: 1 }}>
+      <div>
         <img
           style={{
             maxWidth: '30vw',
-            boxShadow: 'var(--box-shadow)',
-            borderRadius: '10px',
+
+            borderRadius: 'var(--border-radius)',
           }}
           src={`${alojImgsRoute}${imagePreview?.route}`}
           alt=''
