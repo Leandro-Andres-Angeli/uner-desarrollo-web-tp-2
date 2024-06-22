@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
-import ServiciosForm from "./ServiciosForm";
-import EntitiesList from "./../EntitiesList";
-import { Link, useRouteMatch } from "react-router-dom/cjs/react-router-dom.min";
-import { crudServiciosEndpoints } from "../../../dbEndpointsServicios";
-import handleCRUD from "../../../utils/handleCrud";
+import React, { useEffect, useState } from 'react';
+import ServiciosForm from './ServiciosForm';
+import EntitiesList from './../EntitiesList';
+import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
+import { crudServiciosEndpoints } from '../../../dbEndpointsServicios';
+import handleCRUD from '../../../utils/handleCrud';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ServicioLi = ({ id, nombre }) => {
   const { path } = useRouteMatch();
 
   return (
-    <li className="adminEntityLink">
+    <li className='adminEntityLink'>
       <Link
         to={{
           pathname: `${path}/${id}`,
@@ -18,8 +20,8 @@ const ServicioLi = ({ id, nombre }) => {
           },
         }}
       >
-        {" "}
-        Servicio :<strong>{nombre}</strong>{" "}
+        {' '}
+        Servicio :<strong>{nombre}</strong>{' '}
       </Link>
     </li>
   );
@@ -45,8 +47,10 @@ const ServiciosDashboard = () => {
   }, [servicios.update]);
 
   return (
-    <section style={{ paddingTop: " var(--pad-x)" }}>
-      <ServiciosForm type={"PUT"} {...{ setServicios }}></ServiciosForm>
+    <section style={{ paddingTop: ' var(--pad-x)' }}>
+      <ToastContainer />
+
+      <ServiciosForm type={'PUT'} {...{ setServicios }}></ServiciosForm>
       <EntitiesList {...{ error, data, loading }} list={data}>
         <ul>
           {data.map((el, index) => {

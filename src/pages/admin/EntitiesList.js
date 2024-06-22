@@ -17,7 +17,7 @@ const EntitiesList = ({ error, loading, list, children }) => {
   }
   return (
     <>
-      <h2>Listado : Tipos de Alojamientos</h2>
+      {/* <h2>Listado : Tipos de Alojamientos</h2> */}
 
       {list && children}
     </>

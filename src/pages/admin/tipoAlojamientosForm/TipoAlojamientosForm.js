@@ -5,9 +5,10 @@ import {
   useLocation,
 } from 'react-router-dom/cjs/react-router-dom.min';
 import { crudTipoAlojamientosEndpoints } from '../../../dbEndpoints';
-
 import crudOperations from '../../../utils/crudOperations';
 import handleCRUD from '../../../utils/handleCrud';
+import notify from '../../../utils/toastNotify';
+
 const TipoAlojamientosForm = (props) => {
   // console.log('in');
 
@@ -36,20 +37,22 @@ const TipoAlojamientosForm = (props) => {
       tipo !== null
         ? `${crudTipoAlojamientosEndpoints[action]}/${tipo.id}`
         : crudTipoAlojamientosEndpoints[action];
-    await handleCRUD(
+    handleCRUD(
       endpoint,
       crudOperations[action]({ [name]: value }),
       setCrudRes
-    );
-    if (!crudRes.error) {
-      props?.setTipoAlojamientos &&
-        props?.setTipoAlojamientos((prev) => ({ ...prev, update: true }));
-    }
-    if (Boolean(location.state)) {
-      history.push(
-        location.pathname.slice(0, location.pathname.lastIndexOf('/'))
-      );
-    }
+    ).then((data) => {
+      if (!crudRes.error) {
+        props?.setTipoAlojamientos &&
+          props?.setTipoAlojamientos((prev) => ({ ...prev, update: true }));
+        notify(data.message, 'success');
+      }
+      if (Boolean(location.state)) {
+        history.push(
+          location.pathname.slice(0, location.pathname.lastIndexOf('/'))
+        );
+      }
+    });
   };
   return (
     <form onSubmit={handleSubmit} data-id={tipo?.idTipoAlojamiento}>
