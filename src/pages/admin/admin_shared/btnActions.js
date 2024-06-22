@@ -45,3 +45,18 @@ export const alojamientosUpdate = [
     type: 'reset',
   },
 ];
+
+export const tipoAlojamientosNew = [
+  { actionType: 'POST', text: 'agregar', stylesClassName: 'update' },
+];
+
+export const tipoAlojamientosUpdate = [
+  { actionType: 'PUT', text: 'actualizar', stylesClassName: 'update' },
+  { actionType: 'DELETE', text: 'borrar', stylesClassName: 'delete' },
+  {
+    actionType: 'CANCEL',
+    text: 'cancelar',
+    stylesClassName: 'cancel',
+    type: 'reset',
+  },
+];

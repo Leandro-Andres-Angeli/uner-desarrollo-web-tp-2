@@ -58,6 +58,8 @@ const AlojamientoForm = (props) => {
       // });
 
       cargarServiciosAlojamiento();
+    } else {
+      setServiciosDelAlojamiento(initialState);
     }
   }, [location]);
 
@@ -97,13 +99,37 @@ const AlojamientoForm = (props) => {
       endpoint = `${crudAlojamientosEndpoints[action]}/${alojamiento.idAlojamiento}`;
     }
 
+    if (action === 'DELETE') {
+      serviciosDelAlojamiento.data.map((servicioAloj) => {
+        const servicioAlojamientoEndpoint = `${crudAlojamientoServiciosEndpoints[action]}/${servicioAloj.idAlojamientoServicio}`;
+
+        handleCRUD(
+          servicioAlojamientoEndpoint,
+          crudOperations[action](servicioAloj),
+          setCrudRes
+        )
+          .then((data) => {})
+          .catch((err) => {
+            notify(err.message || 'error eliminando servicio alojamiento');
+          });
+      });
+    }
+
     handleCRUD(endpoint, crudOperations[action](alojamiento), setCrudRes).then(
-      (data) => {
+      async (data) => {
         if (!crudRes.error) {
           props?.setAlojamientos &&
             props?.setAlojamientos((prev) => ({ ...prev, update: true }));
+          if (action !== 'DELETE') {
+            await updateAlojamientoServicios(
+              data.id || alojamiento.idAlojamiento
+            );
+          }
+          if (data?.message) notify(data.message, 'success');
+          else notify('ocurrió un error', 'error');
+
           setAlojamiento(initialAlojamiento);
-          notify(data.message, 'success');
+          setServiciosAsignados([]);
         }
 
         if (Boolean(location.state)) {
@@ -111,6 +137,57 @@ const AlojamientoForm = (props) => {
         }
       }
     );
+  };
+
+  const updateAlojamientoServicios = async (idAlojamiento) => {
+    // agregar servicio alojamiento
+    serviciosAsignados.map((servicioAsignado) => {
+      if (
+        !serviciosDelAlojamiento.data.some((servicioAloj) => {
+          return servicioAsignado.idServicio === servicioAloj.idServicio;
+        })
+      ) {
+        fetch(crudAlojamientoServiciosEndpoints.POST, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            idAlojamiento: idAlojamiento,
+            idServicio: servicioAsignado.idServicio,
+          }),
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error(res.statusText);
+            return res.json();
+          })
+          .catch((err) => {
+            notify(err.message || 'error cargando servicio alojamiento');
+          });
+      }
+    });
+    // eliminar servicio alojamiento
+    serviciosDelAlojamiento.data.map((servicioAloj) => {
+      if (
+        !serviciosAsignados.some((servicioAsignado) => {
+          return servicioAsignado.idServicio === servicioAloj.idServicio;
+        })
+      ) {
+        fetch(
+          `${crudAlojamientoServiciosEndpoints.DELETE}/${servicioAloj.idAlojamientoServicio}`,
+          {
+            method: 'DELETE',
+          }
+        )
+          .then((res) => {
+            if (!res.ok) throw new Error(res.statusText);
+            return res.json();
+          })
+          .catch((err) => {
+            notify(err.message || 'error eliminando servicio alojamiento');
+          });
+      }
+    });
   };
 
   const handleFilterChange = (event) => {
@@ -136,10 +213,6 @@ const AlojamientoForm = (props) => {
       });
     }
   };
-
-  useEffect(() => {
-    console.log('serviciosAsignados', serviciosAsignados);
-  }, [serviciosAsignados]);
 
   return (
     <fieldset>

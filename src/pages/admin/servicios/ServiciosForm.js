@@ -63,7 +63,12 @@ const ServiciosForm = (props) => {
         props?.setServicios &&
           props?.setServicios((prev) => ({ ...prev, update: true }));
         setServicio({});
-        notify(data.message, 'success');
+        if (data?.message) notify(data.message, 'success');
+        else
+          notify(
+            'Ocurrió un error. Tal vez haya alojamientos usando este servicio',
+            'error'
+          );
       }
       if (Boolean(location.state)) {
         history.push(location.pathname.split('/').slice(0, -1).join('/'));

@@ -21,6 +21,8 @@ const AdminDashboard = () => {
             alignItems: 'center',
             rowGap: '1.5rem',
             columnGap: '1rem',
+            whiteSpace: 'nowrap',
+            marginBottom: '1rem',
           }}
         >
           <li>

@@ -56,14 +56,6 @@ const TipoAlojamientos = () => {
 
       <TipoAlojamientosForm
         type={'add'}
-        actions={[
-          {
-            actionType: 'POST',
-            text: 'agregar',
-            stylesClassName: 'add',
-            endpoint: 'create',
-          },
-        ]}
         {...{ setTipoAlojamientos }}
       ></TipoAlojamientosForm>
       {/* refactorizando para evitar ifs  y abstrayendo */}
