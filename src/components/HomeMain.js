@@ -12,7 +12,7 @@ const HomeMain = () => {
   return (
     <main className='main main-index'>
       <div className='chapa'></div>
-      <section className='contenido'>
+      <section className='centrado contenido'>
         <h1>Tu lugar en el mundo</h1>
         <p>
           Encontrá en un solo sitio el lugar perfecto para descansar y
@@ -22,7 +22,7 @@ const HomeMain = () => {
         <p>Estas a un click de distancia de ese lugar de ensueño</p>
         <button
           onClick={() => history.push('/buscar')}
-          className='icon-btn btn-index'
+          className='centrado icon-btn btn-index'
         >
           <SiteIcon className={'nav-logo-icon'}></SiteIcon>
           Buscar Alojamiento
@@ -36,9 +36,9 @@ const HomeMain = () => {
           titulo='Recomendados'
         ></PaginaBuscador>
       </section>
-      <section className='sobre-chapa'>
+      <section className='centrado sobre-chapa'>
         <h2>{'Lo que dicen nuestros clientes'}</h2>
-
+        <br />
         <Carrusel>
           {listaOpiniones.map((opinion, index) => {
             return <Opinion key={index} opinion={opinion} />;

@@ -6,7 +6,6 @@ export const AdminFormBtn = ({
   stylesClassName,
   type = 'submit',
 }) => {
-  console.log(type);
   return (
     <button
       className={`btn-${stylesClassName}`}

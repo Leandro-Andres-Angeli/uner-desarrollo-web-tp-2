@@ -12,11 +12,14 @@
 .btn-delete {
   background-color: var(--danger);
 }
-:is(.btn-delete, .btn-add, .btn-update) {
+.btn-cancel {
+  background-color: var(--light-blue);
+}
+:is(.btn-delete, .btn-add, .btn-update, .btn-cancel) {
   box-shadow: none;
   transition: box-shadow 0.3s ease;
   border-radius: 20px;
 }
-:is(.btn-delete, .btn-add, .btn-update):hover {
+:is(.btn-delete, .btn-add, .btn-update, .btn-cancel):hover {
   box-shadow: var(--box-shadow);
 }

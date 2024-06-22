@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem;
+  justify-content: center;
 }
 
 .tarjeta-alojamiento {
@@ -32,5 +33,5 @@
 .card-list {
   flex-direction: column;
   display: flex;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
 }

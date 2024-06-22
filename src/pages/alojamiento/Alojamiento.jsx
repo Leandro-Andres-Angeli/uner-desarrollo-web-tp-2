@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
-import "./Alojamiento.css";
-import { useHistory } from "react-router-dom";
-import MapComponent from "../../components/mapa/MapComponent";
-import { useParams } from "react-router-dom";
-import Carrusel from "../../components/carrusel/Carrusel";
-import handleCRUD from "../../utils/handleCrud";
+import React, { useState, useEffect } from 'react';
+import './Alojamiento.css';
+import { useHistory } from 'react-router-dom';
+import MapComponent from '../../components/mapa/MapComponent';
+import { useParams } from 'react-router-dom';
+import Carrusel from '../../components/carrusel/Carrusel';
+import handleCRUD from '../../utils/handleCrud';
 import {
   crudAlojamientosEndpoints,
   crudImagenes,
-} from "../../dbEndpointsAlojamiento";
-import { crudTipoAlojamientosEndpoints } from "../../dbEndpoints";
+} from '../../dbEndpointsAlojamiento';
+import { crudTipoAlojamientosEndpoints } from '../../dbEndpoints';
 import {
   crudServiciosEndpoints,
   crudAlojamientoServiciosEndpoints,
-} from "../../dbEndpointsServicios";
-import { ArrowBack } from "../../icons/ArrowBack";
-import Servicios from "./Servicios";
+} from '../../dbEndpointsServicios';
+import { ArrowBack } from '../../icons/ArrowBack';
+import Servicios from './Servicios';
+import alojImgsRoute from '../../utils/publicImagesAlojRoutes';
 
 const Alojamiento = () => {
-  
   const history = useHistory();
   const { id } = useParams();
   const intialState = {
@@ -35,7 +35,7 @@ const Alojamiento = () => {
   const [servicios, setServicios] = useState(intialState);
   const [alojamientoServicios, setAlojamientoServicios] = useState(intialState);
   const [imagenesCarrusel, setImagenesCarrusel] = useState([]);
-  const [imagenPrincipal, setImagenPrincipal] = useState("");
+  const [imagenPrincipal, setImagenPrincipal] = useState('');
 
   useEffect(() => {
     const cargar = async () => {
@@ -112,7 +112,6 @@ const Alojamiento = () => {
   }, [alojamiento, tipoAlojamiento, imagenes, alojamientoServicios, servicios]);
 
   useEffect(() => {
-    console.log(alojamientoJoined);
     if (alojamientoJoined.done && alojamientoJoined.Imagenes.length > 0) {
       setImagenPrincipal(alojamientoJoined.Imagenes[0].RutaArchivo);
       const imgs = cortarArray(alojamientoJoined.Imagenes, 4);
@@ -132,42 +131,45 @@ const Alojamiento = () => {
   };
 
   return (
-    <main className="alojamiento">
-      <div className="chapa"></div>
-      <section className="contenido">
-        <a href="#" onClick={() => history.push("/buscar")} className="volver">
+    <main className='alojamiento'>
+      <div className='chapa'></div>
+      <section className='contenido'>
+        <a href='#' onClick={() => history.push('/buscar')} className='volver'>
           <ArrowBack></ArrowBack>Volver
         </a>
         {alojamientoJoined.done ? (
           <>
             <h1>
-              {alojamientoJoined.Titulo}{" "}
+              {alojamientoJoined.Titulo}{' '}
               <sup
                 className={`estado  ${
-                  alojamientoJoined.Estado === "Reservado"
-                    ? "reservado"
-                    : "disponible"
+                  alojamientoJoined.Estado === 'Reservado'
+                    ? 'reservado'
+                    : 'disponible'
                 }`}
               >
                 {alojamientoJoined.Estado}
               </sup>
             </h1>
 
-            <div className="lugar separador">
-              {alojamientoJoined.Imagenes.length > 0 && (
+            <div className='lugar separador'>
+              {alojamientoJoined.Imagenes.length > 0 ? (
                 <>
-                  <img className="foto-principal" src={imagenPrincipal} />
+                  <img
+                    className='foto-principal'
+                    src={alojImgsRoute + imagenPrincipal}
+                  />
                   {alojamientoJoined.Imagenes.length > 1 && (
-                    <div className="fotos-container">
+                    <div className='fotos-container'>
                       <Carrusel>
                         {imagenesCarrusel.map((porcion, index) => {
                           return (
-                            <div key={index} className="fotos">
+                            <div key={index} className='fotos'>
                               {porcion.map((img, idx) => {
                                 return (
                                   <img
                                     key={idx}
-                                    src={img.RutaArchivo}
+                                    src={alojImgsRoute + img.RutaArchivo}
                                     onClick={() =>
                                       setImagenPrincipal(img.RutaArchivo)
                                     }
@@ -181,23 +183,29 @@ const Alojamiento = () => {
                     </div>
                   )}
                 </>
+              ) : (
+                <img
+                  className='foto-principal'
+                  src={alojImgsRoute + 'img_not_found.png'}
+                  alt='Sin imagen'
+                />
               )}
             </div>
-            <div className="detalles-alojamiento separador">
-              <div className="descripcion-alojamiento ">
+            <div className='detalles-alojamiento separador'>
+              <div className='descripcion-alojamiento '>
                 <h2>{alojamientoJoined.TipoAlojamiento}</h2>
                 <p>
-                  Dormitorios: {alojamientoJoined.CantidadDormitorios} | Baños:{" "}
-                  {alojamientoJoined.CantidadBanios} | Precio por día:{" $"}
+                  Dormitorios: {alojamientoJoined.CantidadDormitorios} | Baños:{' '}
+                  {alojamientoJoined.CantidadBanios} | Precio por día:{' $'}
                   {alojamientoJoined.PrecioPorDia}
                 </p>
-                <div className="especificaciones-alojamiento">
+                <div className='especificaciones-alojamiento'>
                   <Servicios
                     serviciosData={alojamientoJoined.Servicios}
                   ></Servicios>
                   <ul>
                     {alojamientoJoined.Descripcion &&
-                    alojamientoJoined.Descripcion.trim() !== "" ? (
+                    alojamientoJoined.Descripcion.trim() !== '' ? (
                       <>
                         <h4>
                           <strong>Descripción:</strong>
@@ -212,15 +220,15 @@ const Alojamiento = () => {
                   </ul>
                 </div>
               </div>
-              <div className="contenedor-mapa">
+              <div className='contenedor-mapa'>
                 <h2>Ubicación </h2>
                 <MapComponent alojamiento={alojamientoJoined} />
               </div>
             </div>
           </>
         ) : (
-          "Cargando"
-        )}{" "}
+          'Cargando'
+        )}{' '}
       </section>
     </main>
   );

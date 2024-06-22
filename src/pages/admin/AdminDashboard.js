@@ -16,25 +16,23 @@ const AdminDashboard = () => {
         <ul
           style={{
             display: 'flex',
-
+            flexWrap: 'wrap',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: ' 1rem',
+            rowGap: '1.5rem',
+            columnGap: '1rem',
           }}
         >
           <li>
-            <Link
-              style={{
-                borderRadius: '20px',
-                padding: '10px 15px',
-                backgroundColor: 'var(--pink)',
-                boxShadow: 'var(--box-shadow)',
-                cursor: 'pointer',
+            <NavLink
+              to={`${path}/alojamientos`}
+              activeStyle={{
+                outline: ' 2px solid var(--pink)',
+                outlineOffset: '4px',
               }}
-              to='/'
             >
-              inicio
-            </Link>
+              alojamientos
+            </NavLink>
           </li>
           <li>
             <NavLink
@@ -56,6 +54,17 @@ const AdminDashboard = () => {
               }}
             >
               imagenes
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={`${path}/servicios`}
+              activeStyle={{
+                outline: ' 2px solid var(--pink)',
+                outlineOffset: '4px',
+              }}
+            >
+              servicios
             </NavLink>
           </li>
         </ul>

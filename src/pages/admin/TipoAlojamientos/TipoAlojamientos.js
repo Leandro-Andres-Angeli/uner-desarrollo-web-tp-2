@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { crudTipoAlojamientosEndpoints } from '../../../dbEndpoints';
-
 import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import TipoAlojamientosForm from '../tipoAlojamientosForm/TipoAlojamientosForm';
-
 import handleCRUD from '../../../utils/handleCrud';
 import EntitiesList from './../EntitiesList';
 import TipoAlojamientoLi from '../TipoAlojamientoLi';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TipoAlojamientoLink = ({ el }) => {
   const { path } = useRouteMatch();
@@ -49,9 +49,11 @@ const TipoAlojamientos = () => {
   }, [tipoAlojamientos.update]);
 
   const { error, data, loading } = tipoAlojamientos;
-  console.log(data);
+  // console.log(data);
   return (
     <section style={{ paddingTop: ' var(--pad-x)' }}>
+      <ToastContainer />
+
       <TipoAlojamientosForm
         type={'add'}
         actions={[
