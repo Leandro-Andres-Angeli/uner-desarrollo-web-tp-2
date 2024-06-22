@@ -74,6 +74,7 @@
     padding: 0%;
     box-shadow: none;
     transition: none;
+    flex-wrap: wrap;
   }
   .navLinksMobile {
     display: none;
