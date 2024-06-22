@@ -40,6 +40,7 @@ export const crudImagenes = {
   PUT: `${baseURL}${imagen}${updateImagen}`,
   DELETE: `${baseURL}${imagen}${deleteImagen}`,
 };
+
 // export const getSingleAloj = 'getTiposAlojamiento';
 // export const   = '';
 // export const  = '';

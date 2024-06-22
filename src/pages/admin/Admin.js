@@ -10,15 +10,15 @@ import TipoAlojamientos from './TipoAlojamientos/TipoAlojamientos';
 import AdminDashboard from './AdminDashboard';
 import adminModule from './admin.module.css';
 import TipoAlojamiento from './TipoAlojamiento/TipoAlojamiento';
-import Imagenes from './imagenes_folder/Imagenes';
+
 import AlojamientosDashboard from './alojamientos/AlojamientosDashboard';
 import ImagenesRoute from './imagenes_folder/Imagenes';
-import ImagenesProvider from './imagenes_folder/ImagenesProvider';
+
 // import Imagen from './imagenes_folder/Imagen';
 import ServiciosDashboard from './servicios/ServiciosDashboard';
 
 const Admin = () => {
-  const { adminPanel, btnAdd } = adminModule;
+  const { adminPanel } = adminModule;
   let { url, path } = useRouteMatch();
 
   return (
@@ -30,9 +30,7 @@ const Admin = () => {
 
       <Switch>
         <Route exact path={`${url}/tipo-alojamientos`}>
-          <>
-            <TipoAlojamientos></TipoAlojamientos>
-          </>
+          <TipoAlojamientos></TipoAlojamientos>
         </Route>
 
         <Route path={`${url}/tipo-alojamientos/:id`}>
@@ -43,23 +41,8 @@ const Admin = () => {
         </Route>
 
         <Route path={`${path}/imagenes`}>
-          {/* <Imagenes></Imagenes> */}
-
           <ImagenesRoute></ImagenesRoute>
         </Route>
-        {/* <Route exact path={`${url}/imagenes`}>
-          <Imagenes></Imagenes>
-        </Route>
-        <Route exact path={`${url}/imagenes/:id`}>
-          <Imagen></Imagen>
-        </Route> */}
-
-        {/*  <Route exact path={`${url}/imagenes`}>
-          <Route path={`${url}/:id`}>
-            <Imagen></Imagen>
-          </Route>
-          <Imagenes></Imagenes>
-        </Route> */}
 
         <Route path={`${path}/servicios`}>
           <ServiciosDashboard></ServiciosDashboard>
