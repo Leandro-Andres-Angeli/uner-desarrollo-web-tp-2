@@ -42,7 +42,7 @@ const AlojamientosDashboard = () => {
   const [tipoAlojamientos, setTipoAlojamientos] = useState(intialState);
   const [editando, setEditando] = useState(false);
 
-  const cargaInicial = async () => {
+  const cargarInicial = async () => {
     await Promise.all([
       handleCRUD(crudAlojamientosEndpoints.readAll, undefined, setAlojamientos),
       handleCRUD(
@@ -55,8 +55,22 @@ const AlojamientosDashboard = () => {
   };
 
   useEffect(() => {
-    cargaInicial();
+    cargarInicial();
   }, []);
+
+  useEffect(() => {
+    setAlojamientos((prev) => ({ ...prev, update: false }));
+    if (alojamientos.update) {
+      const getAlojamientos = async () => {
+        await handleCRUD(
+          crudAlojamientosEndpoints.readAll,
+          undefined,
+          setAlojamientos
+        );
+      };
+      getAlojamientos();
+    }
+  }, [alojamientos.update]);
 
   return (
     <section style={{ paddingTop: ' var(--pad-x)' }}>
@@ -69,6 +83,7 @@ const AlojamientosDashboard = () => {
         servicios={servicios}
         setEditando={setEditando}
       ></AlojamientoForm>
+
       {!editando && (
         <EntitiesList
           error={alojamientos.error}

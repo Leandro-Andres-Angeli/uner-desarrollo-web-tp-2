@@ -20,6 +20,12 @@ const AlojamientoServiciosForm = ({
     console.log(servicio, checked);
     if (checked) {
       setServiciosAsignados((prev) => [...prev, servicio]);
+    } else {
+      setServiciosAsignados([
+        ...serviciosAsignados.filter((servicioAsignado) => {
+          return servicioAsignado.idServicio !== servicio.idServicio;
+        }),
+      ]);
     }
   };
 
