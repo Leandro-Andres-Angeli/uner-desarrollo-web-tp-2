@@ -84,14 +84,10 @@ const Formulario = ({
           required
           disabled={enviando}
         ></textarea>
-        <button className='icon-btn btn-index ml-30' type='button'>
-          ENVIAR
-        </button>
-        <button
+          <button
           className='icon-btn btn-index ml-30'
           type='submit'
-          disabled={enviando}
-        >
+          disabled={enviando}>
           {enviando ? 'Enviando...' : 'ENVIAR'}
         </button>
       </form>
