@@ -8,6 +8,11 @@ import { crudTipoAlojamientosEndpoints } from '../../../dbEndpoints';
 import crudOperations from '../../../utils/crudOperations';
 import handleCRUD from '../../../utils/handleCrud';
 import notify from '../../../utils/toastNotify';
+import ButtonsWrapper, { AdminFormBtn } from './../admin_shared/ButtonsWrapper';
+import {
+  tipoAlojamientosNew,
+  tipoAlojamientosUpdate,
+} from '../admin_shared/btnActions';
 
 const TipoAlojamientosForm = (props) => {
   // console.log('in');
@@ -28,15 +33,23 @@ const TipoAlojamientosForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const action = e.nativeEvent.submitter.getAttribute('data-action');
-    // console.log(action);
+
+    if (action === 'CANCEL') {
+      history.push(
+        location.pathname.slice(0, location.pathname.lastIndexOf('/'))
+      );
+      return;
+    }
+
     const {
       Descripcion: { name, value },
     } = e.target;
-    console.log({ [name]: value });
+
     const endpoint =
       tipo !== null
         ? `${crudTipoAlojamientosEndpoints[action]}/${tipo.id}`
         : crudTipoAlojamientosEndpoints[action];
+
     handleCRUD(
       endpoint,
       crudOperations[action]({ [name]: value }),
@@ -45,7 +58,8 @@ const TipoAlojamientosForm = (props) => {
       if (!crudRes.error) {
         props?.setTipoAlojamientos &&
           props?.setTipoAlojamientos((prev) => ({ ...prev, update: true }));
-        notify(data.message, 'success');
+        if (data?.message) notify(data.message, 'success');
+        else notify('ocurrió un error', 'error');
       }
       if (Boolean(location.state)) {
         history.push(
@@ -54,6 +68,7 @@ const TipoAlojamientosForm = (props) => {
       }
     });
   };
+
   return (
     <form onSubmit={handleSubmit} data-id={tipo?.idTipoAlojamiento}>
       <fieldset>
@@ -69,19 +84,25 @@ const TipoAlojamientosForm = (props) => {
           />
         </div>
 
-        <div className={`${formActionsContainer}`}>
-          {props.actions.map(({ actionType, text, stylesClassName }) => (
-            <button
-              className={`btn-${stylesClassName}`}
-              data-action={actionType}
-              key={actionType}
-              style={{ marginRight: 5 }}
-              type='submit'
-            >
-              {text}
-            </button>
-          ))}
-        </div>
+        <ButtonsWrapper>
+          {tipo !== null
+            ? tipoAlojamientosUpdate.map(
+                ({ actionType, text, stylesClassName }) => (
+                  <AdminFormBtn
+                    key={actionType}
+                    {...{ actionType, text, stylesClassName }}
+                  ></AdminFormBtn>
+                )
+              )
+            : tipoAlojamientosNew.map(
+                ({ actionType, text, stylesClassName, type }) => (
+                  <AdminFormBtn
+                    key={actionType}
+                    {...{ actionType, text, stylesClassName, type }}
+                  ></AdminFormBtn>
+                )
+              )}
+        </ButtonsWrapper>
       </fieldset>
     </form>
   );
