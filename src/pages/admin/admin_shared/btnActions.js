@@ -18,15 +18,24 @@ export const imgsUpdate = [
 
 export const serviciosNew = [
   { actionType: 'POST', text: 'agregar', stylesClassName: 'update' },
+];
+
+export const serviciosUpdate = [
+  { actionType: 'PUT', text: 'actualizar', stylesClassName: 'update' },
+  { actionType: 'DELETE', text: 'borrar', stylesClassName: 'delete' },
   {
     actionType: 'CANCEL',
-    text: 'cancel',
+    text: 'cancelar',
     stylesClassName: 'cancel',
     type: 'reset',
   },
 ];
 
-export const serviciosUpdate = [
+export const alojamientosNew = [
+  { actionType: 'POST', text: 'agregar', stylesClassName: 'update' },
+];
+
+export const alojamientosUpdate = [
   { actionType: 'PUT', text: 'actualizar', stylesClassName: 'update' },
   { actionType: 'DELETE', text: 'borrar', stylesClassName: 'delete' },
   {

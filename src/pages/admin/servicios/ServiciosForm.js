@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
-import formStyles from "./ServiciosForm.module.css";
+import React, { useEffect, useState } from 'react';
+import formStyles from './ServiciosForm.module.css';
 import {
   useHistory,
   useLocation,
-} from "react-router-dom/cjs/react-router-dom.min";
+} from 'react-router-dom/cjs/react-router-dom.min';
 import {
   crudAlojamientoServiciosEndpoints,
   crudServiciosEndpoints,
-} from "../../../dbEndpointsServicios";
-import crudOperations from "../../../utils/crudOperations";
-import handleCRUD from "../../../utils/handleCrud";
-import ButtonsWrapper, { AdminFormBtn } from "./../admin_shared/ButtonsWrapper";
-import { serviciosUpdate, serviciosNew } from "../admin_shared/btnActions";
+} from '../../../dbEndpointsServicios';
+import crudOperations from '../../../utils/crudOperations';
+import handleCRUD from '../../../utils/handleCrud';
+import ButtonsWrapper, { AdminFormBtn } from './../admin_shared/ButtonsWrapper';
+import { serviciosUpdate, serviciosNew } from '../admin_shared/btnActions';
+import notify from '../../../utils/toastNotify';
 
 const ServiciosForm = (props) => {
   const location = useLocation();
@@ -34,11 +35,11 @@ const ServiciosForm = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const action = e.nativeEvent.submitter.getAttribute("data-action");
+    const action = e.nativeEvent.submitter.getAttribute('data-action');
     console.log(action);
-    if (action === "CANCEL") {
+    if (action === 'CANCEL') {
       setServicio({});
-      history.push(location.pathname.split("/").slice(0, -1).join("/"));
+      history.push(location.pathname.split('/').slice(0, -1).join('/'));
       return;
     }
 
@@ -46,40 +47,41 @@ const ServiciosForm = (props) => {
       nombre: { name, value },
     } = e.target;
 
-    let endpoint = "";
-    if (action === "POST") {
+    let endpoint = '';
+    if (action === 'POST') {
       endpoint = crudServiciosEndpoints[action];
     } else {
       endpoint = `${crudServiciosEndpoints[action]}/${servicio.id}`;
     }
 
-    await handleCRUD(
+    handleCRUD(
       endpoint,
       crudOperations[action]({ [name]: value }),
       setCrudRes
-    );
-
-    if (!crudRes.error) {
-      props?.setServicios &&
-        props?.setServicios((prev) => ({ ...prev, update: true }));
-      setServicio({});
-    }
-    if (Boolean(location.state)) {
-      history.push(location.pathname.split("/").slice(0, -1).join("/"));
-    }
+    ).then((data) => {
+      if (!crudRes.error) {
+        props?.setServicios &&
+          props?.setServicios((prev) => ({ ...prev, update: true }));
+        setServicio({});
+        notify(data.message, 'success');
+      }
+      if (Boolean(location.state)) {
+        history.push(location.pathname.split('/').slice(0, -1).join('/'));
+      }
+    });
   };
 
   return (
     <form onSubmit={handleSubmit} data-id={servicio?.idServicio}>
       <fieldset>
         <legend>Servicios</legend>
-        <div className="form-control">
+        <div className='form-control'>
           <label>Nombre del servicio</label>
           <input
-            type="text"
-            placeholder="ej : wifi"
-            name="nombre"
-            value={servicio?.nombre || ""}
+            type='text'
+            placeholder='ej : wifi'
+            name='nombre'
+            value={servicio?.nombre || ''}
             onChange={(e) =>
               setServicio({ ...servicio, nombre: e.target.value })
             }
