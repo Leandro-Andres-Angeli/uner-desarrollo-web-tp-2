@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Link,
   NavLink,
   useHistory,
   useRouteMatch,
@@ -10,8 +9,7 @@ const AdminDashboard = () => {
   const { path } = useRouteMatch();
   const history = useHistory();
   return (
-    <aside>
-      {' '}
+    <nav>
       <div>
         <ul
           style={{
@@ -71,7 +69,7 @@ const AdminDashboard = () => {
           </li>
         </ul>
       </div>
-    </aside>
+    </nav>
   );
 };
 

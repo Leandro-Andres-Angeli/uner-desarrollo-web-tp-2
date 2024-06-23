@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  NavLink,
   Route,
   Switch,
   useRouteMatch,
@@ -23,8 +24,32 @@ const Admin = () => {
 
   return (
     <main className='main'>
-      <h1>Administracion</h1>
+      <h1 className='desktop-heading'>Administracion</h1>
+
       <section className={`${adminPanel}`}>
+        <details>
+          <summary>
+            <h1>administracion</h1>{' '}
+          </summary>
+          <div>
+            <ul>
+              <li>
+                <NavLink to={`${path}/alojamientos`}>alojamientos</NavLink>
+              </li>
+              <li>
+                <NavLink to={`${path}/tipo-alojamientos`}>
+                  tipo de alojamientos
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={`${path}/imagenes`}>imagenes</NavLink>
+              </li>
+              <li>
+                <NavLink to={`${path}/servicios`}>servicios</NavLink>
+              </li>
+            </ul>
+          </div>
+        </details>{' '}
         <AdminDashboard></AdminDashboard>
       </section>
 

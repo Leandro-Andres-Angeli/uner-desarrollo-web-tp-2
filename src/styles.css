@@ -613,3 +613,64 @@ section:has(.adminEntityLink) h2 {
   margin: 2rem auto;
   padding: var(--pad-x);
 }
+main details {
+  display: none;
+}
+@media (max-width: 767px) {
+  .desktop-heading {
+    display: none;
+  }
+  main details {
+    display: block;
+    display: flex;
+  }
+  main details > summary {
+    list-style: none;
+    transition: background-color 0.3s ease;
+  }
+  main details > summary:hover {
+    cursor: pointer;
+  }
+  main details[open] summary h1::after {
+    content: ' ▼';
+  }
+  main summary::-webkit-details-marker {
+    display: none;
+  }
+  main details summary h1::after {
+    content: ' ►';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -15%;
+    transition: transform 0.2s ease;
+  }
+  main details h1 {
+    padding: 0.3rem 0.5rem;
+    position: relative;
+    display: inline;
+    width: fit-content;
+    text-transform: capitalize;
+  }
+  main details ul {
+    padding: 0.3rem 0.5rem;
+  }
+  main details ul li {
+    padding: 0.3rem 0.5rem;
+  }
+  main details ul li a {
+    padding: 0.7rem 0.5rem;
+    border-radius: var(--border-radius);
+    display: block;
+    transition: background-color 0.2s ease-in,
+      color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: var(--box-shadow);
+  }
+  main details ul li a:hover {
+    color: inherit;
+  }
+  main details ul li a.active {
+    background-color: #f50057;
+    color: white;
+  }
+}

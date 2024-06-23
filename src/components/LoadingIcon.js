@@ -28,7 +28,19 @@ const Icon = () => {
 };
 const LoadingIcon = () => {
   return (
-    <div>
+    <div
+      style={{
+        position: 'absolute',
+        backgroundColor: ' var(--light-color)',
+        top: 0,
+        right: 0,
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: ' center',
+        alignItems: 'center',
+      }}
+    >
       <Icon></Icon>
     </div>
   );
