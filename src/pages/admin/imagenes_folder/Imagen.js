@@ -8,7 +8,6 @@ import handleCRUD from '../../../utils/handleCrud';
 import intialState from '../../../utils/initialState';
 
 const Imagen = () => {
-  console.log('img render');
   const [errors, setErrors] = useState({ error: 'empty' });
   const [imagePreview, setImagePreview] = useState({
     route: 'broken-image.png',
