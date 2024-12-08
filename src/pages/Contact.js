@@ -29,7 +29,7 @@ const Contact = () => {
   };
 
   return (
-    <div>
+    <div className="pagina-contacto">
       <Formulario
         datosFormulario={datosFormulario}
         setDatosFormulario={setDatosFormulario}

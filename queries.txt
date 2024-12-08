@@ -1,0 +1,1 @@
+INSERT INTO tiposalojamiento (idTipoAlojamiento, Descripcion)VALUES('1', 'Hotel'),('2', 'Hostal'),('3', 'Bed and Breakfast'),('4', 'Cabaña'),('5', 'Camping'),('6', 'Apartamento'),('7', 'Casa de huéspedes'),('8', 'Albergue'),('9', 'Motel'),('10', 'Pension');

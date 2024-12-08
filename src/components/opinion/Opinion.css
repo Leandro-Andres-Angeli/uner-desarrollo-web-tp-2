@@ -4,7 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: antiquewhite;
+  background-color: var(--primary-color);
+  color: white;
   border-radius: 2rem;
   flex-wrap: wrap;
   flex-direction: row;
@@ -47,4 +48,23 @@
 .texto-opinion {
   font-size: 1rem;
   text-align: justify;
+}
+
+@media (max-width: 400px) {
+  .contenedor-opinion {
+    min-width: 4rem;
+  }
+  .contenedor-texto-opinion {
+    width: 10rem;
+    min-width: 4rem;
+  }
+  .nombre-opinion,
+  .frase-opinion,
+  .contenedor-texto-opinion {
+    font-size: 0.9rem;
+  }
+  .imagen-opinion {
+    flex: 1;
+    width: 10rem;
+  }
 }

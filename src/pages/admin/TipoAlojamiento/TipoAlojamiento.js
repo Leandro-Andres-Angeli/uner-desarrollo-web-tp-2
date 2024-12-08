@@ -1,19 +1,14 @@
 import React from 'react';
-import {
-  useLocation,
-  useParams,
-} from 'react-router-dom/cjs/react-router-dom.min';
+
 import TipoAlojamientosForm from '../tipoAlojamientosForm/TipoAlojamientosForm';
+import { tipoAlojActions } from '../admin_shared/btnActions';
 
 const TipoAlojamiento = () => {
   return (
     <>
       <TipoAlojamientosForm
         type={'PUT'}
-        actions={[
-          { actionType: 'PUT', text: 'actualizar', stylesClassName: 'update' },
-          { actionType: 'DELETE', text: 'borrar', stylesClassName: 'delete' },
-        ]}
+        actions={tipoAlojActions}
       ></TipoAlojamientosForm>
     </>
   );

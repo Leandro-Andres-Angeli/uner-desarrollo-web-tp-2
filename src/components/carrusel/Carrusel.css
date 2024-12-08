@@ -5,7 +5,7 @@
   box-sizing: border-box;
   margin: 0 auto;
   color: black;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
 }
 
 .contenido-carrusel {
@@ -22,12 +22,14 @@
   position: absolute;
   top: 0;
   left: 0;
+  pointer-events: none;
 }
 
 .item-carrusel.item-activo {
   opacity: 1;
   transform: scale(1);
   position: relative;
+  pointer-events: all;
 }
 
 .boton-carrusel {
@@ -41,12 +43,20 @@
   transform: translateY(-50%);
   z-index: 2;
   padding-left: 1rem;
+  transform: translateY(0);
+  transition: opacity 0.5s, transform 0.1s;
+  border-radius: 10px;
+}
+
+.boton-carrusel:active {
+  opacity: 0.5;
+  transform: translateY(2px);
 }
 
 .boton-carrusel.izquierda {
-  left: 10px;
+  left: 1px;
 }
 
 .boton-carrusel.derecha {
-  right: 10px;
+  right: 1px;
 }

@@ -1,19 +1,11 @@
-/* .adminPanel {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-.adminPanel section {
-  box-shadow: var(--box-shadow);
-}*/
-.adminPanel aside {
+.adminPanel nav {
   display: flex;
   justify-content: end;
   gap: 3rem;
-
+  background-color: white;
   color: var(--primary-color);
 }
-.adminPanel aside ul li a {
+.adminPanel nav ul li a {
   padding: 10px 15px;
   background-color: #f50057;
   color: white;
@@ -24,14 +16,20 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-/*.adminPanel aside ul li a {
+/*.adminPanel nav ul li a {
   padding: calc(var(--pad-x) * 0.2) calc(var(--pad-x) * 0.2);
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-.adminPanel aside ul li a:hover {
+.adminPanel nav ul li a:hover {
   background-color: var(--secondary-color);
   color: var(--primary-color);
 } */
 .btnAdd {
   position: absolute;
+}
+
+@media (max-width: 767px) {
+  .adminPanel nav {
+    display: none;
+  }
 }

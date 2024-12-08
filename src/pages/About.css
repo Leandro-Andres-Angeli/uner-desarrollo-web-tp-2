@@ -1,18 +1,7 @@
-/* about.css */
+
 .about-section {
-    /* Estilos específicos para el componente Acerca */
-  }
-  
-  .about-title {
-    /* Estilos para el título */
-  }
-  
-  .about-paragraph {
-    /* Estilos para los párrafos */
-  }
-  
-  /* Agrega más estilos según sea necesario */
-  
+  padding: 1.85em;
+}
 
 .imagen-container {
     display: flex;
@@ -31,6 +20,7 @@
     width: 100%; /* Ajusta el ancho de la imagen para llenar el contenedor */
     height: 300px; /* Permite que la altura de la imagen se ajuste automáticamente */
     border-radius: 10px; /* Aplica un borde redondeado con un radio de 10px */
+    object-fit: cover;/* Ajuste para cubrir el contenedor manteniendo la relación de aspecto */
   }
   .custom-icon {
     color: #ffeb3b; /*Elijo color*/
@@ -39,3 +29,8 @@
     padding: var(--padding-helper-horiz);
   }
   
+@media (max-width: 768px) {
+  .imagen-container figure {
+    width: 100%; /* Cambia el ancho del elemento figure para dispositivos móviles */
+  }
+}

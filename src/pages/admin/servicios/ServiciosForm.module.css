@@ -1,0 +1,8 @@
+.formActionsContainer {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.formActionsContainer button:hover {
+  cursor: pointer;
+}

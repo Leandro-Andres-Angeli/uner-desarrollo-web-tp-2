@@ -1,16 +1,16 @@
-import React from "react";
-import Card from "./Card";
-import "./Cards.css";
+import React from 'react';
+import Card from './Card';
+import './Cards.css';
 
-const CardList = (props) => {
+const CardList = ({ titulo = '', lista }) => {
   return (
-    <div className="card-list">
-      <h2>{props.titulo}</h2>
-      <div className="tarjetas">
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
+    <div className='card-list'>
+      <h2 className='centrado'>{titulo}</h2>
+      <div className='tarjetas'>
+        {lista &&
+          lista.map((item, index) => {
+            return <Card key={index} item={item}></Card>;
+          })}
       </div>
     </div>
   );

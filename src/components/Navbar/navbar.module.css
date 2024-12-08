@@ -20,7 +20,7 @@
 }
 
 .navLinks a {
-  padding: 1rem 2rem;
+  padding: 1rem 0.7rem;
   text-transform: capitalize;
 }
 
@@ -74,6 +74,7 @@
     padding: 0%;
     box-shadow: none;
     transition: none;
+    flex-wrap: wrap;
   }
   .navLinksMobile {
     display: none;
